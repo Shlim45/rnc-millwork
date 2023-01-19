@@ -32,5 +32,4 @@ yarn-error.log*
 .vercel
 
 #################################
-public/
 rnc.code-workspace
