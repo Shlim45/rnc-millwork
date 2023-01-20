@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
-import { server } from "@/config"
+import { projects } from "@/data"
 
 const project = ({project}) => {
     return (
@@ -17,22 +17,19 @@ const project = ({project}) => {
 }
 
 export const getStaticProps = async (context) => {
-    const res = await fetch(`${server}/api/projects/${context.params.id}`)
-
-    const project = await res.json();
+    const id = context.params.id;
+    const filtered = projects.filter(project => project.id === id);
+    const project = filtered[0];
 
     return {
         props: {
             project
         }
     }
+
 }
 
 export const getStaticPaths = async () => {
-    const res = await fetch(`${server}/api/projects/`)
-
-    const projects = await res.json();
-
     const ids = projects.map(project => project.id)
     const paths = ids.map(id => ({params: {id: id.toString()}}))
 
@@ -40,6 +37,7 @@ export const getStaticPaths = async () => {
         paths,
         fallback: false
     }
+
 }
 
 export default project
