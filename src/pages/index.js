@@ -1,4 +1,6 @@
 import Head from 'next/head'
+import Image from 'next/image'
+import sawStopPic from '../../public/home/lumber_on_sawstop_blurred.webp'
 
 export default function Home() {
   return (
@@ -11,6 +13,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       
+      <Image src={sawStopPic} alt={"Lumber resting atop a SawStop."} priority />
+
       <h1>Home page</h1>
     </>
   )
