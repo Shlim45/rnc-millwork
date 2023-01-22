@@ -4,7 +4,7 @@
 
 .title a, 
 .title span {
-    color: #0070f3;
+    color: var(--rcm-green);
     text-decoration: none;
 }
 
