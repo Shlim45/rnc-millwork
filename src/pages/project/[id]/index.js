@@ -4,15 +4,16 @@ import { projects } from "@/data"
 
 const project = ({project}) => {
     return (
-        <>
+        <div style={{ maxWidth: "80vw" }}>
             <h1>{project.title}</h1>
             <p>{project.body}</p>
-            <div className="projectImages">
-                {project.images.map((image, index) => <Image src={`/projects/${image}`} key={project.id} alt={project.alts[index]} className="projectImage"  width={480} height={640} />)}
+            <br />
+            <div>
+                {project.images.map((image, index) => <Image src={`/projects/${image}`} key={project.id} alt={project.alts[index]} width={480} height={640} style={{ maxWidth: "80vw", height: "auto" }}/>)}
             </div>
             <br />
-            <Link href='/projects/'>Go Back</Link>
-        </>
+            <Link href='/projects/'>Back to Projects</Link>
+        </div>
     )
 }
 

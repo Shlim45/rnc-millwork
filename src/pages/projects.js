@@ -14,7 +14,6 @@ export default function Projects({ projects }) {
       </Head>
 
       <h1>Projects</h1>
-      <hr />
       <ProjectList projects={projects} />
     </>
   )

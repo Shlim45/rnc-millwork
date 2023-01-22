@@ -5,6 +5,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  
 }
 
 .main {
@@ -12,9 +13,10 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 6rem;
+  padding: 2rem;
   min-height: 100vh;
   font-size: 1.25rem;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .center {
