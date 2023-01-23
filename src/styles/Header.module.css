@@ -100,3 +100,10 @@
       z-index: 1;
     }
 }
+
+@media (prefers-color-scheme: light) {
+  .title a, 
+  .title span {
+      background-color: #111;
+  }
+}
