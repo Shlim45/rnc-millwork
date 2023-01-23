@@ -1,9 +1,9 @@
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import React, { useState } from "react";
 import logo from '../../public/rcm-logo.webp'
-import NavItem from "./NavItem";
-import navbarStyles from "@/styles/Navbar.module.css"
+import navStyles from "@/styles/Navbar.module.css"
+import { joinClassNames } from "@/utils";
 
 const MENU_LIST = [
   { text: "Home", href: "/" },
@@ -13,7 +13,11 @@ const MENU_LIST = [
   { text: "Contact", href: "/contact" },
 ];
 
-const cx = (...cs) => (cs.map(c => c).join(" "));
+const NavItem = ({ text, href, active }) => {
+  return (
+    <Link href={href} className={navStyles.nav__link}>{text}</Link>
+  );
+};
 
 const Navbar = () => {
   const [navActive, setNavActive] = useState(null);
@@ -21,19 +25,22 @@ const Navbar = () => {
 
   return (
     <header>
-      <nav className={navbarStyles.nav}>
+      <nav className={navStyles.nav}>
         <Link href="/">
             <Image src={logo} alt="RCMillwork Logo" width={60} height={60} />
         </Link>
         <div
           onClick={() => setNavActive(!navActive)}
-          className={navbarStyles.nav__menu_bar}
+          className={navStyles.nav__menu_bar}
         >
           <div></div>
           <div></div>
           <div></div>
         </div>
-        <div className={navActive ? cx(navbarStyles.active, navbarStyles.nav__menu_list) : navbarStyles.nav__menu_list}>
+        <div className={navActive 
+          ? joinClassNames(navStyles.active, navStyles.nav__menu_list) 
+          : navStyles.nav__menu_list}
+        >
           {MENU_LIST.map((menu, idx) => (
             <div
               onClick={() => {

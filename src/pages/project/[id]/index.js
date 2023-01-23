@@ -9,18 +9,16 @@ const project = ({project}) => {
             <p>{project.body}</p>
             <br />
             <div>
-                {
-                    project.images.map((image, index) => (
-                        <Image src={`/projects/${image}`} 
-                            key={project.id} 
-                            alt={project.alts[index]} 
-                            width={480} height={640} 
-                            style={{ 
-                                maxWidth: "80vw", height: "auto", margin: "auto", display: "block", padding: ".5rem"
-                            }}
-                        />
-                    ))
-                }
+                {project.images.map((image, index) => (
+                    <Image src={`/projects/${image}`} 
+                        key={project.id} 
+                        alt={project.alts[index]} 
+                        width={480} height={640} 
+                        style={{ 
+                            maxWidth: "80vw", height: "auto", margin: "auto", display: "block", padding: ".5rem"
+                        }}
+                    />
+                ))}
             </div>
             <br />
             <Link href='/projects/'>Back to Projects</Link>
