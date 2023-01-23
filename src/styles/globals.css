@@ -111,36 +111,14 @@ a {
 }
 
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
-}
+} */
 
-.nav__menu-list{
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  top: 60px;
-  width: 200px;
-  row-gap: 24px;
-  right: -200px;
-  padding: 24px 16px;
-  transition: all 0.2s;
-  min-height: calc(100vh - 60px);
-  background-color: #111111;
-}
-.nav__menu-list.active{
-  right: 0;
-}
-
-@media screen and (min-width: 768px) {
-  .nav__menu-list{
-    position: unset;
-    flex-direction: row;
-    min-height: fit-content;
-    width: fit-content;
-    column-gap: 24px;
-    align-items: center;
+@media (prefers-color-scheme: light) {
+  html {
+    color-scheme: light;
   }
 }

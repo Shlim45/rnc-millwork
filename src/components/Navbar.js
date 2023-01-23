@@ -13,6 +13,8 @@ const MENU_LIST = [
   { text: "Contact", href: "/contact" },
 ];
 
+const cx = (...cs) => (cs.map(c => c).join(" "));
+
 const Navbar = () => {
   const [navActive, setNavActive] = useState(null);
   const [activeIdx, setActiveIdx] = useState(-1);
@@ -21,7 +23,7 @@ const Navbar = () => {
     <header>
       <nav className={navbarStyles.nav}>
         <Link href="/">
-            <Image src={logo} alt="RCMillwork Logo" width={50} height={50} />
+            <Image src={logo} alt="RCMillwork Logo" width={60} height={60} />
         </Link>
         <div
           onClick={() => setNavActive(!navActive)}
@@ -31,7 +33,7 @@ const Navbar = () => {
           <div></div>
           <div></div>
         </div>
-        <div className={`${navActive ? "active" : ""} nav__menu-list`}>
+        <div className={navActive ? cx(navbarStyles.active, navbarStyles.nav__menu_list) : navbarStyles.nav__menu_list}>
           {MENU_LIST.map((menu, idx) => (
             <div
               onClick={() => {

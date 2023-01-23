@@ -6,7 +6,7 @@
     padding: 0 16px;
     justify-content: space-between;
     align-items: center;
-    background-color: #111111;
+    background-color: #000;
 
 }
 .nav__menu_bar{
@@ -21,20 +21,20 @@
     background-color: var(--rcm-green);
     border-radius: 2px;
 }
-.nav__menu-list{
+.nav__menu_list{
     display: flex;
     flex-direction: column;
     position: fixed;
     top: 60px;
-    width: 288px;
+    width: 180px;
     row-gap: 24px;
-    right: -288px;
+    right: -180px;
     padding: 24px 16px;
     transition: all 0.2s;
     min-height: calc(100vh - 50px);
-    background-color: #111111;
+    background-color: #000;
 }
-.nav__menu-list.active{
+.nav__menu_list.active{
     right: 0;
 }
 
@@ -42,7 +42,7 @@
     .nav__menu_bar{
         display: none;
     }
-    .nav__menu-list{
+    .nav__menu_list{
         position: unset;
         flex-direction: row;
         min-height: fit-content;
