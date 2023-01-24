@@ -14,7 +14,7 @@ const project = ({project}) => {
                         key={index} 
                         alt={project.alts[index]} 
                         width={480} height={640} 
-                        priority
+                        priority={index == 0 ? "true" : "false"}
                         style={{ 
                             maxWidth: "80vw", height: "auto", margin: "auto", display: "block", padding: ".5rem"
                         }}
