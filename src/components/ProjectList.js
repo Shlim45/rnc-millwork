@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import ProjectItem from './ProjectItem'
 import projectStyles from '@/styles/Project.module.css'
 
