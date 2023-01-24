@@ -10,8 +10,8 @@ const project = ({project}) => {
             <br />
             <div>
                 {project.images.map((image, index) => (
-                    <Image src={`/projects/${image}`} 
-                        key={project.id} 
+                    <Image src={`/projects/${project.id}/${image}`} 
+                        key={index} 
                         alt={project.alts[index]} 
                         width={480} height={640} 
                         style={{ 
