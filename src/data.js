@@ -38,7 +38,7 @@ export const projects = [
             "Front view of table with aqua epoxy resin inlay.",
             "Side view of table with aqua epoxy resin inlay."
         ],
-        cover: "2",
+        cover: "3",
         body: "Custom square table with epoxy resin inlay."
     },
     {
