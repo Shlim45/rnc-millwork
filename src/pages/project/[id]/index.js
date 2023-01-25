@@ -1,9 +1,20 @@
 import Link from "next/link"
-import Image from "next/image"
 import Head from "next/head"
+import Carousel from "@/components/Carousel"
 import { projects } from "@/data"
+import { useEffect, useState } from "react"
 
-const project = ({project}) => {
+const Project = ({project}) => {
+    const [imgs, setImgs] = useState();
+
+    useEffect(() => {
+        setImgs(project.images.map((image, idx) => ({
+            id: idx,
+            url: `/projects/${project.id}/${image}`,
+            alt: project.alts[idx]
+        })));
+    }, [project]);
+
     return (
         <>
             <Head>
@@ -17,21 +28,7 @@ const project = ({project}) => {
             <div style={{ maxWidth: "80vw", textAlign: "center"}}>
                 <h1>{project.title}</h1>
                 <p>{project.body}</p>
-                <br />
-                <div>
-                    {project.images.map((image, index) => (
-                        <Image src={`/projects/${project.id}/${image}`} 
-                            key={index} 
-                            alt={project.alts[index]} 
-                            width={480} height={640} 
-                            priority={index == 0 ? "true" : "false"}
-                            style={{ 
-                                maxWidth: "80vw", height: "auto", margin: "auto", display: "block", padding: ".5rem"
-                            }}
-                        />
-                    ))}
-                </div>
-                <br />
+                <Carousel images={imgs} />
                 <Link href='/projects/'>Back to Projects</Link>
             </div>
         </>
@@ -62,4 +59,4 @@ export const getStaticPaths = async () => {
 
 }
 
-export default project
+export default Project
