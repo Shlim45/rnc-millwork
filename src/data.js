@@ -171,4 +171,20 @@ export const projects = [
         cover: "0",
         body: "Wooden bathroom vanity."
     },
+    {
+        id: "12",
+        title: "Custom Countertop",
+        images: [
+            "countertop_1.webp",
+            "countertop_2.webp",
+            "countertop_3.webp",
+        ],
+        alts: [
+            "Custom wooden countertop side view.",
+            "Custom wooden countertop front view.",
+            "Custom wooden countertop rear view.",
+        ],
+        cover: "0",
+        body: "Custom hand-crafted wooden countertop."
+    },
 ];
