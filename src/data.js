@@ -75,16 +75,12 @@ export const projects = [
         images: [
             "ent_center_v2_1.webp",
             "ent_center_v2_2.webp",
-            "ent_center_v2_3.webp",
-            "ent_center_v2_4.webp",
         ],
         alts: [
-            "Front view of bottom storage of wooden entertainment center before paint.",
-            "Side view of bottom storage of wooden entertainment center before paint.",
             "Installed entertainment center, painted white.",
             "Far view of entertainment center, painted white.",
         ],
-        cover: "2",
+        cover: "0",
         body: "Custom wooden entertainment center."
     },
     {
@@ -186,5 +182,19 @@ export const projects = [
         ],
         cover: "0",
         body: "Custom hand-crafted wooden countertop."
+    },
+    {
+        id: "13",
+        title: "Bathroom Vanity",
+        images: [
+            "vanity_1.webp",
+            "vanity_2.webp",
+        ],
+        alts: [
+            "Front view of custom wooden bathroom vanity.",
+            "Side view of custom wooden bathroom vanity.",
+        ],
+        cover: "0",
+        body: "Custom wooden bathroom vanity."
     },
 ];
