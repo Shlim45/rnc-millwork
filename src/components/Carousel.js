@@ -57,6 +57,7 @@ const Carousel = ({ images }) => {
 
     return (
         <div className={carouselStyles.carousel_container}>
+            <div className={carouselStyles.selected_container}>
             {selectedImage && <Image src={selectedImage.url} 
                 key={selectedImage.id} 
                 alt={selectedImage.alt} 
@@ -64,6 +65,7 @@ const Carousel = ({ images }) => {
                 className={carouselStyles.selected_image}
                 priority
             />}
+            </div>
             <div className={carouselStyles.carousel}>
                 <div className={carouselStyles.carousel__images}>
                 {images && images.map((image, idx) => (

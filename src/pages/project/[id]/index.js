@@ -26,7 +26,7 @@ const Project = ({project}) => {
             </Head>
 
             <div style={{ maxWidth: "80vw", textAlign: "center"}}>
-                <h1>{project.title}</h1>
+                <h2>{project.title}</h2>
                 <p>{project.body}</p>
                 <Carousel images={imgs} />
                 <Link href='/projects/'>Back to Projects</Link>
