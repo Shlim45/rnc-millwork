@@ -6,14 +6,14 @@
 
 /* Mobile */
 @media (max-width: 700px) {
-    .headerImage {
-        max-width: 100vw;
-    }
+  .headerImage {
+      max-width: 100vw;
+  }
 }
 
 /* Tablet and Smaller Desktop */
 @media (min-width: 701px) and (max-width: 1120px) {
-    .headerImage {
-        max-width: 100vw;
-    }
+  .headerImage {
+      max-width: 100vw;
+  }
 }

@@ -5,16 +5,16 @@
     'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
     'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
 
-  --foreground-rgb: 250, 255, 250;
-  --background-start-rgb: 15, 15, 15;
+  --foreground-rgb: 247, 253, 240;
+  --background-start-rgb: 10, 10, 10;
   --background-end-rgb: 20, 20, 20;
 
-  --primary-glow: radial-gradient(rgba(1, 65, 255, 0.4), rgba(1, 65, 255, 0));
+  --primary-glow: radial-gradient(rgba(88, 253, 81, 0.8), rgba(88, 253, 81, 0));
   --secondary-glow: linear-gradient(
     to bottom right,
-    rgba(1, 65, 255, 0),
-    rgba(1, 65, 255, 0),
-    rgba(1, 65, 255, 0.3)
+    rgba(88, 253, 81, 0),
+    rgba(88, 253, 81, 0),
+    rgba(88, 253, 81, 0.3)
   );
 
   --tile-start-rgb: 2, 13, 46;
