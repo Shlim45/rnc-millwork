@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@next/font": "13.1.2",
+    "embla-carousel-autoplay": "^7.0.9",
+    "embla-carousel-react": "^7.0.9",
     "eslint": "8.32.0",
     "eslint-config-next": "13.1.2",
     "next": "13.1.2",
