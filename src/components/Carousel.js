@@ -12,13 +12,13 @@ const Carousel = ({ images }) => {
         console.log(images);
 
         if (images && images[0]) {
-          carouselItemsRef.current = carouselItemsRef.current.slice(
-            0,
-            images.length
-          );
-    
-          setSelectedImageIndex(0);
-          setSelectedImage(images[0]);
+            carouselItemsRef.current = carouselItemsRef.current.slice(
+                0,
+                images.length
+            );
+
+            setSelectedImageIndex(0);
+            setSelectedImage(images[0]);
         }
     }, [images]);
 
@@ -58,44 +58,44 @@ const Carousel = ({ images }) => {
     return (
         <div className={carouselStyles.carousel_container}>
             <div className={carouselStyles.selected_container}>
-            {selectedImage && <Image src={selectedImage.url} 
-                key={selectedImage.id} 
-                alt={selectedImage.alt} 
-                width={480} height={640} 
-                className={carouselStyles.selected_image}
-                priority
-            />}
+                {selectedImage && <Image src={selectedImage.url}
+                    key={selectedImage.id}
+                    alt={selectedImage.alt}
+                    width={480} height={640}
+                    className={carouselStyles.selected_image}
+                    priority
+                />}
             </div>
             <div className={carouselStyles.carousel}>
                 <div className={carouselStyles.carousel__images}>
-                {images && images.map((image, idx) => (
-                    <div key={idx} className={selectedImageIndex === idx 
-                        ? joinClassNames(carouselStyles.carousel__image, carouselStyles.carousel__image_selected) 
-                        : carouselStyles.carousel__image}
-                    >
-                        <Image
-                            onClick={() => handleSelectedImageChange(idx)}
-                            src={image.url}
-                            alt={image.alt}
-                            key={image.id}
-                            width={150}
-                            height={150}
-                            ref={(el) => (carouselItemsRef.current[idx] = el)}
-                        />
-                    </div>
-                ))}
+                    {images && images.map((image, idx) => (
+                        <div key={idx} className={selectedImageIndex === idx
+                            ? joinClassNames(carouselStyles.carousel__image, carouselStyles.carousel__image_selected)
+                            : carouselStyles.carousel__image}
+                        >
+                            <Image
+                                onClick={() => handleSelectedImageChange(idx)}
+                                src={image.url}
+                                alt={image.alt}
+                                key={image.id}
+                                width={150}
+                                height={150}
+                                ref={(el) => (carouselItemsRef.current[idx] = el)}
+                            />
+                        </div>
+                    ))}
                 </div>
                 <button
                     className={joinClassNames(carouselStyles.carousel__button, carouselStyles.carousel__button_left)}
                     onClick={handleLeftClick}
                 >
-                &larr;
+                    &larr;
                 </button>
                 <button
                     className={joinClassNames(carouselStyles.carousel__button, carouselStyles.carousel__button_right)}
                     onClick={handleRightClick}
                 >
-                &rarr;
+                    &rarr;
                 </button>
             </div>
         </div>

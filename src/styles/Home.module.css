@@ -7,20 +7,24 @@
 .sandbox__carousel {
   background-color: var(--background-code);
 }
+
 .sandbox__carousel {
   position: relative;
 }
+
 @media (min-width: 750px) {
   .sandbox__carousel {
     border-radius: 0.4rem;
   }
 }
+
 .sandbox__header {
   font-size: 2rem;
   font-weight: bold;
   text-align: left;
   padding: 4rem 2rem 2rem 2rem;
 }
+
 .sandbox__header>span {
   padding-bottom: 5px;
   border-bottom: 3px solid;
@@ -46,9 +50,10 @@
 /* Mobile */
 @media (max-width: 700px) {
   .sandbox {
-      width: 100vw;
-      /* max-width: 100vw; */
+    width: 100vw;
+    /* max-width: 100vw; */
   }
+
   .headerImage {
     width: 95vw;
   }
@@ -64,6 +69,7 @@
   .sandbox {
     max-width: 100vw;
   }
+
   .headerImage {
     width: 90vw;
   }

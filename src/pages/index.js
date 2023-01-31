@@ -18,9 +18,9 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/rcm-icon.png" />
       </Head>
-      
-      <Image 
-        src={sawStopPic} 
+
+      <Image
+        src={sawStopPic}
         alt="Lumber resting atop a SawStop."
         className={styles.headerImage}
         sizes="(max-width: 640px) 620px, (max-width: 1007px) 765px, 800px"
@@ -40,6 +40,6 @@ export default function Home() {
           <EmblaCarousel slides={SLIDES} options={OPTIONS} />
         </div>
       </section>
-      </>
+    </>
   )
 }

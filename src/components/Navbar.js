@@ -27,7 +27,7 @@ const Navbar = () => {
     <header>
       <nav className={navStyles.nav}>
         <Link href="/">
-            <Image src={logo} alt="RCMillwork Logo" width={60} height={60} />
+          <Image src={logo} alt="RCMillwork Logo" width={60} height={60} />
         </Link>
         <div
           onClick={() => setNavActive(!navActive)}
@@ -37,8 +37,8 @@ const Navbar = () => {
           <div></div>
           <div></div>
         </div>
-        <div className={navActive 
-          ? joinClassNames(navStyles.active, navStyles.nav__menu_list) 
+        <div className={navActive
+          ? joinClassNames(navStyles.active, navStyles.nav__menu_list)
           : navStyles.nav__menu_list}
         >
           {MENU_LIST.map((menu, idx) => (

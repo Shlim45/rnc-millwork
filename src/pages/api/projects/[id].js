@@ -1,4 +1,4 @@
-import {projects} from "@/data"
+import { projects } from "@/data"
 
 export default function handler(req, res) {
     const id = req.query.id;
@@ -7,5 +7,5 @@ export default function handler(req, res) {
     if (filtered.length > 0)
         res.status(200).json(filtered[0]);
     else
-        res.status(404).json({message: `Project ID ${id} not found.`})
+        res.status(404).json({ message: `Project ID ${id} not found.` })
 }
