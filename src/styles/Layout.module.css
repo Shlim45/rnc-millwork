@@ -16,6 +16,9 @@
   padding: 2rem;
   min-height: 100vh;
   font-size: 1.25rem;
+  font-weight: 400;
+  letter-spacing: 0.1ch;
+  line-height: 1.6rem;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
@@ -70,6 +73,12 @@
     height: 300px;
   }
 }
+
+/* Tablet and Smaller Desktop */
+@media (min-width: 701px) and (max-width: 1120px) {
+
+}
+
 
 @media (prefers-color-scheme: dark) {
 
