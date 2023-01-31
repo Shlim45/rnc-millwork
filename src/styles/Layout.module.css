@@ -17,9 +17,8 @@
   min-height: 100vh;
   font-size: 1.25rem;
   font-weight: 400;
-  letter-spacing: 0.1ch;
+  letter-spacing: 0.15ch;
   line-height: 1.6rem;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .center {
