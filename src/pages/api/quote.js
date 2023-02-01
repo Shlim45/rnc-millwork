@@ -1,3 +1,5 @@
+import sendEmail from '@/utils/email'
+
 function handler(req, res) {
     // Get data submitted in request's body.
     const body = req.body
@@ -14,9 +16,20 @@ function handler(req, res) {
         return res.status(400).json({ data: 'Form incomplete.' })
     }
 
+    const text = `
+    FROM:  ${body.email} (${body.name})
+    PHONE: ${body.phone}
+
+    SUBJECT: ${body.subject}
+
+    ${body.description}
+    `;
+
     // Found the name.
+    sendEmail(body.subject, text);
+
     // Sends a HTTP success code
-    res.status(200).json({ data: `${body.name} ${body.phone} ${body.email} ${body.subject} ${body.description}` })
+    res.status(200).json({ data: `${text}` })
 }
 
 export default handler

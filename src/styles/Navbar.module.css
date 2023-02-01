@@ -7,7 +7,7 @@
     justify-content: space-between;
     align-items: center;
     background-color: #000;
-    color: rgb(250, 255, 250);
+    color: rgba(var(--foreground-rgb), 0.8);
 }
 
 .nav__menu_bar {
@@ -43,14 +43,15 @@
 }
 
 .nav__link {
-    font-size: 18px;
+    font-size: 1.15rem;
     position: relative;
     transition: all 0.2s;
     display: block;
 }
 
 .nav__link:hover {
-    font-weight: bold;
+    color: rgba(var(--foreground-rgb), 1);
+    transition: all 0.2s;
 }
 
 @media screen and (min-width: 701px) {
@@ -71,11 +72,13 @@
         content: '';
         position: absolute;
         width: 0%;
-        height: 6px;
-        bottom: -16px;
+        height: 3px;
+        bottom: -10px;
         left: 0;
-        background-color: var(--rcm-green);
-        transition: all 0.2s;
+
+        background-image: var(--green-fade-out);
+
+        transition: all 0.25s;
     }
 
     .nav__link:hover:before {
