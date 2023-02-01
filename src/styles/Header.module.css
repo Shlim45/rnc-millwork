@@ -3,13 +3,6 @@
   margin: 10px auto 40px;
 }
 
-.logo {
-  display: block;
-  width: 400px;
-  height: auto;
-  margin: 0 auto 30px;
-}
-
 .description {
   text-align: center;
   display: inherit;
@@ -22,27 +15,14 @@
   font-family: var(--font-mono);
 }
 
-
 /* Mobile */
 @media (max-width: 700px) {
   .description {
     font-size: 0.8rem;
   }
-
-  .logo {
-    width: 200px;
-  }
 }
 
 /* Tablet and Smaller Desktop */
-@media (min-width: 701px) and (max-width: 1120px) {
-  .logo {
-    width: 300px;
-  }
-}
+@media (min-width: 701px) and (max-width: 1120px) {}
 
-@media (prefers-color-scheme: light) {
-  .logo {
-    background-color: #111;
-  }
-}
+@media (prefers-color-scheme: light) {}

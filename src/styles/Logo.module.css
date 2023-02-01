@@ -1,0 +1,53 @@
+.logo {
+    width: 400px;
+    height: 200px;
+    margin: 0 auto 30px;
+    position: relative;
+}
+
+.logo>div {
+    position: absolute;
+    height: 80%;
+    top: 10%;
+    z-index: -1;
+}
+
+.bg_left {
+    width: 40%;
+    left: 5%;
+    background-color: rgb(247, 253, 240);
+}
+
+.bg_right {
+    width: 55%;
+    left: 45%;
+    background-color: inherit;
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+
+    .logo,
+    .logo img {
+        width: 200px;
+        height: 100px;
+    }
+}
+
+/* Tablet and Smaller Desktop */
+@media (min-width: 701px) and (max-width: 1120px) {
+
+    .logo,
+    .logo img {
+        width: 300px;
+        height: 150px;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+
+    .bg_left,
+    .bg_right {
+        background-color: #111;
+    }
+}
