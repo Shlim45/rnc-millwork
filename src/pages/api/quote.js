@@ -1,4 +1,5 @@
 import sendEmail from '@/utils/email'
+import { isInDevMode } from '@/config'
 
 function handler(req, res) {
     // Get data submitted in request's body.
@@ -25,8 +26,10 @@ function handler(req, res) {
     ${body.description}
     `;
 
-    // Found the name.
-    sendEmail(body.subject, text);
+    // Send email ONLY IN DEV MODE FOR NOW
+    if (isInDevMode()) {
+        sendEmail(body.subject, text);
+    }
 
     // Sends a HTTP success code
     res.status(200).json({ data: `${text}` })
