@@ -3,7 +3,7 @@
     z-index: 30;
     top: 0;
     display: flex;
-    padding: 0 16px;
+    padding: 5px 15px 5px 5px;
     justify-content: space-between;
     align-items: center;
     background-color: #000;
@@ -29,9 +29,9 @@
     flex-direction: column;
     position: fixed;
     top: 60px;
-    width: 180px;
+    width: 40vw;
     row-gap: 24px;
-    right: -180px;
+    right: -40vw;
     padding: 24px 16px;
     transition: all 0.2s;
     min-height: calc(100vh - 50px);
@@ -46,13 +46,14 @@
     font-size: 18px;
     position: relative;
     transition: all 0.2s;
+    display: block;
 }
 
 .nav__link:hover {
     font-weight: bold;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 701px) {
     .nav__menu_bar {
         display: none;
     }

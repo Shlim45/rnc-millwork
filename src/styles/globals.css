@@ -39,6 +39,11 @@
   --card-border-rgb: 200, 200, 200;
 
   --rcm-green: #58FD51;
+  --rcm-green-80: rgba(88, 253, 81, 0.8);
+  --rcm-green-60: rgba(88, 253, 81, 0.6);
+  --rcm-green-40: rgba(88, 253, 81, 0.4);
+  --rcm-green-20: rgba(88, 253, 81, 0.2);
+  --foreground: rgb(var(--foreground-rgb));
 }
 
 @media (prefers-color-scheme: light) {

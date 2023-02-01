@@ -1,0 +1,22 @@
+.main {
+    max-width: 67rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.main>h1 {
+    text-align: center;
+}
+
+.title {
+    padding-bottom: 1rem;
+    border-bottom: 3px solid;
+    border-image-slice: 1;
+    border-image-source: var(--green-fade-out);
+}
+
+/* Mobile */
+@media (max-width: 700px) {}
+
+/* Tablet and Smaller Desktop */
+@media (min-width: 701px) and (max-width: 1120px) {}
