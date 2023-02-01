@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="400px"
+   height="200px"
+   viewBox="0 0 400 200"
+   version="1.1"
+   id="SVGRoot"
+   sodipodi:docname="rcm_logo_horizontal.svg"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview75"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="px"
+     showgrid="false"
+     inkscape:zoom="2.587745"
+     inkscape:cx="171.19152"
+     inkscape:cy="148.00531"
+     inkscape:window-width="2498"
+     inkscape:window-height="1417"
+     inkscape:window-x="54"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     inkscape:lockguides="true" />
+  <defs
+     id="defs70">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient3671">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop3667" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0;"
+         offset="1"
+         id="stop3669" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3640"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop3638" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3671"
+       id="linearGradient3673"
+       x1="55.049046"
+       y1="80.892357"
+       x2="71.131077"
+       y2="80.892357"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       id="rect919"
+       style="fill:#66ff00;stroke:#58fd51;stroke-width:0.993789;stroke-opacity:1"
+       d="M 20.496094 20.496094 L 20.496094 179.50391 L 179.50391 179.50391 L 179.50391 20.496094 L 20.496094 20.496094 z M 137.03906 64.041016 C 140.82823 64.041016 144.60179 64.500302 148.35938 65.416016 C 152.14854 66.331729 156.34884 67.941021 160.95898 70.246094 L 160.95898 81.376953 L 160.24805 81.376953 C 156.36416 78.12459 152.51214 75.757525 148.69141 74.273438 C 144.87067 72.78935 140.78136 72.046875 136.42383 72.046875 C 132.85571 72.046875 129.63516 72.630503 126.76172 73.798828 C 123.91985 74.935576 121.37669 76.719013 119.13477 79.150391 C 116.956 81.518616 115.25101 84.519112 114.01953 88.150391 C 112.81963 91.750093 112.2207 95.917846 112.2207 100.6543 C 112.2207 105.61178 112.88278 109.87523 114.20898 113.44336 C 115.56676 117.01148 117.3043 119.91628 119.41992 122.1582 C 121.63027 124.49485 124.20403 126.23239 127.14062 127.36914 C 130.1088 128.47431 133.23364 129.02539 136.51758 129.02539 C 141.03299 129.02539 145.26389 128.25232 149.21094 126.70508 C 153.15798 125.15784 156.8531 122.83667 160.29492 119.74219 L 160.95898 119.74219 L 160.95898 130.73047 C 159.22229 131.4883 157.64359 132.20018 156.22266 132.86328 C 154.8333 133.52639 153.00006 134.22101 150.72656 134.94727 C 148.8004 135.54722 146.70123 136.0524 144.42773 136.46289 C 142.18582 136.90496 139.70775 137.125 136.99219 137.125 C 131.87682 137.125 127.21918 136.41507 123.01953 134.99414 C 118.85145 133.54163 115.21948 131.28361 112.125 128.2207 C 109.09367 125.22095 106.7266 121.41679 105.02148 116.80664 C 103.31636 112.16492 102.46289 106.7801 102.46289 100.6543 C 102.46289 94.844251 103.28381 89.650834 104.92578 85.072266 C 106.56775 80.493697 108.93677 76.62443 112.03125 73.466797 C 115.031 70.403892 118.64572 68.067424 122.87695 66.457031 C 127.13976 64.846638 131.86055 64.041016 137.03906 64.041016 z M 39.041016 65.320312 L 58.792969 65.320312 C 63.055769 65.320312 66.607351 65.605455 69.449219 66.173828 C 72.291086 66.710626 74.849552 67.688441 77.123047 69.109375 C 79.680727 70.719766 81.66891 72.757752 83.089844 75.220703 C 84.542353 77.652079 85.269531 80.746327 85.269531 84.503906 C 85.269531 89.587691 83.991274 93.849198 81.433594 97.291016 C 78.875913 100.70126 75.354929 103.27502 70.871094 105.01172 L 97.394531 135.8457 L 85.222656 135.8457 L 61.634766 107.80664 L 48.419922 107.80664 L 48.419922 135.8457 L 39.041016 135.8457 L 39.041016 65.320312 z M 48.419922 73.373047 L 48.419922 99.992188 L 57.892578 99.992188 C 60.860751 99.992188 63.449814 99.739595 65.660156 99.234375 C 67.870497 98.697579 69.749637 97.717809 71.296875 96.296875 C 72.717809 94.97067 73.760726 93.45512 74.423828 91.75 C 75.118506 90.013303 75.464844 87.818425 75.464844 85.166016 C 75.464844 83.145132 75.101255 81.361693 74.375 79.814453 C 73.680322 78.235638 72.513061 76.909531 70.871094 75.835938 C 69.513313 74.920224 67.902066 74.288746 66.039062 73.941406 C 64.17606 73.562492 61.981183 73.373047 59.455078 73.373047 L 48.419922 73.373047 z " />
+    <text
+       xml:space="preserve"
+       style="font-size:11.9999px;letter-spacing:3px;opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.999999;stroke-dasharray:none;stroke-opacity:1"
+       x="287.93594"
+       y="87.220001"
+       id="text6661"><tspan
+         sodipodi:role="line"
+         id="tspan6659"
+         x="287.93594"
+         y="87.220001"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:48px;font-family:Lato;-inkscape-font-specification:'Lato, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;fill:#58fd51;fill-opacity:1;stroke:#58fd51;stroke-width:0.999999;stroke-opacity:1"
+         dx="0"
+         dy="0">Custom</tspan><tspan
+         sodipodi:role="line"
+         x="289.43594"
+         y="147.22"
+         id="tspan6663"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:48px;font-family:Lato;-inkscape-font-specification:'Lato, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;fill:#58fd51;fill-opacity:1;stroke:#58fd51;stroke-width:0.999999;stroke-opacity:1">Millwork</tspan></text>
+  </g>
+</svg>

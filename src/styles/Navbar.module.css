@@ -7,7 +7,7 @@
     justify-content: space-between;
     align-items: center;
     background-color: #000;
-    color: rgba(var(--foreground-rgb), 0.8);
+    color: rgba(247, 253, 240, 0.8);
 }
 
 .nav__menu_bar {
@@ -50,11 +50,16 @@
 }
 
 .nav__link:hover {
-    color: rgba(var(--foreground-rgb), 1);
+    color: rgba(247, 253, 240, 1);
     transition: all 0.2s;
 }
 
+/* Tablet and Desktop */
 @media screen and (min-width: 701px) {
+    .nav {
+        padding: 0 5px;
+    }
+
     .nav__menu_bar {
         display: none;
     }
@@ -83,5 +88,13 @@
 
     .nav__link:hover:before {
         width: 100%;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+
+    /* TODO */
+    .nav {
+        background-color: #111;
     }
 }

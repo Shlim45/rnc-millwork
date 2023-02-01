@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import logo from '../../public/rcm-logo.webp'
+// import logo from '../../public/rcm-logo.webp'
+import logo from '../../public/rcm_logo_horizontal.svg'
 import navStyles from "@/styles/Navbar.module.css"
 import { joinClassNames } from "@/utils";
 
@@ -27,7 +28,7 @@ const Navbar = () => {
         <header>
             <nav className={navStyles.nav}>
                 <Link href="/">
-                    <Image src={logo} alt="RCMillwork Logo" width={60} height={60} />
+                    <Image src={logo} alt="RCMillwork Logo" width={100} height={50} />
                 </Link>
                 <div
                     onClick={() => setNavActive(!navActive)}
