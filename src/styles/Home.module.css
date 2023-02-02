@@ -34,7 +34,7 @@
 
 .headerImage {
   width: 67rem;
-  max-width: var(--max-width);
+  max-width: 800px;
   height: auto;
   align-self: center;
 }
