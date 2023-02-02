@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import { projects } from "@/data"
 import ProjectList from '@/components/ProjectList';
+import styles from '@/styles/Projects.module.css'
 
 export default function Projects({ projects }) {
     return (
@@ -13,8 +14,10 @@ export default function Projects({ projects }) {
                 <link rel="icon" href="/rcm-icon.png" />
             </Head>
 
-            <h1>Projects</h1>
-            <ProjectList projects={projects} />
+            <section className={styles.container}>
+                <h1 className={styles.title}><span>Projects</span></h1>
+                <ProjectList projects={projects} />
+            </section>
         </>
     )
 }

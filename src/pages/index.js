@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
 import sawStopPic from '../../public/home/lumber_on_sawstop_blurred.webp'
 import styles from '@/styles/Home.module.css'
 import EmblaCarousel from '@/components/EmblaCarousel'
@@ -27,15 +28,13 @@ export default function Home() {
                 priority
             />
 
-            <br />
-
             <section className={styles.intro}>
-                <h1 className={styles.sandbox__header}><span>About Us</span></h1>
+                <h1 className={styles.sandbox__header}><span><Link href="/about">About Us</Link></span></h1>
                 <p>RCMillwork proudly serves the Greater Pittsburgh region, delivering beautiful hand-crafted wooden furniture, cabinetry, desks, countertops and more to our customers for a competitive price.  Lumber is locally sourced and hand-selected, and all of our products are proudly 100% Made in America.</p>
             </section>
 
             <section className={styles.sandbox}>
-                <h1 className={styles.sandbox__header}><span>Services</span></h1>
+                <h1 className={styles.sandbox__header}><span><Link href="/projects">Services</Link></span></h1>
                 <div className={styles.sandbox__carousel}>
                     <EmblaCarousel slides={SLIDES} options={OPTIONS} />
                 </div>

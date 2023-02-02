@@ -1,11 +1,10 @@
+import styles from '@/styles/About.module.css'
+
 const contact = () => {
     return (
-        <section>
-            <h1>Contact</h1>
-            <br />
-            <section style={{ width: "60vw", fontSize: "1rem" }}>
-                <p>Coming Soon.</p>
-            </section>
+        <section className={styles.container}>
+            <h1 className={styles.title}><span>Contact</span></h1>
+            <p>Coming Soon.</p>
         </section>
     )
 }

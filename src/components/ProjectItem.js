@@ -5,7 +5,7 @@ import projectStyles from '@/styles/Project.module.css'
 const ProjectItem = ({ project }) => {
     return (
         <Link className={projectStyles.card} href="/project/[id]" as={`/project/${project.id}`}>
-            <h3>{project.title} <span className={projectStyles.arrow}>&rarr;</span></h3>
+            <h2>{project.title} <span className={projectStyles.arrow}>&rarr;</span></h2>
             <Image src={`/projects/${project.id}/${project.images[project.cover]}`} key={project.id} alt={project.alts[0]} className={projectStyles.card__image} width={400} height={400} priority={project.id <= 2 ? "true" : "false"} />
             <p>{project.body}</p>
         </Link>
