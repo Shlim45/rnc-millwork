@@ -37,7 +37,9 @@ const Project = ({ project }) => {
 }
 
 export const getStaticProps = async (context) => {
-    let { data } = await supabase.from('projects').select('*').eq('id', context.params.id).single()
+    let { data } = await supabase.from('projects').select('*').eq('id', context.params.id).single();
+
+    console.log(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
 
     console.log('PROPS', data);
 
