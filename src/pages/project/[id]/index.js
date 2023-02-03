@@ -60,7 +60,7 @@ export const getStaticPaths = async () => {
 
     let { data } = await supabase.from('projects').select('id');
 
-    const paths = data.map(id => ({ params: { id: id.toString() } }))
+    const paths = data.map(obj => ({ params: { id: obj.id.toString() } }))
 
     return {
         paths,
