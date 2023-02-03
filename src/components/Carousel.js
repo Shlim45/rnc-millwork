@@ -9,8 +9,6 @@ const Carousel = ({ images }) => {
     const carouselItemsRef = useRef([]);
 
     useEffect(() => {
-        console.log(images);
-
         if (images && images[0]) {
             carouselItemsRef.current = carouselItemsRef.current.slice(
                 0,

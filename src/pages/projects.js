@@ -4,7 +4,6 @@ import styles from '@/styles/Projects.module.css'
 import { supabase } from '@/utils/supabaseClient';
 
 export default function Projects({ projects }) {
-    console.log(`Projects page:\n${projects}`);
     return (
         <>
             <Head>
