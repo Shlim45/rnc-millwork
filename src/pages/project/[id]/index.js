@@ -1,10 +1,11 @@
 import Link from "next/link"
 import Head from "next/head"
 import Carousel from "@/components/Carousel"
-import { projects } from "@/data"
 import { useEffect, useState } from "react"
+import { isInDevMode } from "@/config"
+import { supabase } from "@/utils/supabaseClient"
 
-const Project = ({project}) => {
+const Project = ({ project }) => {
     const [imgs, setImgs] = useState();
 
     useEffect(() => {
@@ -25,7 +26,7 @@ const Project = ({project}) => {
                 <link rel="icon" href="/rcm-icon.png" />
             </Head>
 
-            <div style={{ maxWidth: "80vw", textAlign: "center"}}>
+            <div style={{ maxWidth: "80vw", textAlign: "center" }}>
                 <h2>{project.title}</h2>
                 <p>{project.body}</p>
                 <Carousel images={imgs} />
@@ -36,21 +37,30 @@ const Project = ({project}) => {
 }
 
 export const getStaticProps = async (context) => {
-    const id = context.params.id;
-    const filtered = projects.filter(project => project.id === id);
-    const project = filtered[0];
+    let { data } = await supabase.from('projects').select('*').eq('id', context.params.id).single()
 
     return {
         props: {
-            project
+            project: data
         }
     }
 
 }
 
 export const getStaticPaths = async () => {
-    const ids = projects.map(project => project.id)
-    const paths = ids.map(id => ({params: {id: id.toString()}}))
+    // When this is true (in preview environments) don't
+    // prerender any static pages
+    // (faster builds, but slower initial page load)
+    if (process.env.SKIP_BUILD_STATIC_GENERATION || isInDevMode()) {
+        return {
+            paths: [],
+            fallback: 'blocking',
+        }
+    }
+
+    let { data } = await supabase.from('projects').select('id');
+
+    const paths = data.map(id => ({ params: { id: id.toString() } }))
 
     return {
         paths,

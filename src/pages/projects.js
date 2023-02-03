@@ -1,9 +1,10 @@
 import Head from 'next/head'
-import { projects } from "@/data"
 import ProjectList from '@/components/ProjectList';
 import styles from '@/styles/Projects.module.css'
+import { supabase } from '@/utils/supabaseClient';
 
 export default function Projects({ projects }) {
+    console.log(`Projects page:\n${projects}`);
     return (
         <>
             <Head>
@@ -22,10 +23,13 @@ export default function Projects({ projects }) {
     )
 }
 
-export const getStaticProps = async () => {
+
+export const getServerSideProps = async () => {
+    let { data } = await supabase.from('projects').select('*');
+
     return {
         props: {
-            projects
+            projects: data
         }
     }
 }

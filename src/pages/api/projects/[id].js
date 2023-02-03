@@ -1,11 +1,11 @@
-import { projects } from "@/data"
+import { supabase } from "@/utils/supabaseClient";
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
     const id = req.query.id;
-    const filtered = projects.filter(project => project.id === id);
+    let { data } = await supabase.from('projects').select('*').eq('id', id).single();
 
-    if (filtered.length > 0)
-        res.status(200).json(filtered[0]);
+    if (data)
+        res.status(200).json(data);
     else
         res.status(404).json({ message: `Project ID ${id} not found.` })
 }
