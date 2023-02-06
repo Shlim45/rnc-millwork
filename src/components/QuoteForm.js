@@ -1,6 +1,6 @@
-import styles from '@/styles/QuoteForm.module.css'
+import FormWrapper from "./FormWrapper";
 
-const QuoteForm = ({ endpoint = "/api/quote", method = "post", contents = "application/json", children }) => {
+const QuoteForm = ({ children }) => {
     // Handles the submit event on form submit.
     const handleSubmit = async (event) => {
         // Stop the form from submitting and refreshing the page.
@@ -19,15 +19,15 @@ const QuoteForm = ({ endpoint = "/api/quote", method = "post", contents = "appli
         const JSONdata = JSON.stringify(data);
 
         // API endpoint where we send form data.
-        // const endpoint = '/api/form'
+        const endpoint = '/api/quote'
 
         // Form the request for sending data to the server.
         const options = {
             // The method is POST because we are sending data.
-            method: method,
+            method: 'post',
             // Tell the server we're sending JSON.
             headers: {
-                'Content-Type': contents,
+                'Content-Type': 'application/json',
             },
             // Body of the request is the JSON data we created above.
             body: JSONdata,
@@ -44,13 +44,11 @@ const QuoteForm = ({ endpoint = "/api/quote", method = "post", contents = "appli
 
     return (
         // We pass the event to the handleSubmit() function on submit.
-        <>
-            <div className={styles.form} onSubmit={handleSubmit}>
-                <form action={endpoint} method={method}>
-                    {children}
-                </form>
-            </div>
-        </>
+        <FormWrapper
+            endpoint="/api/quote"
+            method="post"
+            handleSubmit={handleSubmit}
+            children={children} />
     )
 }
 

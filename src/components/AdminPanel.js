@@ -1,11 +1,72 @@
-// import { useState, useEffect } from 'react'
-// import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
+import { useState, useEffect } from 'react'
+import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
 
 export default function AdminPanel({ session }) {
+    const supabase = useSupabaseClient();
+    const user = useUser();
+    const [loading, setLoading] = useState(false);
+    const [projects, setProjects] = useState(null);
+
+    // useEffect(() => {
+    //     loadProjects()
+    // }, [loadProjects]);
+
+    async function loadProjects() {
+        try {
+            if (!session) {
+                return;
+            }
+            setLoading(true);
+
+            let { data, error, status } = await supabase
+                .from('projects')
+                .select('*');
+
+            if (error && status !== 406) {
+                throw error;
+            }
+
+            if (data) {
+                setProjects(data);
+            }
+
+        } catch (error) {
+            // alert('Error loading projects!');
+            console.error(error);
+        }
+        finally {
+            setLoading(false);
+        }
+    }
+
     return (
         <section>
             <h1>Admin Panel</h1>
-        </section>
+            {projects
+                ? (
+                    <ul>
+                        {projects.map(project => (
+                            <li key={project.id}>{project.title}</li>
+                        ))}
+                    </ul>
+                )
+                : (
+                    <div>
+                        <button
+                            className="button primary block"
+                            onClick={() => loadProjects({ session })}
+                            disabled={loading}
+                        >
+                            {loading ? 'Loading ...' : 'Load Projects'}
+                        </button>
+                    </div >
+                )
+            }
+
+            <button onClick={() => supabase.auth.signOut()}>
+                Sign Out
+            </button>
+        </section >
     )
     // const supabase = useSupabaseClient()
     // const user = useUser()
