@@ -48,7 +48,9 @@ const QuoteForm = ({ children }) => {
             endpoint="/api/quote"
             method="post"
             handleSubmit={handleSubmit}
-            children={children} />
+        >
+            {children}
+        </FormWrapper>
     )
 }
 
