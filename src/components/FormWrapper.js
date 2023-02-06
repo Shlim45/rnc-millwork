@@ -1,6 +1,6 @@
 import styles from '@/styles/FormWrapper.module.css'
 
-const FormWrapper = ({ endpoint, method = "post", handleSubmit, children }) => {
+const FormWrapper = ({ endpoint = "#", method = "post", handleSubmit, children }) => {
     return (
         // We pass the event to the handleSubmit() function on submit.
         <>
