@@ -1,0 +1,38 @@
+.container {
+    max-width: var(--max-width);
+    width: 60vw;
+    font-size: 1rem;
+}
+
+.projectList {
+    display: flex;
+    flex-direction: column;
+}
+
+.projectItem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 5px;
+    margin: 10px 0;
+}
+
+.cover {
+    width: 50px;
+    height: auto;
+    margin-right: 20px;
+}
+
+.edit {
+    font-size: 1.25rem;
+    color: var(--foreground-rgb);
+    padding: 10px;
+    margin-right: 20px;
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+}
+
+.edit:hover {
+    color: var(--rcm-green);
+}

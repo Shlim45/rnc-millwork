@@ -5,14 +5,10 @@ import AdminPanel from '@/components/AdminPanel'
 const Admin = () => {
     const session = useSession();
 
-    return (
-        <div>
-            {!session ? (
-                <LoginForm />
-            ) : (
-                <AdminPanel session={session} />
-            )}
-        </div>
+    return !session ? (
+        <LoginForm />
+    ) : (
+        <AdminPanel session={session} />
     )
 }
 

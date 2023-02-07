@@ -1,0 +1,40 @@
+.project {
+    display: flex;
+    flex-direction: column;
+}
+
+.cover {
+    height: 150px;
+    width: auto;
+    object-fit: scale-down;
+}
+
+.buttons>button {
+    font-size: 1.25rem;
+    padding: 5px 10px;
+    margin-right: 20px;
+    background-color: inherit;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.buttons>button:hover {
+    color: var(--foreground-rgb);
+}
+
+.save {
+    color: lightgreen;
+}
+
+.cancel {
+    color: red;
+}
+
+.save:hover {
+    background-color: lightgreen;
+}
+
+.cancel:hover {
+    background-color: red;
+}
