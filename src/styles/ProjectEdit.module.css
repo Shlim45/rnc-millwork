@@ -9,17 +9,29 @@
     object-fit: scale-down;
 }
 
-.buttons>button {
+.buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.buttons>button,
+.uploadButton {
     font-size: 1.25rem;
-    padding: 5px 10px;
-    margin-right: 20px;
+    /* margin-right: 20px; */
     background-color: inherit;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    width: 40%;
 }
 
-.buttons>button:hover {
+button.uploadButton {
+    width: 40%;
+    margin: auto;
+}
+
+.buttons>button:hover,
+.uploadButton:hover {
     color: var(--foreground-rgb);
 }
 
@@ -57,6 +69,7 @@
 .imageInfo__alts {
     min-width: 350px;
 }
+
 
 /* Mobile */
 @media (max-width: 700px) {}

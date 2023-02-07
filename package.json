@@ -16,11 +16,13 @@
     "@supabase/auth-helpers-react": "^0.3.1",
     "@supabase/auth-ui-react": "^0.2.6",
     "@supabase/supabase-js": "^2.7.0",
+    "cloudinary": "^1.33.0",
     "embla-carousel-autoplay": "^7.0.9",
     "embla-carousel-react": "^7.0.9",
     "eslint": "8.32.0",
     "eslint-config-next": "13.1.2",
     "next": "13.1.2",
+    "next-cloudinary": "^2.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "sharp": "^0.31.3"

@@ -2,6 +2,7 @@ import styles from '@/styles/ProjectEdit.module.css'
 import Image from 'next/image';
 import { useState } from 'react';
 import FormWrapper from './FormWrapper';
+import SignedUpload from './SignedUpload';
 
 const ProjectEdit = ({ project, handleSelect }) => {
     const { id } = project;
@@ -75,8 +76,10 @@ const ProjectEdit = ({ project, handleSelect }) => {
                     </select>
                 </div>
 
+                <SignedUpload id={id} title={title} imageCount={images.length} />
+                {/* 
                 <label htmlFor="new-image">Add image</label>
-                <input type="file" id="new-image" name="new-image" accept="image/*" />
+                <input type="file" id="new-image" name="new-image" accept="image/*" /> */}
 
                 <label htmlFor="body">Project Description</label>
                 <textarea className={styles.body} id="body" name="body" rows="10" value={body} onChange={e => setBody(e.target.value)} required />
