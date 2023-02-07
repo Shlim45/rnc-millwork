@@ -38,3 +38,28 @@
 .cancel:hover {
     background-color: red;
 }
+
+.imageInfo {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.imageInfo>select {
+    padding: 0 5px;
+    margin: 0 10px 10px;
+}
+
+.imageInfo__images {
+    min-width: 200px;
+}
+
+.imageInfo__alts {
+    min-width: 350px;
+}
+
+/* Mobile */
+@media (max-width: 700px) {}
+
+/* Tablet and Smaller Desktop */
+@media (min-width: 701px) and (max-width: 1120px) {}

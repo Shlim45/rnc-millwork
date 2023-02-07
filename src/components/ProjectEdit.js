@@ -58,14 +58,25 @@ const ProjectEdit = ({ project, handleSelect }) => {
                 <label htmlFor="title">Title</label>
                 <input type="text" id="title" name="title" value={title} onChange={e => setTitle(e.target.value)} required />
 
-                <label htmlFor="images">Images</label>
+                {/* <label htmlFor="images">Images</label>
                 <input type="text" id="images" name="images" value={images} onChange={e => setImages(e.target.value.split(','))} required />
 
                 <label htmlFor="alts">Image Descriptions</label>
-                <input type="text" id="alts" name="alts" value={alts} onChange={e => setAlts(e.target.value.split(','))} required />
+                <input type="text" id="alts" name="alts" value={alts} onChange={e => setAlts(e.target.value.split(','))} required /> */}
+                <div className={styles.imageInfo}>
+                    <label htmlFor="images">Images</label>
+                    <select className={styles.imageInfo__images} name="images" size={6} required onChange={e => setCover(e.target.selectedIndex)}>
+                        {images.map((image, index) => (<option key={index} selected={index === cover}>{image}</option>))}
+                    </select>
 
-                <label htmlFor="cover">Cover Image Index</label>
-                <input type="number" min={0} max={images.length - 1} id="cover" name="cover" value={cover} onChange={e => setCover(e.target.value)} required />
+                    <label htmlFor="alts">Descriptions</label>
+                    <select className={styles.imageInfo__alts} name="alts" size={6} disabled>
+                        {alts.map((alt, index) => (<option key={index}>{alt}</option>))}
+                    </select>
+                </div>
+
+                <label htmlFor="new-image">Add image</label>
+                <input type="file" id="new-image" name="new-image" accept="image/*" />
 
                 <label htmlFor="body">Project Description</label>
                 <textarea className={styles.body} id="body" name="body" rows="10" value={body} onChange={e => setBody(e.target.value)} required />
