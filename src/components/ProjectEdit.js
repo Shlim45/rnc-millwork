@@ -48,6 +48,16 @@ const ProjectEdit = ({ project, handleSelect }) => {
         // await updateProject();
     }
 
+    const handleAddImage = ({ url, context }) => {
+        const fileName = url?.substring(url.lastIndexOf('/') + 1);
+        const { alt } = context?.custom;
+        console.log(`Adding "${fileName}", "${alt}"`);
+        // setImages([...images, fileName]);
+        // setAlts([...alts, alt]);
+        setImages(currentImages => [...currentImages, fileName]);
+        setAlts(currentAlts => [...currentAlts, alt]);
+    }
+
     return (
         <div className={styles.project}>
             <Image className={styles.cover} src={`/projects/${id}/${images[cover]}`} alt={alts[cover]} width={100} height={100} />
@@ -59,11 +69,6 @@ const ProjectEdit = ({ project, handleSelect }) => {
                 <label htmlFor="title">Title</label>
                 <input type="text" id="title" name="title" value={title} onChange={e => setTitle(e.target.value)} required />
 
-                {/* <label htmlFor="images">Images</label>
-                <input type="text" id="images" name="images" value={images} onChange={e => setImages(e.target.value.split(','))} required />
-
-                <label htmlFor="alts">Image Descriptions</label>
-                <input type="text" id="alts" name="alts" value={alts} onChange={e => setAlts(e.target.value.split(','))} required /> */}
                 <div className={styles.imageInfo}>
                     <label htmlFor="images">Images</label>
                     <select className={styles.imageInfo__images} name="images" size={6} required onChange={e => setCover(e.target.selectedIndex)}>
@@ -76,7 +81,7 @@ const ProjectEdit = ({ project, handleSelect }) => {
                     </select>
                 </div>
 
-                <SignedUpload id={id} title={title} imageCount={images.length} />
+                <SignedUpload id={id} title={title} imageCount={images.length} handler={handleAddImage} />
                 {/* 
                 <label htmlFor="new-image">Add image</label>
                 <input type="file" id="new-image" name="new-image" accept="image/*" /> */}

@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
-// import logo from '../../public/rcm-logo.webp'
-import logo from '../../public/rcm_logo_horizontal.svg'
+import { CldImage } from 'next-cloudinary';
 import navStyles from "@/styles/Navbar.module.css"
 import { joinClassNames } from "@/utils";
 
@@ -28,7 +26,12 @@ const Navbar = () => {
         <header>
             <nav className={navStyles.nav}>
                 <Link href="/">
-                    <Image src={logo} alt="RCMillwork Logo" width={100} />
+                    <CldImage
+                        width="100" height="50"
+                        src="_rcm_logo_horizontal_njkbpo"
+                        // src="rcm_logo_horizontal_miwp6i"
+                        alt="RC Custom Millwork logo"
+                    />
                 </Link>
                 <div
                     onClick={() => setNavActive(!navActive)}

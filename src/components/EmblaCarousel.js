@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import { CldImage } from 'next-cloudinary';
 import { useCallback, useEffect, useState } from 'react'
 import { flushSync } from 'react-dom'
 import useEmblaCarousel from 'embla-carousel-react'
@@ -133,8 +133,10 @@ const EmblaCarousel = ({ slides, options }) => {
                                             }),
                                         }}
                                     >
-                                        <Image
+                                        <CldImage
                                             className={joinClassNames(styles.embla__slide__img, styles.embla__parallax__img)}
+                                            width="800"
+                                            height="600"
                                             src={imageByIndex(index)}
                                             alt="Carousel image of service offered."
                                         />

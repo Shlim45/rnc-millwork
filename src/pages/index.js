@@ -1,9 +1,8 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import Link from 'next/link'
-import sawStopPic from '../../public/home/lumber_on_sawstop_blurred.webp'
 import styles from '@/styles/Home.module.css'
 import EmblaCarousel from '@/components/EmblaCarousel'
+import { CldImage } from 'next-cloudinary';
 
 const OPTIONS = { inViewThreshold: 0, dragFree: true, loop: true };
 const SLIDE_COUNT = 7;
@@ -20,11 +19,13 @@ export default function Home() {
                 <link rel="icon" href="/rcm-icon.png" />
             </Head>
 
-            <Image
-                src={sawStopPic}
-                alt="Lumber resting atop a SawStop."
-                className={styles.headerImage}
+            <CldImage
+                width="800"
+                height="600"
                 sizes="(max-width: 640px) 620px, (max-width: 1007px) 765px, 800px"
+                className={styles.headerImage}
+                src="home/lumber_on_sawstop_blurred_x7qpfy"
+                alt="Lumber resting atop a SawStop."
                 priority
             />
 
