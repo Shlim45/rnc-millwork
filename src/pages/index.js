@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import styles from '@/styles/Home.module.css'
-import EmblaCarousel from '@/components/EmblaCarousel'
+// import EmblaCarousel from '@/components/EmblaCarousel'
 import { CldImage } from 'next-cloudinary';
 
 const OPTIONS = { inViewThreshold: 0, dragFree: true, loop: true };
@@ -34,12 +34,12 @@ export default function Home() {
                 <p>RCMillwork proudly serves the Greater Pittsburgh region, delivering beautiful hand-crafted wooden furniture, cabinetry, desks, countertops and more to our customers for a competitive price.  Lumber is locally sourced and hand-selected, and all of our products are proudly 100% Made in America.</p>
             </section>
 
-            <section className={styles.sandbox}>
+            {/* <section className={styles.sandbox}>
                 <h1 className={styles.sandbox__header}><span><Link href="/projects">Services</Link></span></h1>
                 <div className={styles.sandbox__carousel}>
                     <EmblaCarousel slides={SLIDES} options={OPTIONS} />
                 </div>
-            </section>
+            </section> */}
         </>
     )
 }
