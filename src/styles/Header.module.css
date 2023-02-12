@@ -1,9 +1,10 @@
 .container {
   width: 100%;
-  margin: 10px auto 40px;
+  margin: 0 auto 2.5rem;
 }
 
 .description {
+  margin-top: 2rem;
   text-align: center;
   display: inherit;
   justify-content: inherit;

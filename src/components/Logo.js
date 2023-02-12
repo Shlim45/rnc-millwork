@@ -1,17 +1,17 @@
-import { CldImage } from 'next-cloudinary';
+import Image from "next/image";
 import styles from '@/styles/Logo.module.css'
+import logo from '@/../public/rcm_logo_horizontal.svg'
 
-const Logo = () => {
+const Logo = ({ width = 400, height = 200, background = true }) => {
     return (
-        <div className={styles.logo}>
-            <div className={styles.bg_left}></div>
-            <div className={styles.bg_right}></div>
-            <CldImage
-                width="400"
-                height="200"
-                src="_rcm_logo_horizontal_njkbpo"
-                alt="RC Custom Millwork logo"
-            />
+        <div className={styles.logo} style={{ width: width + 'px', height: height + 'px' }}>
+            {background && (
+                <>
+                    <div className={styles.bg_left}></div>
+                    <div className={styles.bg_right}></div>
+                </>
+            )}
+            <Image src={logo} alt="RC Custom Millwork logo" width={width} height={height} priority />
         </div>
     )
 };
