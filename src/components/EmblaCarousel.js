@@ -3,8 +3,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { flushSync } from 'react-dom'
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
-import { joinClassNames } from '@/utils'
-import { imageByIndex } from '@/utils/images'
+import { joinClassNames, imageByIndex } from '@/utils'
 import styles from '@/styles/Embla.module.css'
 
 const TWEEN_FACTOR = 1.2
