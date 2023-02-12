@@ -21,8 +21,6 @@ const slides = images.map((url, idx) => ({
 }));
 
 const OPTIONS = { inViewThreshold: 0, dragFree: true, loop: true };
-const SLIDE_COUNT = 7;
-const SLIDES = Array.from(Array(SLIDE_COUNT).keys());
 
 export default function Home() {
     return (

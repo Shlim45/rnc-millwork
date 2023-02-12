@@ -17,7 +17,7 @@ const Project = ({ project }) => {
         })));
     }, [project]);
 
-    const OPTIONS = { inViewThreshold: 0, dragFree: true, loop: true };
+    // const OPTIONS = { inViewThreshold: 0, dragFree: true, loop: true };
 
     return (
         <>
