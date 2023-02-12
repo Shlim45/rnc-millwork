@@ -1,5 +1,6 @@
 import Link from "next/link"
 import Head from "next/head"
+// import EmblaCarousel from '@/components/EmblaCarousel'
 import Carousel from "@/components/Carousel"
 import { useEffect, useState } from "react"
 import { isInDevMode } from "@/config"
@@ -16,6 +17,8 @@ const Project = ({ project }) => {
         })));
     }, [project]);
 
+    const OPTIONS = { inViewThreshold: 0, dragFree: true, loop: true };
+
     return (
         <>
             <Head>
@@ -30,6 +33,13 @@ const Project = ({ project }) => {
                 <h2>{project.title}</h2>
                 <p>{project.body}</p>
                 <Carousel images={imgs} />
+
+                {/* <h2><span>{project.title}</span></h2>
+                <p>{project.body}</p>
+                <div>
+                    <EmblaCarousel slides={imgs} options={OPTIONS} />
+                </div> */}
+
                 <Link href='/projects/'>Back to Projects</Link>
             </div>
         </>

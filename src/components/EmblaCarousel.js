@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { flushSync } from 'react-dom'
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
-import { joinClassNames, imageByIndex } from '@/utils'
+import { joinClassNames } from '@/utils'
 import styles from '@/styles/Embla.module.css'
 
 const TWEEN_FACTOR = 1.2
@@ -118,7 +118,7 @@ const EmblaCarousel = ({ slides, options }) => {
             <div className={styles.embla}>
                 <div className={styles.embla__viewport} ref={emblaRef}>
                     <div className={styles.embla__container}>
-                        {slides.map((index) => (
+                        {slides && slides.map(({ id, url, alt }, index) => (
                             <div className={styles.embla__slide} key={index}>
                                 <div className={styles.embla__slide__number}>
                                     <span>{index + 1}</span>
@@ -136,8 +136,9 @@ const EmblaCarousel = ({ slides, options }) => {
                                             className={joinClassNames(styles.embla__slide__img, styles.embla__parallax__img)}
                                             width="800"
                                             height="600"
-                                            src={imageByIndex(index)}
-                                            alt="Carousel image of service offered."
+                                            key={id}
+                                            src={url}
+                                            alt={alt}
                                         />
                                     </div>
                                 </div>

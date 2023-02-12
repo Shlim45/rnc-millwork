@@ -4,6 +4,22 @@ import styles from '@/styles/Home.module.css'
 import EmblaCarousel from '@/components/EmblaCarousel'
 import { CldImage } from 'next-cloudinary';
 
+const images = [
+    'projects/3/table_1_fdhleo',
+    'projects/4/banister_m798gq',
+    'projects/5/ent_center_v1_2_hebcdr',
+    'projects/7/kitchen_5_xomklm',
+    'projects/8/mantel_4_rgsjax',
+    'projects/10/wine_cab_5_xfydmx',
+    'projects/12/countertop_1_yi945f',
+]
+
+const slides = images.map((url, idx) => ({
+    id: idx,
+    url,
+    alt: "Home carousel image."
+}));
+
 const OPTIONS = { inViewThreshold: 0, dragFree: true, loop: true };
 const SLIDE_COUNT = 7;
 const SLIDES = Array.from(Array(SLIDE_COUNT).keys());
@@ -37,7 +53,7 @@ export default function Home() {
             <section className={styles.sandbox}>
                 <h1 className={styles.sandbox__header}><span><Link href="/projects">Services</Link></span></h1>
                 <div className={styles.sandbox__carousel}>
-                    <EmblaCarousel slides={SLIDES} options={OPTIONS} />
+                    <EmblaCarousel slides={slides} options={OPTIONS} />
                 </div>
             </section>
         </>
