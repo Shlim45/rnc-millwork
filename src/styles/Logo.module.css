@@ -1,14 +1,9 @@
 .logo {
     margin: auto;
-    position: relative;
+    display: block;
 }
 
-.logo>div {
-    position: absolute;
-    height: 80%;
-    top: 10%;
-    z-index: -1;
-}
+.navLogo {}
 
 .bg_left {
     width: 40%;
@@ -30,13 +25,13 @@
         width: 200px;
         height: 100px;
     }
+
 }
 
 /* Tablet and Smaller Desktop */
 @media (min-width: 701px) and (max-width: 1120px) {
 
-    .logo,
-    .logo img {
+    .logo {
         width: 300px;
         height: 150px;
     }

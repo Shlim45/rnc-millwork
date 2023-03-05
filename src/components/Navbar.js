@@ -26,7 +26,7 @@ const Navbar = () => {
         <header>
             <nav className={navStyles.nav}>
                 <Link href="/">
-                    <Logo width={100} height={50} background={false} />
+                    <Logo width={100} height={50} isNav={true} />
                 </Link>
                 <div
                     onClick={() => setNavActive(!navActive)}
