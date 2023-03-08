@@ -1,10 +1,10 @@
 import Link from "next/link"
 import Head from "next/head"
 import EmblaCarousel from '@/components/EmblaCarousel'
-// import Carousel from "@/components/Carousel"
 import { useEffect, useState } from "react"
 import { isInDevMode } from "@/config"
 import { supabase } from "@/utils/supabaseClient"
+import styles from "@/styles/Project.module.css"
 
 const Project = ({ project }) => {
     const [imgs, setImgs] = useState();
@@ -29,10 +29,10 @@ const Project = ({ project }) => {
                 <link rel="icon" href="/rcm-icon.png" />
             </Head>
 
-            <section>
+            <section className={styles.sandbox}>
                 <h2><span>{project.title}</span></h2>
                 <p>{project.body}</p>
-                <div>
+                <div className={styles.sandbox__carousel}>
                     <EmblaCarousel slides={imgs} options={OPTIONS} />
                 </div>
 
