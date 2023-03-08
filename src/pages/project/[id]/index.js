@@ -1,7 +1,7 @@
 import Link from "next/link"
 import Head from "next/head"
-// import EmblaCarousel from '@/components/EmblaCarousel'
-import Carousel from "@/components/Carousel"
+import EmblaCarousel from '@/components/EmblaCarousel'
+// import Carousel from "@/components/Carousel"
 import { useEffect, useState } from "react"
 import { isInDevMode } from "@/config"
 import { supabase } from "@/utils/supabaseClient"
@@ -12,12 +12,12 @@ const Project = ({ project }) => {
     useEffect(() => {
         setImgs(project.images.map((image, idx) => ({
             id: idx,
-            url: `/projects/${project.id}/${image}`,
+            url: `projects/${project.id}/${image}`,
             alt: project.alts[idx]
         })));
     }, [project]);
 
-    // const OPTIONS = { inViewThreshold: 0, dragFree: true, loop: true };
+    const OPTIONS = { inViewThreshold: 0, dragFree: true, loop: true };
 
     return (
         <>
@@ -29,19 +29,17 @@ const Project = ({ project }) => {
                 <link rel="icon" href="/rcm-icon.png" />
             </Head>
 
-            <div style={{ maxWidth: "80vw", textAlign: "center" }}>
-                <h2>{project.title}</h2>
-                <p>{project.body}</p>
-                <Carousel images={imgs} />
-
-                {/* <h2><span>{project.title}</span></h2>
+            <section>
+                <h2><span>{project.title}</span></h2>
                 <p>{project.body}</p>
                 <div>
                     <EmblaCarousel slides={imgs} options={OPTIONS} />
-                </div> */}
+                </div>
 
                 <Link href='/projects/'>Back to Projects</Link>
-            </div>
+                <br />
+                <Link href='/'>Home</Link>
+            </section>
         </>
     )
 }

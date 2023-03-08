@@ -5,13 +5,13 @@ import EmblaCarousel from '@/components/EmblaCarousel'
 import { CldImage } from 'next-cloudinary';
 
 const images = [
-    'projects/3/table_1_fdhleo',
-    'projects/4/banister_m798gq',
-    'projects/5/ent_center_v1_2_hebcdr',
-    'projects/7/kitchen_5_xomklm',
-    'projects/8/mantel_4_rgsjax',
-    'projects/10/wine_cab_5_xfydmx',
-    'projects/12/countertop_1_yi945f',
+    'projects/3/table_1',
+    'projects/4/banister',
+    'projects/5/ent_center_v1_2',
+    'projects/7/kitchen_5',
+    'projects/8/mantel_4',
+    'projects/10/wine_cab_5',
+    'projects/12/countertop_1',
 ]
 
 const slides = images.map((url, idx) => ({
@@ -38,7 +38,7 @@ export default function Home() {
                 height="600"
                 sizes="(max-width: 640px) 620px, (max-width: 1007px) 765px, 800px"
                 className={styles.headerImage}
-                src="home/lumber_on_sawstop_blurred_x7qpfy"
+                src="home/lumber_on_sawstop_blurred"
                 alt="Lumber resting atop a SawStop."
                 priority
             />
