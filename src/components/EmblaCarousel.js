@@ -113,6 +113,10 @@ const EmblaCarousel = ({ slides, options }) => {
         emblaApi.on('reInit', onScroll)
     }, [emblaApi, setScrollSnaps, onSelect, onScroll])
 
+    useEffect(() => {
+        if (emblaApi) emblaApi.reInit()
+    }, [emblaApi, slides])
+
     return (
         <>
             <div className={styles.embla}>
@@ -134,6 +138,7 @@ const EmblaCarousel = ({ slides, options }) => {
                                     >
                                         <CldImage
                                             className={joinClassNames(styles.embla__slide__img, styles.embla__parallax__img)}
+                                            priority
                                             width="800"
                                             height="600"
                                             key={id}
