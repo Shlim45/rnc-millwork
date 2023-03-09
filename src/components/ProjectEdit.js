@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import FormWrapper from './FormWrapper';
 import SignedUpload from './SignedUpload';
+import { supabase } from "@/utils/supabaseClient";
 
 const ProjectEdit = ({ project, handleSelect }) => {
     const { id } = project;
@@ -14,7 +15,6 @@ const ProjectEdit = ({ project, handleSelect }) => {
     const [cover, setCover] = useState(project.cover);
     const [body, setBody] = useState(project.body);
 
-    /*
     async function updateProject() {
         try {
             setUpdating(true)
@@ -28,6 +28,7 @@ const ProjectEdit = ({ project, handleSelect }) => {
                 cover,
                 body,
                 updated_at: new Date().toISOString(),
+
             }
 
             let { error } = await supabase.from('projects').upsert(updates);
@@ -40,12 +41,11 @@ const ProjectEdit = ({ project, handleSelect }) => {
             setUpdating(false);
         }
     }
-    */
 
     async function handleSubmit(event) {
         event.preventDefault();
-        alert('Under Construction!');
-        // await updateProject();
+        // alert('Under Construction!');
+        await updateProject();
     }
 
     const handleAddImage = ({ url, context }) => {
@@ -82,8 +82,8 @@ const ProjectEdit = ({ project, handleSelect }) => {
                 </div>
 
                 <SignedUpload id={id} title={title} imageCount={images.length} handler={handleAddImage} />
-                {/* 
-                <label htmlFor="new-image">Add image</label>
+
+                {/* <label htmlFor="new-image">Add image</label>
                 <input type="file" id="new-image" name="new-image" accept="image/*" /> */}
 
                 <label htmlFor="body">Project Description</label>
