@@ -15,7 +15,8 @@
 }
 
 .buttons>button,
-.uploadButton {
+.uploadButton,
+.removeButton {
     font-size: 1.25rem;
     /* margin-right: 20px; */
     background-color: inherit;
@@ -25,14 +26,35 @@
     width: 40%;
 }
 
-button.uploadButton {
+button.uploadButton,
+button.removeButton {
     width: 40%;
-    margin: auto;
+    /* (40% * 2) + (5% * 4) = 100% */
+    margin: 10px 5%;
+    display: inline-block;
+}
+
+.removeButton:disabled,
+.removeButton[disabled],
+.removeButton:disabled:hover,
+.removeButton[disabled]:hover {
+    background-color: inherit;
+    color: #333;
+}
+
+button.removeButton {
+    background-color: red;
+    color: var(--foreground-rgb);
+}
+
+button.removeButton:hover {
+    background-color: rgba(255, 0, 0, 0.75);
 }
 
 .buttons>button:hover,
-.uploadButton:hover {
-    color: var(--foreground-rgb);
+.uploadButton:hover,
+.removeButton:hover {
+    color: rgba(var(--foreground-rgb), 0.8);
 }
 
 .save {

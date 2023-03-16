@@ -14,6 +14,7 @@ const ProjectEdit = ({ project, handleSelect }) => {
     const [alts, setAlts] = useState(project.alts);
     const [cover, setCover] = useState(project.cover);
     const [body, setBody] = useState(project.body);
+    const [removeIndex, setRemoveIndex] = useState(-1);
 
     async function updateProject() {
         try {
@@ -58,6 +59,36 @@ const ProjectEdit = ({ project, handleSelect }) => {
         setAlts(currentAlts => [...currentAlts, alt]);
     }
 
+    const handleRemoveImage = (event) => {
+        event.preventDefault();
+        if (removeIndex === -1) {
+            return;
+        }
+
+        const imageToRemove = images[removeIndex];
+        const altToRemove = alts[removeIndex];
+
+        const confirmMessage =
+            `Are you sure you want to remove the following image?\nNOTE: This does not delete the image from the server.\n\nFILENAME: '${imageToRemove}'\nDESCRIPT: "${altToRemove}"`;
+
+        if (confirm(confirmMessage)) {
+            setImages(currentImages => currentImages.filter((image, index) => index !== removeIndex));
+            setAlts(currentAlts => currentAlts.filter((alt, index) => index !== removeIndex));
+            if (cover === removeIndex) {
+                if (images.length > 0) {
+                    setCover(0);
+                } else {
+                    setCover(-1);
+                }
+            }
+            else if (cover > removeIndex) {
+                setCover(currentCover => --currentCover);
+            }
+
+            setRemoveIndex(-1);
+        }
+    };
+
     return (
         <div className={styles.project}>
             <Image className={styles.cover} src={`/projects/${id}/${images[cover]}`} alt={alts[cover]} width={100} height={100} />
@@ -71,8 +102,8 @@ const ProjectEdit = ({ project, handleSelect }) => {
 
                 <div className={styles.imageInfo}>
                     <label htmlFor="images">Images</label>
-                    <select className={styles.imageInfo__images} name="images" size={6} required onChange={e => setCover(e.target.selectedIndex)}>
-                        {images.map((image, index) => (<option key={index} selected={index === cover}>{image}</option>))}
+                    <select className={styles.imageInfo__images} name="images" size={6} onChange={e => setRemoveIndex(e.target.selectedIndex)}>
+                        {images.map((image, index) => (<option key={index}>{image}</option>))}
                     </select>
 
                     <label htmlFor="alts">Descriptions</label>
@@ -81,10 +112,11 @@ const ProjectEdit = ({ project, handleSelect }) => {
                     </select>
                 </div>
 
-                <SignedUpload id={id} title={title} imageCount={images.length} handler={handleAddImage} />
+                <label htmlFor="cover">Cover Image</label>
+                <input type="number" min="1" max={images.length} value={cover + 1} onChange={e => setCover(e.target.value - 1)} />
 
-                {/* <label htmlFor="new-image">Add image</label>
-                <input type="file" id="new-image" name="new-image" accept="image/*" /> */}
+                <SignedUpload id={id} title={title} imageCount={images.length} handler={handleAddImage} />
+                <button className={styles.removeButton} type="button" disabled={removeIndex === -1} onClick={handleRemoveImage}>Remove Selected Image</button>
 
                 <label htmlFor="body">Project Description</label>
                 <textarea className={styles.body} id="body" name="body" rows="10" value={body} onChange={e => setBody(e.target.value)} required />

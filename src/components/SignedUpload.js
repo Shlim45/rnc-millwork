@@ -79,9 +79,9 @@ const SignedUpload = ({ id, title, imageCount, handler }) => {
                     );
                 }}
             </CldUploadWidget>
-            <h3>Signed</h3>
+            {/* <h3>Signed</h3>
 
-            <p>URL: {resource?.secure_url}</p>
+            <p>URL: {resource?.secure_url}</p> */}
         </>
     )
 }
