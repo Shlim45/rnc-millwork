@@ -16,10 +16,12 @@
 
 .buttons>button,
 .uploadButton,
-.removeButton {
+.removeButton,
+.editButton {
     font-size: 1.25rem;
     /* margin-right: 20px; */
     background-color: inherit;
+    /* border: 1px solid var(--rcm-green); */
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -27,13 +29,18 @@
 }
 
 button.uploadButton,
-button.removeButton {
-    width: 40%;
-    /* (40% * 2) + (5% * 4) = 100% */
-    margin: 10px 5%;
+button.removeButton,
+button.editButton {
+    width: 31%;
+    /* (31% * 3) + (1% * 6) = 99% */
+    margin: 10px 1%;
     display: inline-block;
 }
 
+.editButton:disabled,
+.editButton[disabled],
+.editButton:disabled:hover,
+.editButton[disabled]:hover,
 .removeButton:disabled,
 .removeButton[disabled],
 .removeButton:disabled:hover,
@@ -42,13 +49,31 @@ button.removeButton {
     color: #333;
 }
 
-button.removeButton {
-    background-color: red;
+button.uploadButton {
     color: var(--foreground-rgb);
+    border: 1px solid var(--rcm-green-80);
+}
+
+button.uploadButton:hover {
+    background-color: var(--rcm-green-80);
+}
+
+button.removeButton {
+    color: var(--foreground-rgb);
+    border: 1px solid rgba(255, 0, 0, 0.8);
 }
 
 button.removeButton:hover {
-    background-color: rgba(255, 0, 0, 0.75);
+    background-color: rgba(255, 0, 0, 0.8);
+}
+
+button.editButton {
+    color: var(--foreground-rgb);
+    border: 1px solid rgba(255, 255, 40, 0.8);
+}
+
+button.editButton:hover {
+    background-color: rgba(255, 255, 40, 0.8);
 }
 
 .buttons>button:hover,
@@ -58,7 +83,7 @@ button.removeButton:hover {
 }
 
 .save {
-    color: lightgreen;
+    color: var(--rcm-green-80);
 }
 
 .cancel {
@@ -66,7 +91,7 @@ button.removeButton:hover {
 }
 
 .save:hover {
-    background-color: lightgreen;
+    background-color: var(--rcm-green-80);
 }
 
 .cancel:hover {

@@ -73,7 +73,7 @@ const SignedUpload = ({ id, title, imageCount, handler }) => {
                         open();
                     }
                     return (
-                        <button className={styles.uploadButton} onClick={handleOnClick}>
+                        <button type="button" className={styles.uploadButton} onClick={handleOnClick}>
                             Add Images
                         </button>
                     );

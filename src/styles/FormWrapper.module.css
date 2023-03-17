@@ -42,11 +42,12 @@
     display: table;
     width: 100%;
     padding: 0.5rem;
+    /* border: 1px solid var(--rcm-green); */
     border: none;
     border-radius: 0.25rem;
     box-sizing: border-box;
     margin-bottom: 2.5rem;
-    background-color: var(--rcm-green);
+    /* background-color: var(--rcm-green); */
     cursor: pointer;
 }
 
