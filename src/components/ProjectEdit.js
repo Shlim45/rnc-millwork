@@ -57,13 +57,34 @@ const ProjectEdit = ({ project, handleSelect }) => {
         // setAlts([...alts, alt]);
         setImages(currentImages => [...currentImages, fileName]);
         setAlts(currentAlts => [...currentAlts, alt]);
+    };
+
+    const handleEditImage = event => {
+        event.preventDefault();
+        if (selected === -1) { return; }
+
+        const imgToEdit = images[selected];
+        const altToEdit = alts[selected];
+
+        const promptMessage =
+            `Enter a new image description.\n\nPREVIUS: "${altToEdit}"`;
+
+        const newAlt = prompt(promptMessage, altToEdit);
+
+        if (newAlt && newAlt != altToEdit) {
+            setAlts(currentAlts => currentAlts.map((alt, index) => {
+                if (index === selected) {
+                    return newAlt;
+                }
+                return alt;
+            }));
+        }
     }
+
 
     const handleRemoveImage = (event) => {
         event.preventDefault();
-        if (selected === -1) {
-            return;
-        }
+        if (selected === -1) { return; }
 
         const imageToRemove = images[selected];
         const altToRemove = alts[selected];
@@ -116,7 +137,7 @@ const ProjectEdit = ({ project, handleSelect }) => {
                 </div>
 
                 <SignedUpload id={id} title={title} imageCount={images.length} handler={handleAddImage} />
-                <button className={styles.editButton} type="button" disabled={selected === -1} onClick={handleRemoveImage}>Edit Image</button>
+                <button className={styles.editButton} type="button" disabled={selected === -1} onClick={handleEditImage}>Edit Image</button>
                 <button className={styles.removeButton} type="button" disabled={selected === -1} onClick={handleRemoveImage}>Remove Image</button>
 
                 <label htmlFor="body">Project Description</label>

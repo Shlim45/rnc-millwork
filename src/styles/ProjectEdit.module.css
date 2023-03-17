@@ -47,6 +47,7 @@ button.editButton {
 .removeButton[disabled]:hover {
     background-color: inherit;
     color: #333;
+    border: none;
 }
 
 button.uploadButton {
