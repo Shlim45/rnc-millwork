@@ -26,9 +26,9 @@ export default function Home() {
     return (
         <>
             <Head>
-                <title>RC Millwork of Pittsburgh</title>
+                <title>RC Custom Millworks of Pittsburgh</title>
                 <meta name="description" content="Custom woodworking millwork shop located near Pittsburgh, PA" />
-                <meta name="keywords" content="rc millwork, rcm, millwork, mill work, woodworking, custom wood, table, desk, cabinet, pittsburgh, millwork, built in, built-in, hand-made, hand made, pittsburgh, south hills, north hills" />
+                <meta name="keywords" content="rc millwork, rcm, millwork, mill work, woodworking, custom wood, table, desk, cabinet, pittsburgh, millwork, built in, built-in, hand-made, hand made, pittsburgh, south hills, north hills, RC Custom Millworks of Pittsburgh, RC Custom Millwork" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/rcm-icon.png" />
             </Head>
@@ -45,7 +45,7 @@ export default function Home() {
 
             <section className={styles.intro}>
                 <h1 className={styles.sandbox__header}><span><Link href="/about">About Us</Link></span></h1>
-                <p>RCMillwork proudly serves the Greater Pittsburgh region, delivering beautiful hand-crafted wooden furniture, cabinetry, desks, countertops and more to our customers for a competitive price.  Lumber is locally sourced and hand-selected, and all of our products are proudly 100% Made in America.</p>
+                <p>RC Custom Millworks proudly serves the Greater Pittsburgh region, delivering beautiful hand-crafted wooden furniture, cabinetry, desks, countertops and more to our customers for a competitive price.  Lumber is locally sourced and hand-selected, and all of our products are proudly 100% Made in America.</p>
             </section>
 
             <section className={styles.sandbox}>
