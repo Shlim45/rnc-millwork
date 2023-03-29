@@ -43,18 +43,41 @@ const ProjectEdit = ({ project, handleSelect }) => {
         }
     }
 
+    async function createProject() {
+        try {
+            setUpdating(true)
+
+            const values = {
+                // id: user.id,
+                // id, // auto-generated
+                title,
+                images,
+                alts,
+                cover,
+                body,
+                updated_at: new Date().toISOString(),
+            }
+
+            let { error } = await supabase.from('projects').insert(values);
+            if (error) throw error;
+            alert('Project created!')
+        } catch (error) {
+            alert('Error creating the project!');
+            console.log(error);
+        } finally {
+            setUpdating(false);
+        }
+    }
+
     async function handleSubmit(event) {
         event.preventDefault();
-        // alert('Under Construction!');
         await updateProject();
     }
 
     const handleAddImage = ({ url, context }) => {
         const fileName = url?.substring(url.lastIndexOf('/') + 1);
         const { alt } = context?.custom;
-        console.log(`Adding "${fileName}", "${alt}"`);
-        // setImages([...images, fileName]);
-        // setAlts([...alts, alt]);
+        // console.log(`Adding "${fileName}", "${alt}"`);
         setImages(currentImages => [...currentImages, fileName]);
         setAlts(currentAlts => [...currentAlts, alt]);
     };

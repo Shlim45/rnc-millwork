@@ -1,5 +1,5 @@
 import FormWrapper from "./FormWrapper";
-import { server, isInDevMode } from "@/config";
+import { server } from "@/config";
 import { supabase } from "@/utils/supabaseClient";
 import styles from '@/styles/Quote.module.css'
 
@@ -28,27 +28,17 @@ const LoginForm = () => {
     }
 
     return (
-        isInDevMode ? (
-            // We pass the event to the handleSubmit() function on submit.
-            <section className={styles.main}>
-                <h1><span className={styles.title}>Log in</span></h1>
+        // We pass the event to the handleSubmit() function on submit.
+        <section className={styles.main}>
+            <h1><span className={styles.title}>Log in</span></h1>
 
-                <FormWrapper
-                    handleSubmit={handleSubmit}
-                >
-                    <label htmlFor="email">Email</label>
-                    <input type="email" id="email" name="email" required />
+            <FormWrapper handleSubmit={handleSubmit}>
+                <label htmlFor="email">Email</label>
+                <input type="email" id="email" name="email" required />
 
-                    <button type="submit">Email Magic Link</button>
-                </FormWrapper>
-            </section>
-        ) : (
-            <section className={styles.main}>
-                <h1><span className={styles.title}>Log in</span></h1>
-
-                <p>Under Development</p>
-            </section>
-        )
+                <button type="submit">Email Magic Link</button>
+            </FormWrapper>
+        </section>
     )
 }
 

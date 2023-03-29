@@ -4,7 +4,7 @@ export default async function sendEmail(subject, text) {
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
     const msg = {
-        to: process.env.SENDGRID_SENDER_EMAIL, // ['r1@email.com','r2@email.com', ...]
+        to: process.env.SENDGRID_RECIPIENT_EMAIL, // ['r1@email.com','r2@email.com', ...]
         from: process.env.SENDGRID_SENDER_EMAIL,
         subject: `QUOTE REQUEST: ${subject}`,
         text
