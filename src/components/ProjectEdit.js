@@ -43,32 +43,6 @@ const ProjectEdit = ({ project, handleSelect }) => {
         }
     }
 
-    async function createProject() {
-        try {
-            setUpdating(true)
-
-            const values = {
-                // id: user.id,
-                // id, // auto-generated
-                title,
-                images,
-                alts,
-                cover,
-                body,
-                updated_at: new Date().toISOString(),
-            }
-
-            let { error } = await supabase.from('projects').insert(values);
-            if (error) throw error;
-            alert('Project created!')
-        } catch (error) {
-            alert('Error creating the project!');
-            console.log(error);
-        } finally {
-            setUpdating(false);
-        }
-    }
-
     async function handleSubmit(event) {
         event.preventDefault();
         await updateProject();
@@ -78,8 +52,13 @@ const ProjectEdit = ({ project, handleSelect }) => {
         const fileName = url?.substring(url.lastIndexOf('/') + 1);
         const { alt } = context?.custom;
         // console.log(`Adding "${fileName}", "${alt}"`);
-        setImages(currentImages => [...currentImages, fileName]);
-        setAlts(currentAlts => [...currentAlts, alt]);
+        if (images?.length > 0) {
+            setImages(currentImages => [...currentImages, fileName]);
+            setAlts(currentAlts => [...currentAlts, alt]);
+        } else {
+            setImages([fileName]);
+            setAlts([alt]);
+        }
     };
 
     const handleEditImage = event => {
@@ -135,7 +114,7 @@ const ProjectEdit = ({ project, handleSelect }) => {
 
     return (
         <div className={styles.project}>
-            <Image className={styles.cover} src={`/projects/${id}/${images[cover]}`} alt={alts[cover]} width={100} height={100} />
+            {images && <Image className={styles.cover} src={`/projects/${id}/${images[cover]}`} alt={alts[cover]} width={100} height={100} />}
             <FormWrapper
                 endpoint="#"
                 method="post"
@@ -145,21 +124,21 @@ const ProjectEdit = ({ project, handleSelect }) => {
                 <input type="text" id="title" name="title" value={title} onChange={e => setTitle(e.target.value)} required />
 
                 <label htmlFor="cover">Cover Image</label>
-                <input type="number" name="cover" min="1" max={images.length} value={cover + 1} onChange={e => setCover(e.target.value - 1)} />
+                <input type="number" name="cover" min="1" max={images?.length} value={cover + 1} onChange={e => setCover(e.target.value - 1)} />
 
                 <div className={styles.imageInfo}>
                     <label htmlFor="images">Images</label>
                     <select className={styles.imageInfo__images} name="images" size={6} onChange={e => setSelected(e.target.selectedIndex)}>
-                        {images.map((image, index) => (<option key={index}>{image}</option>))}
+                        {images?.map((image, index) => (<option key={index}>{image}</option>))}
                     </select>
 
                     <label htmlFor="alts">Descriptions</label>
                     <select className={styles.imageInfo__alts} name="alts" size={6} disabled>
-                        {alts.map((alt, index) => (<option key={index}>{alt}</option>))}
+                        {alts?.map((alt, index) => (<option key={index}>{alt}</option>))}
                     </select>
                 </div>
 
-                <SignedUpload id={id} title={title} imageCount={images.length} handler={handleAddImage} />
+                <SignedUpload id={id} title={title} imageCount={images ? images.length : 0} handler={handleAddImage} />
                 <button className={styles.editButton} type="button" disabled={selected === -1} onClick={handleEditImage}>Edit Image</button>
                 <button className={styles.removeButton} type="button" disabled={selected === -1} onClick={handleRemoveImage}>Remove Image</button>
 

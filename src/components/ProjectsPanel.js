@@ -8,7 +8,7 @@ const ProjectInfo = ({ project, handleSelect }) => {
     return (
         <div className={styles.projectItem}>
             <button className={styles.edit} onClick={handleSelect}>&#9998;</button>
-            <Image className={styles.cover} src={`/projects/${id}/${images[cover]}`} alt={alts[cover]} width={50} height={50} />
+            {images && <Image className={styles.cover} src={`/projects/${id}/${images[cover]}`} alt={alts[cover]} width={50} height={50} />}
             {title}
         </div>
     );
