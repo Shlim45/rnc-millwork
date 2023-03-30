@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
-import { supabase } from "@/utils/supabaseClient";
+// import { supabase } from "@/utils/supabaseClient";
 import ProjectsPanel from './ProjectsPanel';
 import styles from '@/styles/Admin.module.css'
 
