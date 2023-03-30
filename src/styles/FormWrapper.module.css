@@ -1,24 +1,25 @@
-.form form {
+.container {
     display: table;
-    min-width: 600px;
+    min-width: 350px;
+    max-width: 600px;
     width: 40vw;
     margin: 0 auto;
     padding: 3rem 0;
 }
 
-.form label {
+.form>label {
     display: table;
     width: 100%;
     margin-bottom: 0.5rem;
     color: var(--rcm-green-60);
 }
 
-.form input {
+.form>input {
     display: table;
 }
 
-.form input,
-.form textarea {
+.form>input,
+.form>textarea {
     width: 100%;
     padding: 0.5rem;
     border: 1px solid #ccc;
@@ -27,18 +28,18 @@
     margin-bottom: 2.5rem;
 }
 
-.form textarea {
+.form>textarea {
     overflow-y: scroll;
     resize: none;
 }
 
-.form input:focus,
-.form textarea:focus {
+.form>input:focus,
+.form>textarea:focus {
     outline: none;
     border-color: var(--rcm-green-80);
 }
 
-.form button {
+.form>button {
     display: table;
     width: 100%;
     padding: 0.5rem;
@@ -51,22 +52,23 @@
     cursor: pointer;
 }
 
-.form button:hover {
+.form>button:hover {
     background-color: var(--rcm-green-80);
     color: var(--foreground);
 }
 
 /* Mobile */
 @media (max-width: 700px) {
-    .form form {
-        min-width: 320px;
+    .container {
+        display: flex;
+        flex-direction: column;
+        min-width: 350px;
         width: 90vw;
     }
 
-    .form input,
-    .form textarea {
-        width: 90vw;
-        min-width: 320px;
+    .form>button {
+        width: 100%;
+        margin-bottom: 0;
     }
 }
 
