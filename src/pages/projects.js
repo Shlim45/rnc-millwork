@@ -1,18 +1,23 @@
-import Head from 'next/head'
 import ProjectList from '@/components/ProjectList';
 import styles from '@/styles/Projects.module.css'
 import { supabase } from '@/utils/supabaseClient';
+import { NextSeo } from 'next-seo';
 
 export default function Projects({ projects }) {
     return (
         <>
-            <Head>
-                <title>RC Custom Millworks of Pittsburgh</title>
-                <meta name="description" content="Custom woodworking millwork shop located near Pittsburgh, PA" />
-                <meta name="keywords" content="rc millwork, rcm, millwork, mill work, woodworking, custom wood, table, desk, cabinet, pittsburgh, millwork, built in, built-in, hand-made, hand made, pittsburgh, south hills, north hills" />
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <link rel="icon" href="/rcm-icon.png" />
-            </Head>
+            <NextSeo
+                title="RC Custom Millworks of Pittsburgh - Projects"
+                description="Custom woodworking millwork shop located near Pittsburgh, PA that creates beautiful hand-crafted custom wooden furniture, cabinetry, desks and more."
+                canonical="https://www.rccustommillworks.com/projects/"
+                additionalMetaTags={[
+                    {
+                        property: 'keywords',
+                        content: 'rc millwork, rcm, millwork, mill work, woodworking, custom wood, table, desk, cabinet, pittsburgh, millwork, built in, built-in, hand-made, hand made, pittsburgh, south hills, north hills, RC Custom Millworks of Pittsburgh, RC Custom Millwork'
+                    }
+                ]}
+
+            />
 
             <section className={styles.container}>
                 <h1 className={styles.title}><span>Projects</span></h1>

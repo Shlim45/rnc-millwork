@@ -1,8 +1,9 @@
-import Head from 'next/head'
+// import Head from 'next/head'
 import Link from 'next/link'
 import styles from '@/styles/Home.module.css'
 import EmblaCarousel from '@/components/EmblaCarousel'
 import { CldImage } from 'next-cloudinary';
+import { NextSeo, LocalBusinessJsonLd } from 'next-seo';
 
 const images = [
     'projects/3/table_1',
@@ -25,13 +26,18 @@ const OPTIONS = { inViewThreshold: 0, dragFree: true, loop: true };
 export default function Home() {
     return (
         <>
-            <Head>
-                <title>RC Custom Millworks of Pittsburgh</title>
-                <meta name="description" content="Custom woodworking millwork shop located near Pittsburgh, PA" />
-                <meta name="keywords" content="rc millwork, rcm, millwork, mill work, woodworking, custom wood, table, desk, cabinet, pittsburgh, millwork, built in, built-in, hand-made, hand made, pittsburgh, south hills, north hills, RC Custom Millworks of Pittsburgh, RC Custom Millwork" />
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <link rel="icon" href="/rcm-icon.png" />
-            </Head>
+            <NextSeo
+                title="RC Custom Millworks of Pittsburgh"
+                description="Custom woodworking millwork shop located near Pittsburgh, PA that creates beautiful hand-crafted custom wooden furniture, cabinetry, desks and more."
+                canonical="https://www.rccustommillworks.com/"
+                additionalMetaTags={[
+                    {
+                        property: 'keywords',
+                        content: 'rc millwork, rcm, millwork, mill work, woodworking, custom wood, table, desk, cabinet, pittsburgh, millwork, built in, built-in, hand-made, hand made, pittsburgh, south hills, north hills, RC Custom Millworks of Pittsburgh, RC Custom Millwork'
+                    }
+                ]}
+
+            />
 
             <CldImage
                 width="800"
