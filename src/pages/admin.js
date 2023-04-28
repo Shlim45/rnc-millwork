@@ -1,4 +1,5 @@
 import { useSession } from '@supabase/auth-helpers-react'
+import { NextSeo } from 'next-seo';
 import LoginForm from '@/components/LoginForm';
 import AdminPanel from '@/components/AdminPanel'
 
