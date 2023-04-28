@@ -4,26 +4,48 @@ import styles from '@/styles/Home.module.css'
 import EmblaCarousel from '@/components/EmblaCarousel'
 import { CldImage } from 'next-cloudinary';
 import { NextSeo, LocalBusinessJsonLd } from 'next-seo';
+import { supabase } from '@/utils/supabaseClient';
 
-const images = [
-    'projects/3/table_1',
-    'projects/4/banister',
-    'projects/5/ent_center_v1_2',
-    'projects/7/kitchen_5',
-    'projects/8/mantel_4',
-    'projects/10/wine_cab_5',
-    'projects/12/countertop_1',
-]
 
-const slides = images.map((url, idx) => ({
-    id: idx,
-    url,
-    alt: "Home carousel image."
-}));
+// const images = [
+//     'projects/3/table_1',
+//     'projects/4/banister',
+//     'projects/5/ent_center_v1_2',
+//     'projects/7/kitchen_5',
+//     'projects/8/mantel_4',
+//     'projects/10/wine_cab_5',
+//     'projects/12/countertop_1',
+// ]
+
+// const slides = images.map((url, idx) => ({
+//     id: idx,
+//     url,
+//     alt: "Home carousel image."
+// }));
 
 const OPTIONS = { inViewThreshold: 0, dragFree: true, loop: true };
 
-export default function Home() {
+export const getStaticProps = async () => {
+    let { data } = await supabase.from('projects').select('id, title, images, alts, cover').eq('showcase', true);
+
+    return {
+        props: {
+            projects: data
+        }
+    }
+
+}
+
+export default function Home({ projects }) {
+
+    const _slides = projects.map(({ id, title, images, alts, cover }) => ({
+        id,
+        title,
+        url: `projects/${id}/${images[cover]}`,
+        alt: alts[cover],
+        link: `project/${id}`,
+    }));
+
     return (
         <>
             <NextSeo
@@ -57,7 +79,7 @@ export default function Home() {
             <section className={styles.sandbox}>
                 <h1 className={styles.sandbox__header}><span><Link href="/projects">Services</Link></span></h1>
                 <div className={styles.sandbox__carousel}>
-                    <EmblaCarousel slides={slides} options={OPTIONS} />
+                    <EmblaCarousel slides={_slides} options={OPTIONS} />
                 </div>
             </section>
         </>

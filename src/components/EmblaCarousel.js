@@ -1,6 +1,7 @@
 import { CldImage } from 'next-cloudinary';
 import { useCallback, useEffect, useState } from 'react'
 import { flushSync } from 'react-dom'
+import Link from 'next/link';
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
 import { joinClassNames } from '@/utils'
@@ -122,10 +123,11 @@ const EmblaCarousel = ({ slides, options }) => {
             <div className={styles.embla}>
                 <div className={styles.embla__viewport} ref={emblaRef}>
                     <div className={styles.embla__container}>
-                        {slides && slides.map(({ id, url, alt }, index) => (
+                        {slides && slides.map(({ id, title, url, alt, link }, index) => (
                             <div className={styles.embla__slide} key={index}>
                                 <div className={styles.embla__slide__number}>
                                     <span>{index + 1}</span>
+                                    {/* <span>{title}</span> */}
                                 </div>
                                 <div className={styles.embla__parallax}>
                                     <div
@@ -136,15 +138,17 @@ const EmblaCarousel = ({ slides, options }) => {
                                             }),
                                         }}
                                     >
-                                        <CldImage
-                                            className={joinClassNames(styles.embla__slide__img, styles.embla__parallax__img)}
-                                            priority
-                                            width="800"
-                                            height="600"
-                                            key={id}
-                                            src={url}
-                                            alt={alt}
-                                        />
+                                        <Link href={link ? link : '#'}>
+                                            <CldImage
+                                                className={joinClassNames(styles.embla__slide__img, styles.embla__parallax__img)}
+                                                priority
+                                                width="800"
+                                                height="600"
+                                                key={id}
+                                                src={url}
+                                                alt={alt}
+                                            />
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
