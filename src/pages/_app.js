@@ -2,6 +2,7 @@ import Layout from '../components/Layout'
 import '@/styles/globals.css'
 import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs'
 import { SessionContextProvider } from '@supabase/auth-helpers-react'
+import { Analytics } from '@vercel/analytics/react'
 import { useState } from 'react'
 import { DefaultSeo } from 'next-seo';
 
@@ -31,6 +32,7 @@ export default function App({ Component, pageProps }) {
                     }}
                 />
                 <Component {...pageProps} />
+                <Analytics />
             </SessionContextProvider>
         </Layout>
     )
