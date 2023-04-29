@@ -4,6 +4,7 @@ import { useState } from 'react';
 import FormWrapper from './FormWrapper';
 import SignedUpload from './SignedUpload';
 import { supabase } from "@/utils/supabaseClient";
+import { joinClassNames } from '@/utils';
 
 const ProjectEdit = ({ project, handleSelect }) => {
     const { id } = project;
@@ -15,6 +16,7 @@ const ProjectEdit = ({ project, handleSelect }) => {
     const [cover, setCover] = useState(project.cover);
     const [body, setBody] = useState(project.body);
     const [selected, setSelected] = useState(-1);
+    const [message, setMessage] = useState('');
 
     async function updateProject() {
         try {
@@ -34,9 +36,9 @@ const ProjectEdit = ({ project, handleSelect }) => {
 
             let { error } = await supabase.from('projects').upsert(updates);
             if (error) throw error;
-            alert('Project updated!')
+            setMessage('Project updated!');
         } catch (error) {
-            alert('Error updating the data!');
+            setMessage('Error updating the data!');
             console.log(error);
         } finally {
             setUpdating(false);
@@ -64,7 +66,7 @@ const ProjectEdit = ({ project, handleSelect }) => {
         event.preventDefault();
         if (selected === -1) { return; }
 
-        const imgToEdit = images[selected];
+        // const imgToEdit = images[selected];
         const altToEdit = alts[selected];
 
         const promptMessage =
@@ -131,7 +133,7 @@ const ProjectEdit = ({ project, handleSelect }) => {
                 <input type="text" id="title" name="title" value={title} onChange={e => setTitle(e.target.value)} required />
 
                 <label htmlFor="cover">Cover Image</label>
-                <input type="number" name="cover" min="1" max={images?.length} value={cover + 1} onChange={e => setCover(e.target.value - 1)} />
+                <input type="number" id="cover" name="cover" min="1" max={images?.length} value={cover + 1} onChange={e => setCover(e.target.value - 1)} />
 
                 <div className={styles.imageInfo}>
                     <label htmlFor="images">Images</label>
@@ -152,9 +154,27 @@ const ProjectEdit = ({ project, handleSelect }) => {
                 <label htmlFor="body">Project Description</label>
                 <textarea className={styles.body} id="body" name="body" rows="10" value={body} onChange={e => setBody(e.target.value)} required />
 
+                <div className={styles.message}>
+                    {message}
+                </div>
+
                 <div className={styles.buttons}>
-                    <button type="submit" className={styles.save} disabled={updating}>&#10004;</button>
-                    <button type="reset" className={styles.cancel} onClick={handleSelect} disabled={updating}>&#9587;</button>
+                    <div className={styles.tooltip}>
+                        <button type="submit" className={styles.save} disabled={updating}>&#10004;</button>
+                        <div className={styles.right}>
+                            <p>Save</p>
+                            <i></i>
+                        </div>
+                    </div>
+
+
+                    <div className={styles.tooltip}>
+                        <button type="reset" className={styles.cancel} onClick={handleSelect} disabled={updating}>&#9587;</button>
+                        <div className={styles.right}>
+                            <p>Cancel</p>
+                            <i></i>
+                        </div>
+                    </div>
                 </div>
             </FormWrapper>
         </div>
