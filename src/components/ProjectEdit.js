@@ -1,5 +1,5 @@
 import styles from '@/styles/ProjectEdit.module.css'
-import Image from 'next/image';
+import { CldImage } from 'next-cloudinary';
 import { useState } from 'react';
 import FormWrapper from './FormWrapper';
 import SignedUpload from './SignedUpload';
@@ -51,7 +51,6 @@ const ProjectEdit = ({ project, handleSelect }) => {
     const handleAddImage = ({ url, context }) => {
         const fileName = url?.substring(url.lastIndexOf('/') + 1);
         const { alt } = context?.custom;
-        // console.log(`Adding "${fileName}", "${alt}"`);
         if (images?.length > 0) {
             setImages(currentImages => [...currentImages, fileName]);
             setAlts(currentAlts => [...currentAlts, alt]);
@@ -114,7 +113,15 @@ const ProjectEdit = ({ project, handleSelect }) => {
 
     return (
         <div className={styles.project}>
-            {images && <Image className={styles.cover} src={`/projects/${id}/${images[cover]}`} alt={alts[cover]} width={100} height={100} />}
+            {images && <CldImage
+                src={`projects/${id}/${images[cover]}`}
+                width="100"
+                height="100"
+                key={id}
+                alt={alts[cover]}
+                className={styles.cover}
+            />}
+
             <FormWrapper
                 endpoint="#"
                 method="post"

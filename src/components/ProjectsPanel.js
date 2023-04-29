@@ -1,5 +1,5 @@
 import styles from '@/styles/Admin.module.css'
-import Image from 'next/image'
+import { CldImage } from 'next-cloudinary';
 import { useState } from 'react';
 import ProjectEdit from './ProjectEdit';
 
@@ -8,7 +8,15 @@ const ProjectInfo = ({ project, handleSelect }) => {
     return (
         <div className={styles.projectItem}>
             <button className={styles.edit} onClick={handleSelect}>&#9998;</button>
-            {images && <Image className={styles.cover} src={`/projects/${id}/${images[cover]}`} alt={alts[cover]} width={50} height={50} />}
+            {console.log(`ID: '${id}' COVER: '${cover}'`)}
+            {images && <CldImage
+                src={`projects/${id}/${images[cover]}`}
+                width="50"
+                height="50"
+                key={id}
+                alt={alts[cover]}
+                className={styles.cover}
+            />}
             {title}
         </div>
     );

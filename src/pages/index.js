@@ -1,4 +1,3 @@
-// import Head from 'next/head'
 import Link from 'next/link'
 import styles from '@/styles/Home.module.css'
 import EmblaCarousel from '@/components/EmblaCarousel'
@@ -6,22 +5,6 @@ import { CldImage } from 'next-cloudinary';
 import { NextSeo, LocalBusinessJsonLd } from 'next-seo';
 import { supabase } from '@/utils/supabaseClient';
 
-
-// const images = [
-//     'projects/3/table_1',
-//     'projects/4/banister',
-//     'projects/5/ent_center_v1_2',
-//     'projects/7/kitchen_5',
-//     'projects/8/mantel_4',
-//     'projects/10/wine_cab_5',
-//     'projects/12/countertop_1',
-// ]
-
-// const slides = images.map((url, idx) => ({
-//     id: idx,
-//     url,
-//     alt: "Home carousel image."
-// }));
 
 const OPTIONS = { inViewThreshold: 0, dragFree: true, loop: true };
 
@@ -31,7 +14,11 @@ export const getStaticProps = async () => {
     return {
         props: {
             projects: data
-        }
+        },
+        // Next.js will attempt to re-generate the page:
+        // - When a request comes in
+        // - At most once every 10 seconds
+        revalidate: 10, // In seconds
     }
 
 }

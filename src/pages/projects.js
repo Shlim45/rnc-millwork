@@ -27,8 +27,6 @@ export default function Projects({ projects }) {
     )
 }
 
-
-// export const getServerSideProps = async () => {
 export const getStaticProps = async () => {
     let { data } = await supabase.from('projects').select('*');
 
