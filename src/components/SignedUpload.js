@@ -2,9 +2,8 @@ import { CldUploadWidget } from 'next-cloudinary';
 import { useState } from 'react';
 import styles from '@/styles/ProjectEdit.module.css'
 
-const SignedUpload = ({ id, title, imageCount, handler }) => {
+const SignedUpload = ({ id, title, imageCount, handler, innerText = "Add Images" }) => {
     const [resource, setResource] = useState();
-
     return (
         <>
             <CldUploadWidget
@@ -73,9 +72,7 @@ const SignedUpload = ({ id, title, imageCount, handler }) => {
                         open();
                     }
                     return (
-                        <button type="button" className={styles.uploadButton} onClick={handleOnClick}>
-                            Add Images
-                        </button>
+                        <button type="button" className={styles.uploadButton} onClick={handleOnClick}>{innerText}</button>
                     );
                 }}
             </CldUploadWidget>

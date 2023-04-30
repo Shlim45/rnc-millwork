@@ -15,15 +15,17 @@ const ProjectEdit = ({ project, handleSelect }) => {
     const [alts, setAlts] = useState(project.alts);
     const [cover, setCover] = useState(project.cover);
     const [body, setBody] = useState(project.body);
+    const [showcase, setShowcase] = useState(project.showcase);
+    const [hidden, setHidden] = useState(project.hidden);
     const [selected, setSelected] = useState(-1);
     const [message, setMessage] = useState('');
 
     async function updateProject() {
         try {
-            setUpdating(true)
+            setUpdating(true);
 
             const updates = {
-                // id: user.id,
+                // id: user.id, // TODO(jon): Add UPDATED_BY field for user.id
                 id,
                 title,
                 images,
@@ -31,18 +33,38 @@ const ProjectEdit = ({ project, handleSelect }) => {
                 cover,
                 body,
                 updated_at: new Date().toISOString(),
-
+                showcase,
+                hidden,
             }
 
             let { error } = await supabase.from('projects').upsert(updates);
             if (error) throw error;
             setMessage('Project updated!');
         } catch (error) {
-            setMessage('Error updating the data!');
-            console.log(error);
+            setMessage('Error updating the data!  Report to site administrator.');
+            // console.log(error);
         } finally {
             setUpdating(false);
         }
+        handleSelect();
+    }
+
+    async function deleteProject() {
+        if (!confirm('Are you SURE you want to delete all data for this project FOREVER?  Images will NOT be deleted from Cloudinary.\nConsider HIDING project instead.')) return;
+        try {
+            setUpdating(true);
+
+            let { error } = await supabase.from('projects').delete().eq('id', id);
+            if (error) throw error;
+            setMessage('Project has been hidden from view.');
+        }
+        catch (error) {
+            setMessage('Error setting the project to hidden.  Report to site administrator.');
+        }
+        finally {
+            setUpdating(false);
+        }
+        handleSelect();
     }
 
     async function handleSubmit(event) {
@@ -154,9 +176,15 @@ const ProjectEdit = ({ project, handleSelect }) => {
                 <label htmlFor="body">Project Description</label>
                 <textarea className={styles.body} id="body" name="body" rows="10" value={body} onChange={e => setBody(e.target.value)} required />
 
+                <label htmlFor="showcase">Showcase Project on Home Page</label>
+                <input type="checkbox" name="showcase" id="showcase" checked={showcase} onChange={e => setShowcase(e.target.checked)} />
+                <label htmlFor="hidden">Hide Project from Customer View</label>
+                <input type="checkbox" name="hidden" id="hidden" checked={hidden} onChange={e => setHidden(e.target.checked)} />
+
                 <div className={styles.message}>
                     {message}
                 </div>
+
 
                 <div className={styles.buttons}>
                     <div className={styles.tooltip}>
@@ -175,6 +203,15 @@ const ProjectEdit = ({ project, handleSelect }) => {
                             <i></i>
                         </div>
                     </div>
+
+                    <div className={styles.tooltip}>
+                        <button type="button" className={styles.delete} onClick={deleteProject} disabled={updating}>&#x1F5D1;</button>
+                        <div className={styles.right}>
+                            <p>Delete Project</p>
+                            <i></i>
+                        </div>
+                    </div>
+
                 </div>
             </FormWrapper>
         </div>

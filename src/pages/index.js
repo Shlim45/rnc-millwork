@@ -9,7 +9,7 @@ import { supabase } from '@/utils/supabaseClient';
 const OPTIONS = { inViewThreshold: 0, dragFree: true, loop: true };
 
 export const getStaticProps = async () => {
-    let { data } = await supabase.from('projects').select('id, title, images, alts, cover').eq('showcase', true);
+    let { data } = await supabase.from('projects').select('id, title, images, alts, cover').eq('showcase', true).eq('hidden', false);
 
     return {
         props: {

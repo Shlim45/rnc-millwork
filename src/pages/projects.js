@@ -28,11 +28,15 @@ export default function Projects({ projects }) {
 }
 
 export const getStaticProps = async () => {
-    let { data } = await supabase.from('projects').select('*');
+    let { data } = await supabase.from('projects').select('*').eq('hidden', false);
 
     return {
         props: {
             projects: data
-        }
+        },
+        // Next.js will attempt to re-generate the page:
+        // - When a request comes in
+        // - At most once every 10 seconds
+        revalidate: 10, // In seconds
     }
 }
