@@ -66,7 +66,7 @@ export default function Home({ projects }) {
             <section className={styles.sandbox}>
                 <h1 className={styles.sandbox__header}><span><Link href="/projects">Services</Link></span></h1>
                 <div className={styles.sandbox__carousel}>
-                    <EmblaCarousel slides={_slides} options={OPTIONS} />
+                    <EmblaCarousel slides={_slides} options={OPTIONS} title={true} />
                 </div>
             </section>
         </>

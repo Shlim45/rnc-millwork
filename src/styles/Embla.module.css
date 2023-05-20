@@ -60,6 +60,37 @@
   bottom: 0;
 }
 
+.embla__slide__title {
+  min-width: 380px;
+  width: 50%;
+  height: 3rem;
+  z-index: 1;
+  position: absolute;
+  top: 0.6rem;
+  right: 25%;
+  border-radius: .5rem;
+  background-color: rgba(var(--background-start-rgb), 0.85);
+  line-height: 3rem;
+  font-weight: 600;
+  text-align: center;
+  pointer-events: none;
+}
+
+.embla__slide__title>span {
+  color: var(--rcm-green);
+  background-image: var(--primary-glow);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 1.4rem;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
 .embla__parallax {
   height: 100%;
   overflow: hidden;
@@ -203,6 +234,19 @@
   .embla__slide__number>span {
     font-size: 1.2rem;
   }
+
+
+  .embla__slide__title {
+    min-width: 25ch;
+    width: 60%;
+    height: 2rem;
+    right: 0.6rem;
+    line-height: 2rem;
+  }
+
+  .embla__slide__title>span {
+    font-size: 1rem;
+  }
 }
 
 /* Tablet and Smaller Desktop */
@@ -251,5 +295,17 @@
 
   .embla__slide__number>span {
     font-size: 1.4rem;
+  }
+
+  .embla__slide__title {
+    min-width: 25ch;
+    width: 60%;
+    height: 2.5rem;
+    right: 0.6rem;
+    line-height: 2.5rem;
+  }
+
+  .embla__slide__title>span {
+    font-size: 1.2rem;
   }
 }

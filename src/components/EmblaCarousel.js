@@ -46,7 +46,7 @@ const NextButton = ({ enabled, onClick }) => (
 );
 
 
-const EmblaCarousel = ({ slides, options }) => {
+const EmblaCarousel = ({ slides, options, title = false }) => {
     const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay()])
     const [tweenValues, setTweenValues] = useState([])
     const [prevBtnEnabled, setPrevBtnEnabled] = useState(false)
@@ -125,9 +125,9 @@ const EmblaCarousel = ({ slides, options }) => {
                     <div className={styles.embla__container}>
                         {slides && slides.map(({ id, title, url, alt, link }, index) => (
                             <div className={styles.embla__slide} key={index}>
-                                <div className={styles.embla__slide__number}>
-                                    <span>{index + 1}</span>
-                                    {/* <span>{title}</span> */}
+                                <div className={title ? styles.embla__slide__title : styles.embla__slide__number}>
+                                    {title ? <span>{title}</span>
+                                        : <span>{index + 1}</span>}
                                 </div>
                                 <div className={styles.embla__parallax}>
                                     <div
