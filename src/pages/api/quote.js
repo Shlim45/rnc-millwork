@@ -28,7 +28,7 @@ function handler(req, res) {
     sendEmail(body.subject, text);
 
     // Sends a HTTP success code
-    res.status(200).json({ data: `${text}` });
+    res.status(200).json({ data: '' });
 }
 
 export default handler;

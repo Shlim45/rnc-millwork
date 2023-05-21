@@ -1,10 +1,16 @@
 import FormWrapper from "./FormWrapper";
+import { useState } from "react";
 
 const QuoteForm = ({ children }) => {
+    const [message, setMessage] = useState();
+    const [success, setSuccess] = useState(false);
+
     // Handles the submit event on form submit.
     const handleSubmit = async (event) => {
         // Stop the form from submitting and refreshing the page.
         event.preventDefault();
+        setSuccess(false);
+        setMessage(undefined);
 
         // Get data from the form.
         const data = {
@@ -36,10 +42,16 @@ const QuoteForm = ({ children }) => {
         // Send the form data to our forms API on Vercel and get a response.
         const response = await fetch(endpoint, options);
 
-        // Get the response data from server as JSON.
-        // If server returns the name submitted, that means the form works.
-        const result = await response.json();
-        alert(`SERVER RECEIVED: \n${result.data}`);
+        if (response.ok) {
+            // const result = await response.json();
+            setSuccess(true);
+            setMessage('Request for quote submitted successfully!');
+        }
+        else {
+            const result = await response.json();
+            setSuccess(false);
+            setMessage(`Error ${response.status} - ${result.data} Please email us at RoetterBill@RCCustomMillworks.com for a quote!`);
+        }
     }
 
     return (
@@ -49,6 +61,10 @@ const QuoteForm = ({ children }) => {
             method="post"
             handleSubmit={handleSubmit}
         >
+            <div style={{ height: "100px", fontSize: "1rem" }}>
+                {message &&
+                    <span style={success ? { color: "lightgreen" } : { color: "red" }}>{message}</span>}
+            </div>
             {children}
         </FormWrapper>
     )

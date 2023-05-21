@@ -11,6 +11,8 @@ export default function AdminPanel({ session }) {
 
     async function createProject(title) {
         try {
+            setLoading(true);
+
             const values = {
                 title,
                 updated_at: new Date().toISOString(),
@@ -18,11 +20,13 @@ export default function AdminPanel({ session }) {
 
             let { data, error } = await supabase.from('projects').insert(values).select();
             if (error) throw error;
-            setProjects(currentProjects => [...currentProjects, data[0]]);
-            alert('Project created!');
+            setProjects(currentProjects => [data[0], ...currentProjects]);
         } catch (error) {
             alert('Error creating the project!');
             console.log(error);
+        }
+        finally {
+            setLoading(false);
         }
     }
 
