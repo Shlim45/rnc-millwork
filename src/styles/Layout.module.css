@@ -17,7 +17,7 @@
   min-height: 100vh;
   font-size: 1.25rem;
   font-weight: 400;
-  letter-spacing: 0.15ch;
+  letter-spacing: 0.15rem;
   line-height: 1.6rem;
 }
 
@@ -59,6 +59,10 @@
 
 /* Mobile */
 @media (max-width: 700px) {
+  .main {
+    padding: 0;
+  }
+
   .content {
     padding: 4rem;
   }

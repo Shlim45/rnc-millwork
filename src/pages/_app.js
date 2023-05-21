@@ -20,7 +20,7 @@ export default function App({ Component, pageProps }) {
                         url: 'https://www.rccustommillworks.com/',
                         siteName: 'RC Custom Millworks of Pittsburgh',
                         title: 'Handmade Custom Woodworking',
-                        description: 'Custom woodworking millwork shop located near Pittsburgh, PA that creates beautiful hand-crafted custom wooden furniture, cabinetry, desks and more.',
+                        description: 'RC Custom Millworks is a woodworking company located in Castle Shannon just off Library Road.  We specialize in creating custom cabinetry, tables, banisters, mantelpieces, desks, countertops, built-in entertainment centers, bars and more.  Our team of skilled craftsmen has years of experience and is dedicated to providing the highest quality products and services.  Our products are proudly 100% Made in America and we use locally sourced and hand-selected lumber to deliver beautiful hand-crafted wooden furniture to our customers for a competitive price.',
                         images: [
                             {
                                 url: 'https://res.cloudinary.com/dsnkbgfrm/image/upload/rcm_logo_horizontal.svg',

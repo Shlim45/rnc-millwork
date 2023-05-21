@@ -1,10 +1,10 @@
-import styles from '@/styles/Quote.module.css'
+import styles from '@/styles/Home.module.css'
 import QuoteForm from '@/components/QuoteForm'
 
 const quote = () => {
     return (
-        <section className={styles.main}>
-            <h1><span className={styles.title}>Request For Quote</span></h1>
+        <section className={styles.sandbox}>
+            <h1 className={styles.sandbox__header}><span>Request For Quote</span></h1>
             <QuoteForm>
                 <label htmlFor="name">Name</label>
                 <input type="text" id="name" name="name" required />

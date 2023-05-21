@@ -1,7 +1,7 @@
 import FormWrapper from "./FormWrapper";
 import { server } from "@/config";
 import { supabase } from "@/utils/supabaseClient";
-import styles from '@/styles/Quote.module.css'
+import styles from '@/styles/Home.module.css'
 
 const LoginForm = () => {
     // Handles the submit event on form submit.
@@ -29,8 +29,8 @@ const LoginForm = () => {
 
     return (
         // We pass the event to the handleSubmit() function on submit.
-        <section className={styles.main}>
-            <h1><span className={styles.title}>Log in</span></h1>
+        <section className={styles.sandbox}>
+            <h1 className={styles.sandbox__header}><span>Log in</span></h1>
 
             <FormWrapper handleSubmit={handleSubmit}>
                 <label htmlFor="email">Email</label>
