@@ -3,15 +3,20 @@ import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import ProjectsPanel from './ProjectsPanel';
 import styles from '@/styles/Admin.module.css'
 
+
 export default function AdminPanel({ session }) {
     const supabase = useSupabaseClient();
     // const user = useUser();
     const [loading, setLoading] = useState(true);
     const [projects, setProjects] = useState(null);
+    const [message, setMessage] = useState();
+    const [success, setSuccess] = useState(false);
 
     async function createProject(title) {
         try {
             setLoading(true);
+            setSuccess(false);
+            setMessage(undefined);
 
             const values = {
                 title,
@@ -22,11 +27,12 @@ export default function AdminPanel({ session }) {
             if (error) throw error;
             setProjects(currentProjects => [data[0], ...currentProjects]);
         } catch (error) {
-            alert('Error creating the project!');
-            console.log(error);
+            setMessage(`Error creating the project!\n${error.message}`)
         }
         finally {
             setLoading(false);
+            setSuccess(true);
+            setMessage(`Successfully created project '${title}'.`)
         }
     }
 
@@ -34,10 +40,20 @@ export default function AdminPanel({ session }) {
         try {
             setLoading(true);
             setProjects(null);
+            setSuccess(false);
+            setMessage(undefined);
 
-            let { data, error, status } = await supabase
-                .from('projects')
-                .select('*');
+            let { data, error, status } = await supabase.from('projects').select(`
+                id,
+                title,
+                images,
+                alts,
+                cover,
+                body,
+                showcase,
+                hidden,
+                project-categories ( categories )
+                `);
 
             if (error && status !== 406) {
                 throw error;
@@ -46,11 +62,12 @@ export default function AdminPanel({ session }) {
             setProjects(data);
 
         } catch (error) {
-            alert('Error loading projects!');
-            console.error(error);
+            setMessage(`Error loading projects!\n${error.message}`)
         }
         finally {
             setLoading(false);
+            setSuccess(true);
+            setMessage("Projects loaded.");
         }
     }
 
@@ -74,6 +91,11 @@ export default function AdminPanel({ session }) {
         <section className={styles.container}>
             <h1 className={styles.title}><span>Admin Panel</span></h1>
 
+            <div style={{ height: "100px", fontSize: "1rem" }}>
+                {message &&
+                    <span style={success ? { color: "lightgreen" } : { color: "red" }}>{message}</span>}
+            </div>
+
             <div className={styles.actionButtons}>
                 <button onClick={handleNewProject}>
                     <svg
@@ -95,6 +117,7 @@ export default function AdminPanel({ session }) {
                         />
                     </svg> New Project
                 </button>
+                <button onClick={fetchProjects}>&#x21bb;</button>
                 <button onClick={() => supabase.auth.signOut()}>
                     <svg
                         width="24"

@@ -8,7 +8,7 @@ const ProjectInfo = ({ project, handleSelect }) => {
     return (
         <div className={styles.projectItem}>
             <button className={styles.edit} onClick={handleSelect}>&#9998;</button>
-            {console.log(`ID: '${id}' COVER: '${cover}'`)}
+            {/* {console.log(`ID: '${id}' COVER: '${cover}'`)} */}
             {images && <CldImage
                 src={`projects/${id}/${images[cover]}`}
                 width="50"
