@@ -49,29 +49,40 @@ export default function Home({ projects }) {
             />
 
             <CldImage
-                width="800"
-                height="600"
+                width="1200"
+                height="675"
                 sizes="(max-width: 640px) 620px, (max-width: 1007px) 765px, 800px"
                 className={styles.headerImage}
-                src="home/lumber_on_sawstop_blurred"
-                alt="Lumber resting atop a SawStop."
+                src="home/RCM_shop"
+                alt="Photo of RC Custom Millworks woodshop entrance."
                 priority
             />
-
-            <section className={styles.sandbox}>
-                <h1 className={styles.sandbox__header}><span><Link href="/projects">Services</Link></span></h1>
-                <div className={styles.sandbox__carousel}>
-                    <EmblaCarousel slides={_slides} options={OPTIONS} title={true} />
-                </div>
-            </section>
 
             <section className={styles.sandbox}>
                 <h1 className={styles.sandbox__header}><span><Link href="/about">About Us</Link></span></h1>
                 <div className={styles.sandbox__content}>
                     <p>RC Custom Millworks is a woodworking company located in Castle Shannon just off Library Road. Our team of skilled craftsmen has years of experience and is dedicated to providing the highest quality products and services.</p>
-                    <p>We specialize in creating custom cabinetry, tables, banisters, mantelpieces, desks, countertops, built-in entertainment centers, bars and more.  Our products are proudly 100% Made in America and we use locally sourced and hand-selected lumber to deliver beautiful hand-crafted wooden furniture to our customers for a competitive price.</p>
+                    <p>We specialize in hand-crafting custom products, including:</p>
+                    <ul className={styles.list}>
+                        <li>Custom cabinets</li>
+                        <li>Tables</li>
+                        <li>Banisters</li>
+                        <li>Mantelpieces</li>
+                        <li>Desks</li>
+                        <li>Countertops</li>
+                        <li>Entertainment centers</li>
+                        <li>Bars</li>
+                    </ul>
+                    <p>and much more!  Our products are proudly 100% Made in America and we use locally sourced and hand-selected lumber to deliver beautiful hand-crafted wooden furniture to our customers for a competitive price.</p>
                     <p>We work closely with our clients to ensure that their vision is brought to life and that they are completely satisfied with the final product.</p>
                     <p>Contact us today to learn more about how we can help you create the perfect piece for your home or business!</p>
+                </div>
+            </section>
+
+            <section className={styles.sandbox}>
+                <h1 className={styles.sandbox__header}><span><Link href="/projects">Services</Link></span></h1>
+                <div className={styles.sandbox__carousel}>
+                    <EmblaCarousel slides={_slides} options={OPTIONS} title={true} />
                 </div>
             </section>
         </>

@@ -37,9 +37,22 @@
   margin: 20px 0;
 }
 
+.list {
+  margin-left: 3rem;
+  list-style: none;
+}
+
+.list>li::before {
+  content: "\25B7";
+  color: var(--rcm-green);
+  padding-right: 1rem;
+  font-size: 1rem;
+}
+
 .headerImage {
-  width: 67rem;
-  max-width: 800px;
+  /* width: 67rem; */
+  width: 100%;
+  max-width: 1080px;
   height: auto;
   align-self: center;
 }
@@ -48,7 +61,7 @@
 @media (max-width: 700px) {
   .sandbox {
     max-width: 95vw;
-    font-size: 1.15rem;
+    /* font-size: 1.15rem; */
   }
 
   .sandbox__header {
@@ -68,7 +81,7 @@
 /* Tablet and Smaller Desktop */
 @media (min-width: 701px) and (max-width: 1120px) {
   .sandbox {
-    max-width: 95vw;
+    max-width: 90vw;
     /* font-size: 1.4rem; */
   }
 
