@@ -1,4 +1,5 @@
 import styles from '@/styles/Home.module.css'
+import { NextSeo } from 'next-seo'
 
 const about = () => {
     return (
