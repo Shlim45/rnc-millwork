@@ -52,7 +52,8 @@ export default function AdminPanel({ session }) {
                 body,
                 showcase,
                 hidden,
-                project-categories ( categories )
+                updated_at,
+                categories ( name )
                 `);
 
             if (error && status !== 406) {

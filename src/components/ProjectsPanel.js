@@ -37,7 +37,7 @@ const PanelItem = ({ project }) => {
 const ProjectsPanel = ({ projects }) => {
     return (
         <section className={styles.projectList}>
-            {projects.map(project => <PanelItem project={project} key={project.id} />)}
+            {projects?.map(project => <PanelItem project={project} key={project.id} />)}
         </section>
     )
 }
