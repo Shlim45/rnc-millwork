@@ -9,6 +9,7 @@ export default function AdminPanel({ session }) {
     // const user = useUser();
     const [loading, setLoading] = useState(true);
     const [projects, setProjects] = useState(null);
+    const [categories, setCategories] = useState(null);
     const [message, setMessage] = useState();
     const [success, setSuccess] = useState(false);
 
@@ -43,18 +44,9 @@ export default function AdminPanel({ session }) {
             setSuccess(false);
             setMessage(undefined);
 
-            let { data, error, status } = await supabase.from('projects').select(`
-                id,
-                title,
-                images,
-                alts,
-                cover,
-                body,
-                showcase,
-                hidden,
-                updated_at,
-                categories ( name )
-                `);
+            console.log('fetching projects...');
+
+            let { data, error, status } = await supabase.from('projects').select();
 
             if (error && status !== 406) {
                 throw error;
@@ -72,6 +64,7 @@ export default function AdminPanel({ session }) {
         }
     }
 
+
     async function handleNewProject() {
         const title = prompt('Enter a short title for this project.');
         if (title?.length > 0) {
@@ -87,6 +80,40 @@ export default function AdminPanel({ session }) {
     useEffect(() => {
         fetchProjects();
     }, []);
+    /*
+        useEffect(() => {
+            const fetchCategories = async () => {
+                try {
+                    setLoading(true);
+                    setProjects(null);
+                    setSuccess(false);
+                    setMessage(undefined);
+    
+                    console.log('fetching categories...');
+    
+                    let { data, error, status } = await supabase.from('project_categories').select('*');
+    
+                    if (error && status !== 406) {
+                        throw error;
+                    }
+    
+                    console.log(data);
+    
+                    setCategories(data);
+    
+                } catch (error) {
+                    setMessage(`Error loading categories!\n${error.message}`)
+                }
+                finally {
+                    setLoading(false);
+                    setSuccess(true);
+                    setMessage("Categories loaded.");
+                }
+            };
+    
+            fetchCategories();
+        }, [supabase]);
+    */
 
     return (
         <section className={styles.container}>
