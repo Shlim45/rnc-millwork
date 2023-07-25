@@ -3,7 +3,8 @@ import { CldImage } from 'next-cloudinary';
 import projectStyles from '@/styles/ProjectItem.module.css';
 
 const ProjectItem = ({ project }) => {
-    const { id, images, alts, cover, title, body } = project;
+    const { id, images, alts, cover, title, body, categories } = project;
+
     return (
         <Link className={projectStyles.card} href="/project/[id]" as={`/project/${id}`}>
             <h2>{title} <span className={projectStyles.arrow}>&rarr;</span></h2>
