@@ -55,16 +55,6 @@ export default function Home({ projects }) {
 
             />
 
-            {/* <CldImage
-                width="1200"
-                height="675"
-                sizes="(max-width: 640px) 620px, (max-width: 1007px) 765px, 800px"
-                className={styles.headerImage}
-                src="home/RCM_shop"
-                alt="Photo of RC Custom Millworks woodshop entrance."
-                priority
-            /> */}
-
             <Slideshow images={shop_slides} delay={5000} />
 
             <section className={styles.sandbox}>
