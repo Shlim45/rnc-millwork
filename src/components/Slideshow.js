@@ -11,12 +11,12 @@ const Slideshow = ({ images, delay = 3000 }) => {
         }, delay);
 
         return () => clearInterval(intervalId);
-    }, [index]);
+    }, [index, images, delay]);
 
     return (
         <div className={styles.container}>
             {images?.map((imageURL, imageIndex) => (
-                <div className={styles.imageContainer}>
+                <div className={styles.imageContainer} key={imageIndex}>
                     <CldImage
                         className={styles.image}
                         src={imageURL}
