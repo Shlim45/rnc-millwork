@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import styles from '@/styles/Home.module.css'
 import EmblaCarousel from '@/components/EmblaCarousel'
+import Slideshow from '@/components/Slideshow';
 import { CldImage } from 'next-cloudinary';
 import { NextSeo, LocalBusinessJsonLd } from 'next-seo';
 import { supabase } from '@/utils/supabaseClient';
@@ -33,6 +34,12 @@ export default function Home({ projects }) {
         link: `project/${id}`,
     }));
 
+    const shop_slides = [
+        "home/RCM_shop",
+        "home/shop_left",
+        "home/shop_right",
+    ];
+
     return (
         <>
             <NextSeo
@@ -48,7 +55,7 @@ export default function Home({ projects }) {
 
             />
 
-            <CldImage
+            {/* <CldImage
                 width="1200"
                 height="675"
                 sizes="(max-width: 640px) 620px, (max-width: 1007px) 765px, 800px"
@@ -56,7 +63,9 @@ export default function Home({ projects }) {
                 src="home/RCM_shop"
                 alt="Photo of RC Custom Millworks woodshop entrance."
                 priority
-            />
+            /> */}
+
+            <Slideshow images={shop_slides} delay={5000} />
 
             <section className={styles.sandbox}>
                 <h1 className={styles.sandbox__header}><span><Link href="/about">About Us</Link></span></h1>
