@@ -2,8 +2,7 @@ import Link from 'next/link'
 import styles from '@/styles/Home.module.css'
 import EmblaCarousel from '@/components/EmblaCarousel'
 import Slideshow from '@/components/Slideshow';
-import { CldImage } from 'next-cloudinary';
-import { NextSeo, LocalBusinessJsonLd } from 'next-seo';
+import { NextSeo } from 'next-seo';
 import { supabase } from '@/utils/supabaseClient';
 
 
