@@ -70,7 +70,7 @@ const ProjectList = ({ projects }) => {
                 let matchingProjects = pros?.filter(pro => pro.categories?.includes(category.name));
                 if (matchingProjects?.length > 0) {
                     return (
-                        <ProjectCategory name={category.name} projects={matchingProjects} />
+                        <ProjectCategory name={category.name} projects={matchingProjects} key={category.name} />
                     );
                 }
             })}
