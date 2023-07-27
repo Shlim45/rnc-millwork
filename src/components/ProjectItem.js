@@ -7,7 +7,7 @@ const ProjectItem = ({ project }) => {
 
     return (
         <Link className={projectStyles.card} href="/project/[id]" as={`/project/${id}`}>
-            <h2>{title} <span className={projectStyles.arrow}>&rarr;</span></h2>
+            <h3>{title} <span className={projectStyles.arrow}>&rarr;</span></h3>
             {images?.length > 0 &&
                 <CldImage
                     src={`projects/${id}/${images[cover]}`}

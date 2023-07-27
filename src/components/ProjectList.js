@@ -1,14 +1,28 @@
 import ProjectItem from './ProjectItem'
-import projectStyles from '@/styles/ProjectItem.module.css'
+import styles from '@/styles/ProjectList.module.css'
 import { useEffect, useState } from 'react'
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
+
+export const ProjectCategory = ({ name, projects }) => {
+    return (
+        <div className={styles.card}>
+            <h2><span>{name}</span></h2>
+            <div className={styles.grid}>
+                {projects?.map(project => (
+                    <ProjectItem project={project} key={project.id} />
+                ))}
+            </div>
+        </div>
+    )
+}
 
 const ProjectList = ({ projects }) => {
     const supabase = useSupabaseClient();
 
     const [pros, setPros] = useState(null);
+    const [categories, setCategories] = useState(null);
 
-    const fetchCategories = async () => {
+    const fetchProjectCategories = async () => {
         try {
             let { data, error, status } = await supabase.from('project_categories').select();
 
@@ -22,22 +36,44 @@ const ProjectList = ({ projects }) => {
                     ...project,
                     "categories": projectCategories.map(pCat => pCat.category_name)
                 }
-            }));
+            })
+                .sort((a, b) => a.id - b.id));
         }
         catch (error) {
             console.error(`Error fetching categories!\n${error.message}`);
         }
     }
 
+    const fetchCategoryData = async () => {
+        try {
+            let { data, error, status } = await supabase.from('categories').select().order('id');
+
+            if (error && status != 406) {
+                throw error;
+            }
+
+            setCategories(data);
+        }
+        catch (error) {
+            console.error(`Error fetching category data!\n${error.message}`);
+        }
+    }
+
     useEffect(() => {
-        fetchCategories();
+        fetchProjectCategories();
+        fetchCategoryData();
     }, []);
 
     return (
-        <div className={projectStyles.grid}>
-            {pros?.map(project => (
-                <ProjectItem project={project} key={project.id} />
-            ))}
+        <div>
+            {categories?.map(category => {
+                let matchingProjects = pros?.filter(pro => pro.categories?.includes(category.name));
+                if (matchingProjects?.length > 0) {
+                    return (
+                        <ProjectCategory name={category.name} projects={matchingProjects} />
+                    );
+                }
+            })}
         </div>
     )
 }

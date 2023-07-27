@@ -21,7 +21,7 @@ const Slideshow = ({ images, delay = 3000 }) => {
                         className={styles.image}
                         src={imageURL}
                         key={imageURL}
-                        alt={`Shop image ${imageIndex}`}
+                        alt={`Shop photo ${imageIndex + 1}`}
                         style={{ opacity: index === imageIndex ? 1 : 0 }}
                         priority
                         fill

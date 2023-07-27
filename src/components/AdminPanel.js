@@ -44,8 +44,6 @@ export default function AdminPanel({ session }) {
             setSuccess(false);
             setMessage(undefined);
 
-            console.log('fetching projects...');
-
             let { data, error, status } = await supabase.from('projects').select();
 
             if (error && status !== 406) {
@@ -80,40 +78,6 @@ export default function AdminPanel({ session }) {
     useEffect(() => {
         fetchProjects();
     }, []);
-    /*
-        useEffect(() => {
-            const fetchCategories = async () => {
-                try {
-                    setLoading(true);
-                    setProjects(null);
-                    setSuccess(false);
-                    setMessage(undefined);
-    
-                    console.log('fetching categories...');
-    
-                    let { data, error, status } = await supabase.from('project_categories').select('*');
-    
-                    if (error && status !== 406) {
-                        throw error;
-                    }
-    
-                    console.log(data);
-    
-                    setCategories(data);
-    
-                } catch (error) {
-                    setMessage(`Error loading categories!\n${error.message}`)
-                }
-                finally {
-                    setLoading(false);
-                    setSuccess(true);
-                    setMessage("Categories loaded.");
-                }
-            };
-    
-            fetchCategories();
-        }, [supabase]);
-    */
 
     return (
         <section className={styles.container}>
