@@ -38,9 +38,7 @@
 }
 
 @media (prefers-color-scheme: light) {
-
-    .bg_left,
-    .bg_right {
+    .logo {
         background-color: #111;
     }
 }

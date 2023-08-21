@@ -118,6 +118,12 @@
 
 @media (prefers-color-scheme: light) {
   .arrow {
-    background-color: #111;
+    background-color: rgba(5, 5, 5, 0.5);
+    border-radius: 5px;
+    padding-left: 2px;
+  }
+
+  .card:hover .arrow {
+    background-color: rgba(5, 5, 5, 1);
   }
 }

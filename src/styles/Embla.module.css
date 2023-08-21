@@ -38,7 +38,8 @@
   top: 0.6rem;
   right: 0.6rem;
   border-radius: 50%;
-  background-color: rgba(var(--background-start-rgb), 0.67);
+  background-color: rgba(255, 255, 255, 0.75);
+  filter: drop-shadow(5px 3px 4px #333);
   line-height: 3rem;
   font-weight: 900;
   text-align: center;
@@ -46,11 +47,7 @@
 }
 
 .embla__slide__number>span {
-  color: var(--rcm-green);
-  background-image: var(--primary-glow);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--foreground-rgb);
   font-size: 1.6rem;
   display: block;
   position: absolute;
@@ -69,7 +66,8 @@
   top: 0.6rem;
   right: 25%;
   border-radius: .5rem;
-  background-color: rgba(var(--background-start-rgb), 0.85);
+  background-color: rgba(255, 255, 255, 0.75);
+  filter: drop-shadow(5px 3px 4px #333);
   line-height: 3rem;
   font-weight: 600;
   text-align: center;
@@ -77,18 +75,13 @@
 }
 
 .embla__slide__title>span {
-  color: var(--rcm-green);
-  background-image: var(--primary-glow);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-size: 1.4rem;
   display: block;
-  position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  z-index: inherit;
+  color: var(--foreground-rgb);
 }
 
 .embla__parallax {
@@ -186,6 +179,33 @@
   height: 65%;
 }
 
+@media (prefers-color-scheme: dark) {
+  .embla__slide__number {
+    background-color: rgba(var(--background-start-rgb), 0.67);
+  }
+
+  .embla__slide__number>span {
+    color: var(--rcm-green);
+    background-image: var(--primary-glow);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .embla__slide__title>span {
+    color: var(--rcm-green);
+    background-image: var(--primary-glow);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+
+  .embla__slide__title {
+    background-color: rgba(var(--background-start-rgb), 0.67);
+  }
+}
+
 
 /* Mobile */
 @media (max-width: 700px) {
@@ -237,15 +257,15 @@
 
 
   .embla__slide__title {
-    min-width: 25ch;
-    width: 60%;
+    min-width: 20ch;
+    width: 80%;
     height: 2rem;
-    right: 0.6rem;
+    right: 7.5%;
     line-height: 2rem;
   }
 
   .embla__slide__title>span {
-    font-size: 1rem;
+    font-size: 0.6rem;
   }
 }
 
@@ -301,7 +321,7 @@
     min-width: 25ch;
     width: 60%;
     height: 2.5rem;
-    right: 0.6rem;
+    right: 20%;
     line-height: 2.5rem;
   }
 
