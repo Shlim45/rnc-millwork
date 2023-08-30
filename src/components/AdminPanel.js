@@ -107,9 +107,9 @@ export default function AdminPanel({ session }) {
                             d="M5 22C3.34315 22 2 20.6569 2 19V5C2 3.34315 3.34315 2 5 2H19C20.6569 2 22 3.34315 22 5V19C22 20.6569 20.6569 22 19 22H5ZM4 19C4 19.5523 4.44772 20 5 20H19C19.5523 20 20 19.5523 20 19V5C20 4.44772 19.5523 4 19 4H5C4.44772 4 4 4.44772 4 5V19Z"
                             fill="currentColor"
                         />
-                    </svg> New Project
+                    </svg>&nbsp; New Project
                 </button>
-                <button onClick={fetchProjects}>&#x21bb;</button>
+                <button onClick={fetchProjects}>&#x21bb; &nbsp; Refresh</button>
                 <button onClick={() => supabase.auth.signOut()}>
                     <svg
                         width="24"
@@ -126,7 +126,7 @@ export default function AdminPanel({ session }) {
                             d="M13.8418 17.385L15.262 15.9768L11.3428 12.0242L20.4857 12.0242C21.038 12.0242 21.4857 11.5765 21.4857 11.0242C21.4857 10.4719 21.038 10.0242 20.4857 10.0242L11.3236 10.0242L15.304 6.0774L13.8958 4.6572L7.5049 10.9941L13.8418 17.385Z"
                             fill="currentColor"
                         />
-                    </svg> Sign Out
+                    </svg>&nbsp; Sign Out
                 </button>
             </div>
             {loading ? (

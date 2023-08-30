@@ -2,7 +2,7 @@ import { CldUploadWidget } from 'next-cloudinary';
 import { useState } from 'react';
 import styles from '@/styles/ProjectEdit.module.css'
 
-const SignedUpload = ({ id, title, imageCount, handler, innerText = "Add Images" }) => {
+const SignedUpload = ({ id, title, imageCount, handler, innerText = "Add Image" }) => {
     const [resource, setResource] = useState();
     return (
         <>
@@ -18,14 +18,14 @@ const SignedUpload = ({ id, title, imageCount, handler, innerText = "Add Images"
                         "google_drive"
                     ],
                     folder: `projects/${id}`,
-                    publicId: title.trim().toLowerCase().replace(' ', '_').concat(`_${imageCount + 1}`),
+                    publicId: title.trim().toLowerCase().replaceAll(' ', '_').concat(`_${imageCount + 1}`),
                     // secure: true,
                     resourceType: 'image',
                     context: { alt: `Photo ${imageCount + 1} of ${title}` },
                     maxFiles: 10,
                     showAdvancedOptions: true,
                     cropping: false,
-                    multiple: true,
+                    multiple: false,
                     maxImageWidth: 1600,
                     maxImageHeight: 1600,
                     minImageWidth: 400,
@@ -59,6 +59,9 @@ const SignedUpload = ({ id, title, imageCount, handler, innerText = "Add Images"
                 onUpload={(error, result, widget) => {
                     if (error) {
                         console.error(error);
+
+                        // widget.close();
+                        // return;
                     }
                     setResource(result?.info);
                     handler(result?.info);

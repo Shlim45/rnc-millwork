@@ -4,7 +4,6 @@ import { useState } from 'react';
 import FormWrapper from './FormWrapper';
 import SignedUpload from './SignedUpload';
 import { supabase } from "@/utils/supabaseClient";
-import { joinClassNames } from '@/utils';
 
 const ProjectEdit = ({ project, handleSelect }) => {
     const { id } = project;
@@ -73,8 +72,9 @@ const ProjectEdit = ({ project, handleSelect }) => {
     }
 
     const handleAddImage = ({ url, context }) => {
-        const fileName = url?.substring(url.lastIndexOf('/') + 1);
+        const fileName = url?.substring(url?.lastIndexOf('/') + 1);
         const { alt } = context?.custom;
+
         if (images?.length > 0) {
             setImages(currentImages => [...currentImages, fileName]);
             setAlts(currentAlts => [...currentAlts, alt]);
@@ -118,8 +118,8 @@ const ProjectEdit = ({ project, handleSelect }) => {
             `Are you sure you want to remove the following image?\nNOTE: This does not delete the image from the server.\n\nFILENAME: '${imageToRemove}'\nDESCRIPT: "${altToRemove}"`;
 
         if (confirm(confirmMessage)) {
-            setImages(currentImages => currentImages.filter((image, index) => index !== selected));
-            setAlts(currentAlts => currentAlts.filter((alt, index) => index !== selected));
+            setImages(currentImages => currentImages.filter((_, index) => index !== selected));
+            setAlts(currentAlts => currentAlts.filter((_, index) => index !== selected));
             if (cover === selected) {
                 if (images.length > 0) {
                     setCover(0);
