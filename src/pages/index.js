@@ -35,8 +35,8 @@ export default function Home({ projects }) {
 
     const shop_slides = [
         "home/RCM_shop",
-        "home/shop_left",
-        "home/shop_right",
+        "home/shop_left_1",
+        "home/shop_right_1",
     ];
 
     return (
@@ -54,7 +54,9 @@ export default function Home({ projects }) {
 
             />
 
-            <Slideshow images={shop_slides} delay={5000} />
+            <section className={styles.hero} role='banner'>
+                <Slideshow images={shop_slides} delay={5000} />
+            </section>
 
             <section className={styles.sandbox}>
                 <h1 className={styles.sandbox__header}><span><Link href="/about">About Us</Link></span></h1>

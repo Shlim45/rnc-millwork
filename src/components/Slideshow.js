@@ -14,9 +14,9 @@ const Slideshow = ({ images, delay = 3000 }) => {
     }, [index, images, delay]);
 
     return (
-        <div className={styles.container}>
+        <div className={styles.slideshow}>
             {images?.map((imageURL, imageIndex) => (
-                <div className={styles.imageContainer} key={imageIndex}>
+                <div className={styles.slide} key={imageIndex}>
                     <CldImage
                         className={styles.image}
                         src={imageURL}

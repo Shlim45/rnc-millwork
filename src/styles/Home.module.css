@@ -1,3 +1,9 @@
+.hero {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
 .sandbox {
   max-width: var(--max-width);
   margin-left: auto;
@@ -49,19 +55,19 @@
   font-size: 1rem;
 }
 
-.headerImage {
-  /* width: 67rem; */
+/* .headerImage {
+  width: 67rem;
   width: 100%;
   max-width: 1080px;
   height: auto;
   align-self: center;
-}
+} */
 
 /* Mobile */
 @media (max-width: 700px) {
   .sandbox {
     max-width: 95vw;
-    /* font-size: 1.15rem; */
+    font-size: 1.15rem;
   }
 
   .sandbox__header {
@@ -72,20 +78,20 @@
     border-radius: 0;
   }
 
-  .headerImage {
+  /* .headerImage {
     width: 100%;
-  }
+  } */
 
 }
 
 /* Tablet and Smaller Desktop */
 @media (min-width: 701px) and (max-width: 1120px) {
-  .sandbox {
+  /* .sandbox {
     max-width: 90vw;
-    /* font-size: 1.4rem; */
-  }
+    font-size: 1.4rem;
+  } */
 
-  .headerImage {
+  /* .headerImage {
     max-width: 100%;
-  }
+  } */
 }
