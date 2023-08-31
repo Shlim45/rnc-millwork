@@ -157,7 +157,6 @@
   justify-content: center;
   top: 50%;
   transform: translateY(-50%);
-  cursor: pointer;
   width: 4rem;
   height: 4rem;
 }
@@ -177,6 +176,14 @@
 .embla__button__svg {
   width: 65%;
   height: 65%;
+}
+
+/* Enable hover only on non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+  .embla__button:hover>.embla__button__svg {
+    fill: var(--rcm-green);
+    transition: 100ms ease-in-out;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
