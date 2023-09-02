@@ -1,6 +1,5 @@
 import SandBox from '@/components/SandBox'
 import QuoteForm from '@/components/QuoteForm'
-import styles from '@/styles/Home.module.css'
 
 const quote = () => {
     return (
@@ -19,7 +18,7 @@ const quote = () => {
                 <input type="subject" id="subject" name="subject" placeholder="Type of project" required />
 
                 <label htmlFor="description">Description</label>
-                <textarea className={styles.description} id="description" name="description" rows="10" placeholder="Describe your project - be as descriptive as possible, please." required></textarea>
+                <textarea id="description" name="description" rows="10" placeholder="Describe your project - be as descriptive as possible, please." required></textarea>
 
                 <button type="submit">Submit</button>
             </QuoteForm>
