@@ -1,5 +1,5 @@
+import SandBox from '@/components/SandBox';
 import ProjectList from '@/components/ProjectList';
-import styles from '@/styles/Home.module.css'
 import { supabase } from '@/utils/supabaseClient';
 import { NextSeo } from 'next-seo';
 
@@ -19,10 +19,9 @@ export default function Projects({ projects }) {
 
             />
 
-            <section className={styles.sandbox}>
-                <h1 className={styles.sandbox__header}><span>Projects</span></h1>
+            <SandBox heading="Projects">
                 <ProjectList projects={projects} />
-            </section>
+            </SandBox>
         </>
     )
 }

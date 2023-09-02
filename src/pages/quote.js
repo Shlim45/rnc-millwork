@@ -1,10 +1,10 @@
-import styles from '@/styles/Home.module.css'
+import SandBox from '@/components/SandBox'
 import QuoteForm from '@/components/QuoteForm'
+import styles from '@/styles/Home.module.css'
 
 const quote = () => {
     return (
-        <section className={styles.sandbox}>
-            <h1 className={styles.sandbox__header}><span>Request For Quote</span></h1>
+        <SandBox heading="Request For Quote">
             <QuoteForm>
                 <label htmlFor="name">Name</label>
                 <input type="text" id="name" name="name" required />
@@ -23,7 +23,7 @@ const quote = () => {
 
                 <button type="submit">Submit</button>
             </QuoteForm>
-        </section>
+        </SandBox>
     )
 }
 
