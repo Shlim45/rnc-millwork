@@ -78,9 +78,7 @@ export default function Home({ projects }) {
             </SandBox>
 
             <SandBox heading="Services" linkUrl="/projects">
-                <div className={styles.sandbox__carousel}>
-                    <EmblaCarousel slides={_slides} options={OPTIONS} title={true} />
-                </div>
+                <EmblaCarousel slides={_slides} options={OPTIONS} title={true} />
             </SandBox>
 
         </>

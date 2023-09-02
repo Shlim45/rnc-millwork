@@ -119,7 +119,7 @@ const EmblaCarousel = ({ slides, options, title = false }) => {
     }, [emblaApi, slides])
 
     return (
-        <>
+        <div className={styles.sandbox__carousel}>
             <div className={styles.embla}>
                 <div className={styles.embla__viewport} ref={emblaRef}>
                     <div className={styles.embla__container}>
@@ -170,7 +170,7 @@ const EmblaCarousel = ({ slides, options, title = false }) => {
                     />
                 ))}
             </div>
-        </>
+        </div>
     )
 }
 

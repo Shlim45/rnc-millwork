@@ -4,16 +4,6 @@
     margin-right: auto;
 }
 
-.sandbox__carousel {
-    background-color: var(--background-start-rgb);
-    border-radius: 0.4rem;
-
-}
-
-.sandbox__carousel {
-    position: relative;
-}
-
 .sandbox__header {
     font-size: 2rem;
     font-weight: bold;
@@ -47,11 +37,6 @@
     .sandbox__header {
         font-size: 1.7rem;
     }
-
-    .sandbox__carousel {
-        border-radius: 0;
-    }
-
 }
 
 /* Tablet and Smaller Desktop */

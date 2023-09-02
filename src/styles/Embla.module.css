@@ -1,3 +1,9 @@
+.sandbox__carousel {
+  background-color: var(--background-start-rgb);
+  border-radius: 0.4rem;
+  position: relative;
+}
+
 .embla {
   --slide-spacing: 1rem;
   --slide-size: 80%;
@@ -213,9 +219,12 @@
   }
 }
 
-
 /* Mobile */
 @media (max-width: 700px) {
+  .sandbox__carousel {
+    border-radius: 0;
+  }
+
   .embla {
     --slide-spacing: 1rem;
     --slide-size: 80%;
