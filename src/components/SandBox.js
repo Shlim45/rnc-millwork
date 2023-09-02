@@ -2,7 +2,6 @@ import Link from 'next/link'
 import styles from '@/styles/SandBox.module.css'
 
 const SandBox = ({ heading, linkUrl = undefined, children }) => {
-    console.log(heading, linkUrl)
     return (
         <section className={styles.sandbox}>
             <h1 className={styles.sandbox__header}><span>{linkUrl ? (<Link href={linkUrl}>{heading}</Link>) : heading}</span></h1>
