@@ -35,8 +35,9 @@ export default function Home({ projects }) {
 
     const shop_slides = [
         "home/RCM_shop",
-        "home/shop_left_1",
+        "home/shop_left_LS",
         "home/shop_right_1",
+        "home/shop_left_PT",
     ];
 
     return (
