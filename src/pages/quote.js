@@ -1,5 +1,6 @@
 import SandBox from '@/components/SandBox'
 import QuoteForm from '@/components/QuoteForm'
+import { NextSeo } from 'next-seo';
 
 const quote = () => {
     return (

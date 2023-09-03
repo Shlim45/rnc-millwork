@@ -1,5 +1,6 @@
 import SandBox from '@/components/SandBox';
 import Link from 'next/link'
+import { NextSeo } from 'next-seo';
 
 const contact = () => {
     return (
