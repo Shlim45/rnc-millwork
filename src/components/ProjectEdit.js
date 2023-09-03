@@ -5,8 +5,15 @@ import FormWrapper from './FormWrapper';
 import SignedUpload from './SignedUpload';
 import { supabase } from "@/utils/supabaseClient";
 
-const ProjectEdit = ({ project, handleSelect }) => {
-    const { id } = project;
+
+export const CategoryEdit = ({ categories }) => {
+    return categories.map(category => {
+
+    });
+}
+
+const ProjectEdit = ({ project, handleSelect, categories }) => {
+    const { id, categories: projectCategories } = project;
 
     const [updating, setUpdating] = useState(false);
     const [title, setTitle] = useState(project.title);
@@ -41,7 +48,6 @@ const ProjectEdit = ({ project, handleSelect }) => {
             setMessage('Project updated!');
         } catch (error) {
             setMessage('Error updating the data!  Report to site administrator.');
-            // console.log(error);
         } finally {
             setUpdating(false);
         }
@@ -55,10 +61,10 @@ const ProjectEdit = ({ project, handleSelect }) => {
 
             let { error } = await supabase.from('projects').delete().eq('id', id);
             if (error) throw error;
-            setMessage('Project has been hidden from view.');
+            setMessage('Project has been deleted.');
         }
         catch (error) {
-            setMessage('Error setting the project to hidden.  Report to site administrator.');
+            setMessage('Error deleting the project.  Report to site administrator.');
         }
         finally {
             setUpdating(false);
@@ -88,7 +94,6 @@ const ProjectEdit = ({ project, handleSelect }) => {
         event.preventDefault();
         if (selected === -1) { return; }
 
-        // const imgToEdit = images[selected];
         const altToEdit = alts[selected];
 
         const promptMessage =
@@ -135,6 +140,12 @@ const ProjectEdit = ({ project, handleSelect }) => {
         }
     };
 
+    //TODO(jon): handle category changes
+
+    const handleCategorySelect = (event) => {
+        console.log(event.target.name)
+    }
+
     return (
         <div className={styles.project}>
             {images && <CldImage
@@ -151,11 +162,30 @@ const ProjectEdit = ({ project, handleSelect }) => {
                 method="post"
                 handleSubmit={handleSubmit}
             >
-                <label htmlFor="title">Title</label>
-                <input type="text" id="title" name="title" value={title} onChange={e => setTitle(e.target.value)} required />
+                <div className={styles.organizer}>
 
-                <label htmlFor="cover">Cover Image</label>
-                <input type="number" id="cover" name="cover" min="1" max={images?.length} value={cover + 1} onChange={e => setCover(e.target.value - 1)} />
+                    <div className={styles.titleCover}>
+                        <label>Title
+                            <input type="text" id="title" name="title" value={title} onChange={e => setTitle(e.target.value)} required />
+                        </label>
+                        <label>Cover Image
+                            <input type="number" id="cover" name="cover" min="1" max={images?.length} value={cover + 1} onChange={e => setCover(e.target.value - 1)} />
+                        </label>
+                    </div>
+
+                    <div className={styles.categoryList}>
+                        <label>Categories</label>
+                        <ul>
+                            {categories.map(cat => {
+                                return (
+                                    <li key={cat.id}>
+                                        <input type="checkbox" name={cat.name} key={cat.name} checked={projectCategories.includes(cat.name)} onChange={handleCategorySelect} /> {cat.name}
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    </div>
+                </div>
 
                 <div className={styles.imageInfo}>
                     <label htmlFor="images">Images</label>

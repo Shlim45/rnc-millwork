@@ -10,14 +10,14 @@ export default function AdminPanel({ session }) {
     const [loading, setLoading] = useState(true);
     const [projects, setProjects] = useState(null);
     const [categories, setCategories] = useState(null);
-    const [message, setMessage] = useState();
+    const [message, setMessage] = useState('');
     const [success, setSuccess] = useState(false);
 
     async function createProject(title) {
         try {
+            setMessage(undefined);
             setLoading(true);
             setSuccess(false);
-            setMessage(undefined);
 
             const values = {
                 title,
@@ -37,6 +37,13 @@ export default function AdminPanel({ session }) {
         }
     }
 
+    async function handleNewProject() {
+        const title = prompt('Enter a short title for this project.');
+        if (title?.length > 0) {
+            await createProject(title);
+        }
+    }
+
     async function fetchProjects() {
         try {
             setLoading(true);
@@ -53,31 +60,44 @@ export default function AdminPanel({ session }) {
             setProjects(data);
 
         } catch (error) {
-            setMessage(`Error loading projects!\n${error.message}`)
+            setMessage(`Error loading projects!\n${error.message}`);
         }
         finally {
             setLoading(false);
             setSuccess(true);
-            setMessage("Projects loaded.");
+            setMessage(`Projects loaded.`);
         }
     }
 
+    const fetchCategoryData = async () => {
+        try {
+            setLoading(true);
+            setCategories(null);
+            setSuccess(false);
+            setMessage(undefined);
 
-    async function handleNewProject() {
-        const title = prompt('Enter a short title for this project.');
-        if (title?.length > 0) {
-            await createProject(title);
+            let { data, error, status } = await supabase.from('categories').select().order('id');
+
+            if (error && status != 406) {
+                throw error;
+            }
+
+            setCategories(data);
+        }
+        catch (error) {
+            setMessage(`Error loading category data!\n${error.message}`);
+        }
+        finally {
+            setLoading(false);
+            setSuccess(true);
         }
     }
 
-    // TODO(jon): NEXT BUILD complains about not including fetchProjects
-    // in the dependency array, but not passing empty dependency array
-    // causes fetching/rendering loop.
-
-    // Fix by defining fetchProjects within useEffect?
     useEffect(() => {
         fetchProjects();
+        fetchCategoryData();
     }, []);
+
 
     return (
         <section className={styles.container}>
@@ -132,7 +152,7 @@ export default function AdminPanel({ session }) {
             {loading ? (
                 <p>Loading...</p>
             ) : (
-                <ProjectsPanel projects={projects} />
+                <ProjectsPanel projects={projects} categories={categories} />
             )}
 
         </section >

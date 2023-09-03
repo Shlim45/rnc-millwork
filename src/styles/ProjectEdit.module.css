@@ -3,10 +3,36 @@
     flex-direction: column;
 }
 
+.organizer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    column-gap: 5rem;
+    row-gap: 5rem;
+    margin-bottom: 2rem;
+}
+
 .cover {
     height: 150px;
     width: auto;
     object-fit: scale-down;
+}
+
+.categoryList label {
+    float: left;
+}
+
+.categoryList ul {
+    margin: 0;
+    list-style: none;
+    float: left;
+}
+
+
+.titleCover {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .buttons {
@@ -19,9 +45,7 @@
 .removeButton,
 .editButton {
     font-size: 1.25rem;
-    /* margin-right: 20px; */
     background-color: inherit;
-    /* border: 1px solid var(--rcm-green); */
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -32,7 +56,6 @@ button.uploadButton,
 button.removeButton,
 button.editButton {
     width: 31%;
-    /* (31% * 3) + (1% * 6) = 99% */
     margin: 10px 1%;
     display: inline-block;
 }
@@ -177,6 +200,11 @@ button.editButton:hover {
 
 /* Mobile */
 @media (max-width: 700px) {
+    .organizer {
+        display: flex;
+        flex-direction: column;
+    }
+
     .imageInfo {
         flex-direction: column;
     }
@@ -193,7 +221,6 @@ button.editButton:hover {
     button.removeButton,
     button.editButton {
         width: 31%;
-        /* (31% * 3) + (1% * 6) = 99% */
         padding: 5px 0;
         margin: 0;
         display: inline-block;
@@ -201,4 +228,9 @@ button.editButton:hover {
 }
 
 /* Tablet and Smaller Desktop */
-@media (min-width: 701px) and (max-width: 1120px) {}
+@media (min-width: 701px) and (max-width: 1120px) {
+    .organizer {
+        display: flex;
+        flex-direction: column;
+    }
+}

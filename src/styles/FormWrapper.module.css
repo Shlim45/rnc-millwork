@@ -7,19 +7,20 @@
     padding: 3rem 0;
 }
 
-.form>label {
+.form label {
     display: table;
     width: 100%;
     margin-bottom: 0.5rem;
     color: var(--rcm-green-60);
 }
 
-.form>input {
+.form input[type=text] {
     display: table;
 }
 
-.form>input,
-.form>textarea {
+.form input[type=text],
+.form input[type=number],
+.form textarea {
     width: 100%;
     padding: 0.5rem;
     border: 1px solid #ccc;
@@ -28,31 +29,30 @@
     margin-bottom: 2.5rem;
 }
 
-.form>textarea {
+.form textarea {
     overflow-y: scroll;
     resize: none;
 }
 
-.form>input:focus,
-.form>textarea:focus {
+.form input[type=text]:focus,
+.form input[type=number]:focus,
+.form textarea:focus {
     outline: none;
     border-color: var(--rcm-green-80);
 }
 
-.form>button {
+.form button {
     display: table;
     width: 100%;
     padding: 0.5rem;
-    /* border: 1px solid var(--rcm-green); */
     border: none;
     border-radius: 0.25rem;
     box-sizing: border-box;
     margin-bottom: 2.5rem;
-    /* background-color: var(--rcm-green); */
     cursor: pointer;
 }
 
-.form>button:hover {
+.form button:hover {
     background-color: var(--rcm-green-80);
     color: var(--foreground);
 }
@@ -66,7 +66,7 @@
         width: 90vw;
     }
 
-    .form>button {
+    .form button {
         width: 100%;
         margin-bottom: 0;
     }
@@ -79,7 +79,8 @@
         width: 60vw;
     }
 
-    .form input,
+    .form input[type=text],
+    .form input[type=number],
     .form textarea {
         width: 60vw;
         min-width: 400px;

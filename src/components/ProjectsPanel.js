@@ -1,14 +1,14 @@
 import styles from '@/styles/Admin.module.css'
 import { CldImage } from 'next-cloudinary';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import ProjectEdit from './ProjectEdit';
 
-const ProjectInfo = ({ project, handleSelect }) => {
-    const { id, title, images, alts, cover } = project;
+export const ProjectInfo = ({ project, handleSelect }) => {
+    const { id, title, images, alts, cover, categories } = project;
     return (
         <div className={styles.projectItem}>
             <button className={styles.edit} onClick={handleSelect}>&#9998;</button>
-            {/* {console.log(`ID: '${id}' COVER: '${cover}'`)} */}
             {images && <CldImage
                 src={`projects/${id}/${images[cover]}`}
                 width="50"
@@ -17,28 +17,61 @@ const ProjectInfo = ({ project, handleSelect }) => {
                 alt={alts[cover]}
                 className={styles.cover}
             />}
-            {title}
+            {title}&emsp;
+            [{categories.join(', ')}]
         </div>
     );
 }
 
-const PanelItem = ({ project }) => {
+export const PanelItem = ({ project, categories }) => {
     const [selected, setSelected] = useState(false);
 
     const handleSelect = () => setSelected(!selected);
 
     return (
         selected
-            ? <ProjectEdit project={project} handleSelect={handleSelect} />
+            ? <ProjectEdit project={project} handleSelect={handleSelect} categories={categories} />
             : <ProjectInfo project={project} handleSelect={handleSelect} />
     );
 }
 
-const ProjectsPanel = ({ projects }) => {
+const ProjectsPanel = ({ projects, categories }) => {
+    const supabase = useSupabaseClient();
+
+    const [pros, setPros] = useState();
+
+    const fetchProjectCategories = async () => {
+        try {
+            let { data, error, status } = await supabase.from('project_categories').select();
+
+            if (error && status != 406) {
+                throw error;
+            }
+
+            setPros(projects?.map(project => {
+                const projectCategories = data.filter(cat => cat.project_id == project.id);
+                return {
+                    ...project,
+                    "categories": projectCategories.map(pCat => pCat.category_name)
+                }
+            })
+                .sort((a, b) => a.id - b.id));
+        }
+        catch (error) {
+            console.error(`Error fetching categories!\n${error.message}`);
+        }
+    }
+
+    useEffect(() => {
+        fetchProjectCategories();
+    }, []);
+
+
     return (
         <section className={styles.projectList}>
-            {projects?.map(project => <PanelItem project={project} key={project.id} />)}
+            {pros?.map(project => <PanelItem project={project} key={project.id} categories={categories} />)}
         </section>
     )
 }
-export default ProjectsPanel
+
+export default ProjectsPanel;
