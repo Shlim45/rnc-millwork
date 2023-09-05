@@ -3,6 +3,7 @@ import { CldImage } from 'next-cloudinary';
 import { useState } from 'react';
 import FormWrapper from './FormWrapper';
 import SignedUpload from './SignedUpload';
+import MessageBox from './MessageBox';
 import { supabase } from "@/utils/supabaseClient";
 
 
@@ -16,6 +17,7 @@ const ProjectEdit = ({ project, handleSelect, categories }) => {
     const { id, categories: projectCategories } = project;
 
     const [updating, setUpdating] = useState(false);
+    //TODO(jon): Refactor state into one object for a project
     const [title, setTitle] = useState(project.title);
     const [images, setImages] = useState(project.images);
     const [alts, setAlts] = useState(project.alts);
@@ -24,7 +26,7 @@ const ProjectEdit = ({ project, handleSelect, categories }) => {
     const [showcase, setShowcase] = useState(project.showcase);
     const [hidden, setHidden] = useState(project.hidden);
     const [selected, setSelected] = useState(-1);
-    const [message, setMessage] = useState('');
+    const [message, setMessage] = useState(null);
 
     async function updateProject() {
         try {
@@ -45,13 +47,20 @@ const ProjectEdit = ({ project, handleSelect, categories }) => {
 
             let { error } = await supabase.from('projects').upsert(updates);
             if (error) throw error;
-            setMessage('Project updated!');
+            setMessage({
+                message: `Project has been updated.`,
+                success: true,
+            });
         } catch (error) {
-            setMessage('Error updating the data!  Report to site administrator.');
+            setMessage({
+                message: `Error updating the project!  Report to site administrator: ${error.message}`,
+                success: false,
+            });
+
         } finally {
             setUpdating(false);
         }
-        handleSelect();
+        // handleSelect();
     }
 
     async function deleteProject() {
@@ -61,10 +70,16 @@ const ProjectEdit = ({ project, handleSelect, categories }) => {
 
             let { error } = await supabase.from('projects').delete().eq('id', id);
             if (error) throw error;
-            setMessage('Project has been deleted.');
+            setMessage({
+                message: `Project has been deleted.`,
+                success: true,
+            });
         }
         catch (error) {
-            setMessage('Error deleting the project.  Report to site administrator.');
+            setMessage({
+                message: `Error deleting the project!  Report to site administrator: ${error.message}`,
+                success: false,
+            });
         }
         finally {
             setUpdating(false);
@@ -211,9 +226,7 @@ const ProjectEdit = ({ project, handleSelect, categories }) => {
                 <label htmlFor="hidden">Hide Project from Customer View</label>
                 <input type="checkbox" name="hidden" id="hidden" checked={hidden} onChange={e => setHidden(e.target.checked)} />
 
-                <div className={styles.message}>
-                    {message}
-                </div>
+                <MessageBox message={message} />
 
 
                 <div className={styles.buttons}>

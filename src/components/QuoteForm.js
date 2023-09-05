@@ -1,16 +1,14 @@
 import FormWrapper from "./FormWrapper";
 import { useState } from "react";
+import MessageBox from "./MessageBox";
 
 const QuoteForm = ({ children }) => {
-    const [message, setMessage] = useState();
-    const [success, setSuccess] = useState(false);
+    const [message, setMessage] = useState(null);
 
     // Handles the submit event on form submit.
     const handleSubmit = async (event) => {
         // Stop the form from submitting and refreshing the page.
         event.preventDefault();
-        setSuccess(false);
-        setMessage(undefined);
 
         // Get data from the form.
         const data = {
@@ -40,14 +38,17 @@ const QuoteForm = ({ children }) => {
         const response = await fetch(endpoint, options);
 
         if (response.ok) {
-            // const result = await response.json();
-            setSuccess(true);
-            setMessage('Request for quote submitted successfully!');
+            setMessage({
+                message: `Your request for a quote has been submitted successfully!`,
+                success: true,
+            });
         }
         else {
             const result = await response.json();
-            setSuccess(false);
-            setMessage(`Error ${response.status} - ${result.data} Please email us at RoetterBill@RCCustomMillworks.com for a quote!`);
+            setMessage({
+                message: `Oops... something went wrong!  Error ${response.status} - ${result.data}  Please email us at RoetterBill@RCCustomMillworks.com for a quote!`,
+                success: false,
+            });
         }
     }
 
@@ -58,10 +59,8 @@ const QuoteForm = ({ children }) => {
             method="post"
             handleSubmit={handleSubmit}
         >
-            <div style={{ height: "100px", fontSize: "1rem" }}>
-                {message &&
-                    <span style={success ? { color: "lightgreen" } : { color: "red" }}>{message}</span>}
-            </div>
+            <MessageBox message={message} />
+
             {children}
         </FormWrapper>
     )

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import ProjectsPanel from './ProjectsPanel';
+import MessageBox from './MessageBox'
 import styles from '@/styles/Admin.module.css'
 
 
@@ -10,14 +11,12 @@ export default function AdminPanel({ session }) {
     const [loading, setLoading] = useState(true);
     const [projects, setProjects] = useState(null);
     const [categories, setCategories] = useState(null);
-    const [message, setMessage] = useState('');
-    const [success, setSuccess] = useState(false);
+    const [message, setMessage] = useState(null);
 
     async function createProject(title) {
         try {
-            setMessage(undefined);
+            setMessage(null);
             setLoading(true);
-            setSuccess(false);
 
             const values = {
                 title,
@@ -28,12 +27,17 @@ export default function AdminPanel({ session }) {
             if (error) throw error;
             setProjects(currentProjects => [data[0], ...currentProjects]);
         } catch (error) {
-            setMessage(`Error creating the project!\n${error.message}`)
+            setMessage({
+                message: `Error creating the project!\n${error.message}`,
+                success: false,
+            });
         }
         finally {
             setLoading(false);
-            setSuccess(true);
-            setMessage(`Successfully created project '${title}'.`)
+            setMessage({
+                message: `Successfully created project '${title}'.`,
+                success: true,
+            });
         }
     }
 
@@ -48,8 +52,6 @@ export default function AdminPanel({ session }) {
         try {
             setLoading(true);
             setProjects(null);
-            setSuccess(false);
-            setMessage(undefined);
 
             let { data, error, status } = await supabase.from('projects').select();
 
@@ -60,12 +62,17 @@ export default function AdminPanel({ session }) {
             setProjects(data);
 
         } catch (error) {
-            setMessage(`Error loading projects!\n${error.message}`);
+            setMessage({
+                message: `Error loading projects!\n${error.message}`,
+                success: false,
+            });
         }
         finally {
             setLoading(false);
-            setSuccess(true);
-            setMessage(`Projects loaded.`);
+            setMessage({
+                message: `Projects loaded.`,
+                success: true,
+            });
         }
     }
 
@@ -73,8 +80,6 @@ export default function AdminPanel({ session }) {
         try {
             setLoading(true);
             setCategories(null);
-            setSuccess(false);
-            setMessage(undefined);
 
             let { data, error, status } = await supabase.from('categories').select().order('id');
 
@@ -85,11 +90,13 @@ export default function AdminPanel({ session }) {
             setCategories(data);
         }
         catch (error) {
-            setMessage(`Error loading category data!\n${error.message}`);
+            setMessage({
+                message: `Error loading category data!\n${error.message}`,
+                success: false,
+            });
         }
         finally {
             setLoading(false);
-            setSuccess(true);
         }
     }
 
@@ -103,10 +110,7 @@ export default function AdminPanel({ session }) {
         <section className={styles.container}>
             <h1 className={styles.title}><span>Admin Panel</span></h1>
 
-            <div style={{ height: "100px", fontSize: "1rem" }}>
-                {message &&
-                    <span style={success ? { color: "lightgreen" } : { color: "red" }}>{message}</span>}
-            </div>
+            <MessageBox message={message} />
 
             <div className={styles.actionButtons}>
                 <button onClick={handleNewProject}>

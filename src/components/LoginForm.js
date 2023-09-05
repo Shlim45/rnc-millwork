@@ -1,21 +1,19 @@
 import FormWrapper from "./FormWrapper";
 import { server } from "@/config";
 import { supabase } from "@/utils/supabaseClient";
-// import styles from '@/styles/Home.module.css'
 import SandBox from "./SandBox";
+import MessageBox from "./MessageBox";
 import { useState } from "react";
 
 const LoginForm = () => {
     const [loading, setLoading] = useState(false);
-    const [message, setMessage] = useState();
-    const [success, setSuccess] = useState(false);
+    const [message, setMessage] = useState(null);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
         try {
             setLoading(true);
-            setSuccess(false);
             setMessage(undefined);
 
             const { data, error } = await supabase.auth.signInWithOtp({
@@ -29,11 +27,16 @@ const LoginForm = () => {
                 throw error;
             }
 
-            setSuccess(true);
-            setMessage(`A log in link has been sent to the given email address.`);
+            setMessage({
+                message: `A log in link has been sent to the given email address.`,
+                success: true,
+            });
         }
         catch (error) {
-            setMessage(`Log in error: ${error.message}`);
+            setMessage({
+                message: `Log in error: ${error.message}`,
+                success: false,
+            });
         }
         finally {
             setLoading(false);
@@ -42,11 +45,7 @@ const LoginForm = () => {
 
     return (
         <SandBox heading="Log In">
-            <div style={{ height: "100px", fontSize: "1rem" }}>
-                {message &&
-                    <span style={success ? { color: "lightgreen" } : { color: "red" }}>{message}</span>}
-            </div>
-
+            <MessageBox message={message} />
             <FormWrapper handleSubmit={handleSubmit}>
                 <label htmlFor="email">Email</label>
                 <input type="email" id="email" name="email" required />
