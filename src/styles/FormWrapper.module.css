@@ -14,12 +14,11 @@
     color: var(--rcm-green-60);
 }
 
-.form input[type=text] {
+.form input:not([type=checkbox]) {
     display: table;
 }
 
-.form input[type=text],
-.form input[type=number],
+.form input:not([type=checkbox]),
 .form textarea {
     width: 100%;
     padding: 0.5rem;
@@ -34,8 +33,7 @@
     resize: none;
 }
 
-.form input[type=text]:focus,
-.form input[type=number]:focus,
+.form input:not([type=checkbox]):focus,
 .form textarea:focus {
     outline: none;
     border-color: var(--rcm-green-80);
@@ -79,8 +77,7 @@
         width: 60vw;
     }
 
-    .form input[type=text],
-    .form input[type=number],
+    .form input:not([type=checkbox]),
     .form textarea {
         width: 60vw;
         min-width: 400px;
