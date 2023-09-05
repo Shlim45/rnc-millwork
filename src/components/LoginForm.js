@@ -1,5 +1,4 @@
 import FormWrapper from "./FormWrapper";
-import { serverAddress } from "@/config";
 import { supabase } from "@/utils/supabaseClient";
 import SandBox from "./SandBox";
 import MessageBox from "./MessageBox";
@@ -19,7 +18,7 @@ const LoginForm = () => {
             const { data, error } = await supabase.auth.signInWithOtp({
                 email: event.target.email.value,
                 options: {
-                    emailRedirectTo: `${serverAddress}/admin`,
+                    emailRedirectTo: `${process.env.HOST}/admin`,
                 },
             });
 
