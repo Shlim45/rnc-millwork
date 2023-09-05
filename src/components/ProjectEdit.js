@@ -14,36 +14,35 @@ export const CategoryEdit = ({ categories }) => {
 }
 
 const ProjectEdit = ({ project, handleSelect, categories }) => {
-    const { id, categories: projectCategories } = project;
-
     const [updating, setUpdating] = useState(false);
-    //TODO(jon): Refactor state into one object for a project
-    const [title, setTitle] = useState(project.title);
-    const [images, setImages] = useState(project.images);
-    const [alts, setAlts] = useState(project.alts);
-    const [cover, setCover] = useState(project.cover);
-    const [body, setBody] = useState(project.body);
-    const [showcase, setShowcase] = useState(project.showcase);
-    const [hidden, setHidden] = useState(project.hidden);
     const [selected, setSelected] = useState(-1);
     const [message, setMessage] = useState(null);
+
+    const [projectCategories, setProjectCategories] = useState(project.categories);
+    const [projectData, setProjectData] = useState({
+        id: project.id,
+        title: project.title,
+        // categories: project.categories,
+        images: project.images,
+        alts: project.alts,
+        cover: project.cover,
+        body: project.body,
+        showcase: project.showcase,
+        hidden: project.hidden,
+    });
+
+
 
     async function updateProject() {
         try {
             setUpdating(true);
 
+            //TODO(jon): category updates
+
             const updates = {
-                // id: user.id, // TODO(jon): Add UPDATED_BY field for user.id
-                id,
-                title,
-                images,
-                alts,
-                cover,
-                body,
+                ...projectData,
                 updated_at: new Date().toISOString(),
-                showcase,
-                hidden,
-            }
+            };
 
             let { error } = await supabase.from('projects').upsert(updates);
             if (error) throw error;
@@ -60,7 +59,6 @@ const ProjectEdit = ({ project, handleSelect, categories }) => {
         } finally {
             setUpdating(false);
         }
-        // handleSelect();
     }
 
     async function deleteProject() {
@@ -68,7 +66,7 @@ const ProjectEdit = ({ project, handleSelect, categories }) => {
         try {
             setUpdating(true);
 
-            let { error } = await supabase.from('projects').delete().eq('id', id);
+            let { error } = await supabase.from('projects').delete().eq('id', projectData.id);
             if (error) throw error;
             setMessage({
                 message: `Project has been deleted.`,
@@ -96,12 +94,18 @@ const ProjectEdit = ({ project, handleSelect, categories }) => {
         const fileName = url?.substring(url?.lastIndexOf('/') + 1);
         const { alt } = context?.custom;
 
-        if (images?.length > 0) {
-            setImages(currentImages => [...currentImages, fileName]);
-            setAlts(currentAlts => [...currentAlts, alt]);
+        if (projectData.images?.length > 0) {
+            setProjectData(prev => ({
+                ...prev,
+                images: [...prev.images, fileName],
+                alts: [...prev.alts, alt],
+            }));
         } else {
-            setImages([fileName]);
-            setAlts([alt]);
+            setProjectData(prev => ({
+                ...prev,
+                images: [fileName],
+                alts: [alt],
+            }));
         }
     };
 
@@ -109,7 +113,7 @@ const ProjectEdit = ({ project, handleSelect, categories }) => {
         event.preventDefault();
         if (selected === -1) { return; }
 
-        const altToEdit = alts[selected];
+        const altToEdit = projectData.alts[selected];
 
         const promptMessage =
             `Enter a new image description.\n\nPREVIUS: "${altToEdit}"`;
@@ -117,15 +121,12 @@ const ProjectEdit = ({ project, handleSelect, categories }) => {
         const newAlt = prompt(promptMessage, altToEdit);
 
         if (newAlt && newAlt != altToEdit) {
-            setAlts(currentAlts => currentAlts.map((alt, index) => {
-                if (index === selected) {
-                    return newAlt;
-                }
-                return alt;
+            setProjectData(prev => ({
+                ...prev,
+                alts: prev.alts.map((alt, index) => (index === selected ? newAlt : alt)),
             }));
         }
     }
-
 
     const handleRemoveImage = (event) => {
         event.preventDefault();
@@ -138,18 +139,18 @@ const ProjectEdit = ({ project, handleSelect, categories }) => {
             `Are you sure you want to remove the following image?\nNOTE: This does not delete the image from the server.\n\nFILENAME: '${imageToRemove}'\nDESCRIPT: "${altToRemove}"`;
 
         if (confirm(confirmMessage)) {
-            setImages(currentImages => currentImages.filter((_, index) => index !== selected));
-            setAlts(currentAlts => currentAlts.filter((_, index) => index !== selected));
-            if (cover === selected) {
-                if (images.length > 0) {
-                    setCover(0);
-                } else {
-                    setCover(-1);
-                }
-            }
-            else if (cover > selected) {
-                setCover(currentCover => --currentCover);
-            }
+            setProjectData(prev => ({
+                ...prev,
+                images: prev.images.filter((_, index) => index !== selected),
+                alts: prev.alts.filter((_, index) => index !== selected),
+                cover: prev.cover === selected
+                    ? (prev.images.length > 0
+                        ? 0
+                        : -1)
+                    : (prev.cover > selected
+                        ? prev.cover--
+                        : prev.cover),
+            }));
 
             setSelected(-1);
         }
@@ -161,14 +162,33 @@ const ProjectEdit = ({ project, handleSelect, categories }) => {
         console.log(event.target.name)
     }
 
+    const handleProjectTextChange = event => {
+        let { name, value } = event.target;
+        if (name === 'cover') {
+            --value; // convert from 1-based for user, to 0-based for code
+        }
+
+        setProjectData(prev => ({
+            ...prev,
+            [name]: value,
+        }));
+    }
+
+    const handleProjectSelectedChange = event => {
+        setProjectData(prev => ({
+            ...prev,
+            [event.target.name]: event.target.selected,
+        }));
+    }
+
     return (
         <div className={styles.project}>
-            {images && <CldImage
-                src={`projects/${id}/${images[cover]}`}
+            {projectData.images && <CldImage
+                src={`projects/${projectData.id}/${projectData.images[projectData.cover]}`}
                 width="100"
                 height="100"
-                key={id}
-                alt={alts[cover]}
+                key={projectData.id}
+                alt={projectData.alts[projectData.cover]}
                 className={styles.cover}
             />}
 
@@ -181,10 +201,10 @@ const ProjectEdit = ({ project, handleSelect, categories }) => {
 
                     <div className={styles.titleCover}>
                         <label>Title
-                            <input type="text" id="title" name="title" value={title} onChange={e => setTitle(e.target.value)} required />
+                            <input type="text" id="title" name="title" value={projectData.title} onChange={handleProjectTextChange} required />
                         </label>
                         <label>Cover Image
-                            <input type="number" id="cover" name="cover" min="1" max={images?.length} value={cover + 1} onChange={e => setCover(e.target.value - 1)} />
+                            <input type="number" id="cover" name="cover" min="1" max={projectData.images?.length} value={projectData.cover + 1} onChange={handleProjectTextChange} />
                         </label>
                     </div>
 
@@ -205,26 +225,26 @@ const ProjectEdit = ({ project, handleSelect, categories }) => {
                 <div className={styles.imageInfo}>
                     <label htmlFor="images">Images</label>
                     <select className={styles.imageInfo__images} name="images" size={6} onChange={e => setSelected(e.target.selectedIndex)}>
-                        {images?.map((image, index) => (<option key={index}>{image}</option>))}
+                        {projectData.images?.map((image, index) => (<option key={index}>{image}</option>))}
                     </select>
 
                     <label htmlFor="alts">Descriptions</label>
                     <select className={styles.imageInfo__alts} name="alts" size={6} disabled>
-                        {alts?.map((alt, index) => (<option key={index}>{alt}</option>))}
+                        {projectData.alts?.map((alt, index) => (<option key={index}>{alt}</option>))}
                     </select>
                 </div>
 
-                <SignedUpload id={id} title={title} imageCount={images ? images.length : 0} handler={handleAddImage} />
+                <SignedUpload id={projectData.id} title={projectData.title} imageCount={projectData.images ? projectData.images.length : 0} handler={handleAddImage} />
                 <button className={styles.editButton} type="button" disabled={selected === -1} onClick={handleEditImage}>Edit Image</button>
                 <button className={styles.removeButton} type="button" disabled={selected === -1} onClick={handleRemoveImage}>Remove Image</button>
 
                 <label htmlFor="body">Project Description</label>
-                <textarea className={styles.body} id="body" name="body" rows="10" value={body} onChange={e => setBody(e.target.value)} required />
+                <textarea className={styles.body} id="body" name="body" rows="10" value={projectData.body} onChange={handleProjectTextChange} required />
 
                 <label htmlFor="showcase">Showcase Project on Home Page</label>
-                <input type="checkbox" name="showcase" id="showcase" checked={showcase} onChange={e => setShowcase(e.target.checked)} />
+                <input type="checkbox" name="showcase" id="showcase" checked={projectData.showcase} onChange={handleProjectSelectedChange} />
                 <label htmlFor="hidden">Hide Project from Customer View</label>
-                <input type="checkbox" name="hidden" id="hidden" checked={hidden} onChange={e => setHidden(e.target.checked)} />
+                <input type="checkbox" name="hidden" id="hidden" checked={projectData.hidden} onChange={handleProjectSelectedChange} />
 
                 <MessageBox message={message} />
 
