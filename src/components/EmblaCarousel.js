@@ -6,6 +6,7 @@ import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
 import { joinClassNames } from '@/utils'
 import styles from '@/styles/Embla.module.css'
+import Modal from './Modal';
 
 const TWEEN_FACTOR = 1.2
 
@@ -138,17 +139,40 @@ const EmblaCarousel = ({ slides, options, title = false }) => {
                                             }),
                                         }}
                                     >
-                                        <Link href={link ? link : '#'}>
-                                            <CldImage
-                                                className={joinClassNames(styles.embla__slide__img, styles.embla__parallax__img)}
-                                                priority
-                                                width="800"
-                                                height="600"
-                                                key={id}
-                                                src={url}
-                                                alt={alt}
-                                            />
-                                        </Link>
+                                        {link
+                                            ? (
+                                                <Link href={link ? link : '#'}>
+
+                                                    <CldImage
+                                                        className={joinClassNames(styles.embla__slide__img, styles.embla__parallax__img)}
+                                                        priority
+                                                        width="800"
+                                                        height="600"
+                                                        key={id}
+                                                        src={url}
+                                                        alt={alt}
+                                                    />
+
+                                                </Link>
+                                            ) : (
+                                                <Modal image={url} alt={alt}>
+                                                    <CldImage
+                                                        // className={joinClassNames(styles.embla__slide__img, styles.embla__parallax__img)}
+                                                        style={{
+                                                            width: 'auto',
+                                                            maxWidth: '90%',
+                                                            height: 'auto',
+                                                            maxHeight: '90%'
+                                                        }}
+                                                        priority
+                                                        width="3840"
+                                                        height="2160"
+                                                        key={id}
+                                                        src={url}
+                                                        alt={alt}
+                                                    />
+                                                </Modal>
+                                            )}
                                     </div>
                                 </div>
                             </div>

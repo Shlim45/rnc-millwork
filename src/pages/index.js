@@ -55,11 +55,17 @@ export default function Home({ projects }) {
 
             />
 
-            <section className={styles.hero} role='banner'>
-                <Slideshow images={shop_slides} delay={5000} />
-            </section>
+            <SandBox heading="Projects" linkUrl="/projects">
+                <EmblaCarousel slides={_slides} options={OPTIONS} title={true} />
+            </SandBox>
+
 
             <SandBox heading="About Us" linkUrl="/about">
+
+                <section className={styles.shopSlides}>
+                    <Slideshow images={shop_slides} delay={5000} />
+                </section>
+
                 <p>RC Custom Millworks is a woodworking company located in Castle Shannon just off Library Road. Our team of skilled craftsmen has years of experience and is dedicated to providing the highest quality products and services.</p>
                 <p>We specialize in hand-crafting custom products, including:</p>
                 <ul className={styles.list}>
@@ -76,11 +82,6 @@ export default function Home({ projects }) {
                 <p>We work closely with our clients to ensure that their vision is brought to life and that they are completely satisfied with the final product.</p>
                 <p><Link href="/contact">Contact us</Link> today to learn more about how we can help you create the perfect piece for your home or business!</p>
             </SandBox>
-
-            <SandBox heading="Services" linkUrl="/projects">
-                <EmblaCarousel slides={_slides} options={OPTIONS} title={true} />
-            </SandBox>
-
         </>
     )
 }
