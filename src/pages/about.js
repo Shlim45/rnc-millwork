@@ -1,9 +1,20 @@
 import styles from '@/styles/Home.module.css'
 import SandBox from '@/components/SandBox'
+import Slideshow from '@/components/Slideshow'
 import Link from 'next/link'
 import { NextSeo } from 'next-seo'
 
 const about = () => {
+
+    const shop_slides = [
+        "home/RCM_shop",
+        "home/shop_left_LS",
+        "home/shop_right_1",
+        "home/shop_left_PT",
+    ];
+
+
+
     return (
         <>
             <NextSeo
@@ -35,6 +46,10 @@ const about = () => {
                 <p>We work closely with our clients to ensure that their vision is brought to life and that they are completely satisfied with the final product.</p>
                 <p><Link href="/contact">Contact us</Link> today to learn more about how we can help you create the perfect piece for your home or business!</p>
             </SandBox>
+
+            <section className={styles.shopSlides}>
+                <Slideshow images={shop_slides} delay={5000} />
+            </section>
         </>
 
     )
