@@ -1,19 +1,38 @@
-import ProjectItem from './ProjectItem'
+import ImageLeft, { ImageRight } from './ImageLeft'
 import styles from '@/styles/ProjectList.module.css'
 import { useEffect, useState } from 'react'
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
 
 export const ProjectCategory = ({ name, projects }) => {
     return (
-        <div className={styles.card}>
+        <div className={styles.card} key={name}>
             <h2><span>{name}</span></h2>
-            <div className={styles.grid}>
-                {projects?.map(project => (
-                    <ProjectItem project={project} key={project.id} />
-                ))}
-            </div>
+            {projects?.map((project, index) => {
+
+                return index % 2 == 0
+                    ? (<ImageLeft
+                        key={project.id}
+                        imageURL={`projects/${project.id}/${project.images[project.cover]}`}
+                        imageAlt={project.alts[project.cover]}
+                        heading={project.title}
+                        text={project.body}
+                        link={`/project/${project.id}`}
+                    />)
+                    :
+                    (<ImageRight
+                        key={project.id}
+                        imageURL={`projects/${project.id}/${project.images[project.cover]}`}
+                        imageAlt={project.alts[project.cover]}
+                        heading={project.title}
+                        text={project.body}
+                        link={`/project/${project.id}`}
+                    />)
+
+            })}
         </div>
+
     )
+
 }
 
 const ProjectList = ({ projects }) => {

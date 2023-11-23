@@ -1,7 +1,7 @@
 import styles from '@/styles/Home.module.css'
 import SandBox from '@/components/SandBox';
 import EmblaCarousel from '@/components/EmblaCarousel'
-import Slideshow from '@/components/Slideshow';
+// import Slideshow from '@/components/Slideshow';
 import Hero from '@/components/Hero';
 import Link from 'next/link';
 import { NextSeo } from 'next-seo';
