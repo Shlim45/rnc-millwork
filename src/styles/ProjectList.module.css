@@ -62,8 +62,12 @@
 /* Tablet and Smaller Desktop */
 @media (min-width: 701px) and (max-width: 1120px) {
     .grid {
-        grid-template-columns: 67vw;
+        grid-template-columns: 1fr;
         margin: auto;
         display: block;
+    }
+
+    .card {
+        padding: 1rem;
     }
 }

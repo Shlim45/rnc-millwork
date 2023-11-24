@@ -7,10 +7,30 @@ export const ProjectCategory = ({ name, projects }) => {
     return (
         <div className={styles.card} key={name}>
             <h2><span>{name}</span></h2>
+            {console.log(window.innerWidth)}
             {projects?.map((project, index) => {
-
-                return index % 2 == 0
-                    ? (<ImageLeft
+                if (window?.innerWidth >= 700) {
+                    return index % 2 == 0
+                        ? (<ImageLeft
+                            key={project.id}
+                            imageURL={`projects/${project.id}/${project.images[project.cover]}`}
+                            imageAlt={project.alts[project.cover]}
+                            heading={project.title}
+                            text={project.body}
+                            link={`/project/${project.id}`}
+                        />)
+                        :
+                        (<ImageRight
+                            key={project.id}
+                            imageURL={`projects/${project.id}/${project.images[project.cover]}`}
+                            imageAlt={project.alts[project.cover]}
+                            heading={project.title}
+                            text={project.body}
+                            link={`/project/${project.id}`}
+                        />)
+                }
+                else {
+                    return (<ImageLeft
                         key={project.id}
                         imageURL={`projects/${project.id}/${project.images[project.cover]}`}
                         imageAlt={project.alts[project.cover]}
@@ -18,15 +38,7 @@ export const ProjectCategory = ({ name, projects }) => {
                         text={project.body}
                         link={`/project/${project.id}`}
                     />)
-                    :
-                    (<ImageRight
-                        key={project.id}
-                        imageURL={`projects/${project.id}/${project.images[project.cover]}`}
-                        imageAlt={project.alts[project.cover]}
-                        heading={project.title}
-                        text={project.body}
-                        link={`/project/${project.id}`}
-                    />)
+                }
 
             })}
         </div>
