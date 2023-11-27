@@ -111,7 +111,7 @@
 
     .container {
         grid-template-columns: 1fr;
-        margin: none;
+        margin: 0;
         height: auto;
         padding: 2rem 0;
     }

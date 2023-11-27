@@ -7,7 +7,6 @@ export const ProjectCategory = ({ name, projects }) => {
     return (
         <div className={styles.card} key={name}>
             <h2><span>{name}</span></h2>
-            {console.log(window.innerWidth)}
             {projects?.map((project, index) => {
                 if (window?.innerWidth >= 700) {
                     return index % 2 == 0
