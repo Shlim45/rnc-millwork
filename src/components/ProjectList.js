@@ -1,4 +1,4 @@
-import ImageLeft, { ImageRight } from './ImageLeft'
+import ImageAsideText from './ImageAsideText'
 import styles from '@/styles/ProjectList.module.css'
 import { useEffect, useState } from 'react'
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
@@ -8,35 +8,25 @@ export const ProjectCategory = ({ name, projects }) => {
         <div className={styles.card} key={name}>
             <h2><span>{name}</span></h2>
             {projects?.map((project, index) => {
-                if (window?.innerWidth >= 700) {
-                    return index % 2 == 0
-                        ? (<ImageLeft
-                            key={project.id}
-                            imageURL={`projects/${project.id}/${project.images[project.cover]}`}
-                            imageAlt={project.alts[project.cover]}
-                            heading={project.title}
-                            text={project.body}
-                            link={`/project/${project.id}`}
-                        />)
-                        :
-                        (<ImageRight
-                            key={project.id}
-                            imageURL={`projects/${project.id}/${project.images[project.cover]}`}
-                            imageAlt={project.alts[project.cover]}
-                            heading={project.title}
-                            text={project.body}
-                            link={`/project/${project.id}`}
-                        />)
-                }
-                else {
-                    return (<ImageLeft
+                if (window?.innerWidth > 700) {
+                    return <ImageAsideText
                         key={project.id}
                         imageURL={`projects/${project.id}/${project.images[project.cover]}`}
                         imageAlt={project.alts[project.cover]}
                         heading={project.title}
                         text={project.body}
                         link={`/project/${project.id}`}
-                    />)
+                        imageLeft={index % 2 === 0} />
+                }
+                else {
+                    return <ImageAsideText
+                        key={project.id}
+                        imageURL={`projects/${project.id}/${project.images[project.cover]}`}
+                        imageAlt={project.alts[project.cover]}
+                        heading={project.title}
+                        text={project.body}
+                        link={`/project/${project.id}`}
+                    />
                 }
 
             })}

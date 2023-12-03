@@ -1,4 +1,4 @@
-import styles from '@/styles/ImageLeft.module.css'
+import styles from '@/styles/ImageAsideText.module.css'
 import { CldImage } from 'next-cloudinary'
 import Link from 'next/link'
 
@@ -13,7 +13,7 @@ const ImagesIcon = ({ text }) => (
     </div>
 );
 
-export const ImageRight = ({ heading, text, imageURL, imageAlt, link }) => {
+const ImageRight = ({ heading, text, imageURL, imageAlt, link }) => {
     return (
         <div className={styles.container}>
             <div className={styles.content}>
@@ -60,4 +60,9 @@ const ImageLeft = ({ heading, text, imageURL, imageAlt, link }) => {
     )
 }
 
-export default ImageLeft
+const ImageAsideText = ({ heading, text, imageURL, imageAlt, link, imageLeft = true }) => {
+    if (imageLeft) return <ImageLeft heading={heading} text={text} imageURL={imageURL} imageAlt={imageAlt} link={link} />
+    return <ImageRight heading={heading} text={text} imageURL={imageURL} imageAlt={imageAlt} link={link} />
+}
+
+export default ImageAsideText;
