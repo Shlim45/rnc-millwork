@@ -80,9 +80,9 @@ const ProjectList = ({ projects }) => {
     }
 
     useEffect(() => {
-        fetchProjectCategories();
-        fetchCategoryData();
-    }, []);
+        if (!pros) fetchProjectCategories();
+        if (!categories) fetchCategoryData();
+    });
 
     return (
         <div>

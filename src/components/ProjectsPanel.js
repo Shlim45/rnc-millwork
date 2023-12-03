@@ -39,6 +39,7 @@ const ProjectsPanel = ({ projects, categories }) => {
     const supabase = useSupabaseClient();
 
     const [pros, setPros] = useState();
+    const [fetched, setFetched] = useState(false);
 
     const fetchProjectCategories = async () => {
         try {
@@ -56,6 +57,8 @@ const ProjectsPanel = ({ projects, categories }) => {
                 }
             })
                 .sort((a, b) => a.id - b.id));
+
+            setFetched(true);
         }
         catch (error) {
             console.error(`Error fetching categories!\n${error.message}`);
@@ -63,8 +66,8 @@ const ProjectsPanel = ({ projects, categories }) => {
     }
 
     useEffect(() => {
-        fetchProjectCategories();
-    }, []);
+        if (!fetched) fetchProjectCategories();
+    });
 
 
     return (

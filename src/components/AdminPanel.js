@@ -101,9 +101,9 @@ export default function AdminPanel({ session }) {
     }
 
     useEffect(() => {
-        fetchProjects();
-        fetchCategoryData();
-    }, []);
+        if (!projects) fetchProjects();
+        if (!categories) fetchCategoryData();
+    });
 
 
     return (
