@@ -7,29 +7,16 @@ export const ProjectCategory = ({ name, projects }) => {
     return (
         <div className={styles.card} key={name}>
             <h2><span>{name}</span></h2>
-            {projects?.map((project, index) => {
-                if (window?.innerWidth > 700) {
-                    return <ImageAsideText
-                        key={project.id}
-                        imageURL={`projects/${project.id}/${project.images[project.cover]}`}
-                        imageAlt={project.alts[project.cover]}
-                        heading={project.title}
-                        text={project.body}
-                        link={`/project/${project.id}`}
-                        imageLeft={index % 2 === 0} />
-                }
-                else {
-                    return <ImageAsideText
-                        key={project.id}
-                        imageURL={`projects/${project.id}/${project.images[project.cover]}`}
-                        imageAlt={project.alts[project.cover]}
-                        heading={project.title}
-                        text={project.body}
-                        link={`/project/${project.id}`}
-                    />
-                }
-
-            })}
+            {projects?.map((project, index) => (
+                <ImageAsideText
+                    key={project.id}
+                    imageURL={`projects/${project.id}/${project.images[project.cover]}`}
+                    imageAlt={project.alts[project.cover]}
+                    heading={project.title}
+                    text={project.body}
+                    link={`/project/${project.id}`}
+                    imageLeft={(window?.innerWidth <= 700) || (index % 2 === 0)} />
+            ))}
         </div>
 
     )
