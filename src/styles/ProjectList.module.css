@@ -4,7 +4,7 @@
 
 .projectNav {
     position: fixed;
-    width: 300px;
+    min-width: 300px;
     display: flex;
     flex-direction: column;
 
@@ -23,6 +23,7 @@
     cursor: pointer;
     color: inherit;
     transition: color 200ms ease-in-out;
+    padding: 0.5rem;
 }
 
 .navLink:hover {
@@ -35,8 +36,8 @@
 
 .rightCol {
     /* width = projectNav width */
-    width: calc(100% - 300px);
-    margin-left: 300px;
+    max-width: var(--max-width);
+    margin: auto auto auto 300px;
 }
 
 .grid {
@@ -55,7 +56,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-bottom: 3rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
 }
 
 .card span {
@@ -102,6 +104,10 @@
         font-size: 1rem;
     }
 
+    .navLink {
+        padding: 0.25rem;
+    }
+
     .rightCol {
         width: 100%;
         margin-left: 0;
@@ -142,6 +148,10 @@
     .rightCol {
         width: 100%;
         margin-left: 0;
+    }
+
+    .navLink {
+        padding: 0.25rem;
     }
 
     .grid {
