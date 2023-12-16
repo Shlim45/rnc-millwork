@@ -1,4 +1,3 @@
-import SandBox from '@/components/SandBox';
 import ProjectList from '@/components/ProjectList';
 import { supabase } from '@/utils/supabaseClient';
 import { NextSeo } from 'next-seo';
@@ -19,9 +18,7 @@ export default function Projects({ projects }) {
 
             />
 
-            <SandBox heading="Projects">
-                <ProjectList projects={projects} />
-            </SandBox>
+            <ProjectList projects={projects} />
         </>
     )
 }

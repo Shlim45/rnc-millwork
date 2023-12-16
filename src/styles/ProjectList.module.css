@@ -1,9 +1,42 @@
+.listContainer {
+    /* border: 1px dashed lightgoldenrodyellow; */
+}
+
 .projectNav {
     position: fixed;
-    left: 50px;
-    padding: 1rem;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
 
-    border: 1px dashed white;
+    /* border: 1px dashed white; */
+}
+
+.projectNav h3 {
+    align-self: center;
+    margin-bottom: 1rem;
+}
+
+.navLink {
+    border: none;
+    background: inherit;
+    font: inherit;
+    cursor: pointer;
+    color: inherit;
+    transition: color 200ms ease-in-out;
+}
+
+.navLink:hover {
+    color: var(--rcm-green-40);
+}
+
+.navLink__selected {
+    color: var(--rcm-green);
+}
+
+.rightCol {
+    /* width = projectNav width */
+    width: calc(100% - 300px);
+    margin-left: 300px;
 }
 
 .grid {
@@ -13,7 +46,7 @@
 }
 
 .card {
-    padding: 1rem 1.2rem;
+    padding: 2rem 1rem;
     border-radius: var(--border-radius);
     background: rgba(var(--card-rgb), 0.2);
     color: var(--foreground-rgb);
@@ -22,7 +55,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin: 3rem auto;
+    margin-bottom: 3rem;
 }
 
 .card span {
@@ -61,6 +94,20 @@
 /* Mobile */
 @media (max-width: 700px) {
 
+    .projectNav {
+        position: relative;
+        margin: auto;
+        align-items: center;
+        padding-bottom: 2rem;
+        font-size: 1rem;
+    }
+
+    .rightCol {
+        width: 100%;
+        margin-left: 0;
+    }
+
+
     .grid {
         grid-template-columns: 1fr;
         margin-bottom: 120px;
@@ -84,6 +131,19 @@
 
 /* Tablet and Smaller Desktop */
 @media (min-width: 701px) and (max-width: 1120px) {
+    .projectNav {
+        position: relative;
+        margin: auto;
+        align-items: center;
+        padding-bottom: 2rem;
+        font-size: 1.2rem;
+    }
+
+    .rightCol {
+        width: 100%;
+        margin-left: 0;
+    }
+
     .grid {
         grid-template-columns: 1fr;
         margin: auto;

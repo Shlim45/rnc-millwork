@@ -1,7 +1,8 @@
 import ImageAsideText from './ImageAsideText'
 import styles from '@/styles/ProjectList.module.css'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
+import { joinClassNames } from '@/utils'
 import Link from 'next/link'
 
 export const ProjectNav = ({ categories }) => {
@@ -9,10 +10,16 @@ export const ProjectNav = ({ categories }) => {
 
     return (
         <nav className={styles.projectNav}>
+            <h3>Categories</h3>
             {categories?.map((category, index) => (
-                <div key={index} onClick={() => setSelected(index)}>
-                    <Link href={`#${category.name}`} style={selected === index ? { color: "var(--rcm-green)" } : { color: "var(--foreground-rgb)" }}>{category.name}</Link>
-                </div>
+                <Link
+                    key={index}
+                    onClick={() => setSelected(index)}
+                    className={index === selected ? (joinClassNames(styles.navLink, styles.navLink__selected)) : styles.navLink}
+                    href={`#${category.name}`}
+                >
+                    {category.name}
+                </Link>
             ))}
         </nav>
     );
@@ -76,6 +83,7 @@ const ProjectList = ({ projects }) => {
             }
 
             setCategories(data);
+
         }
         catch (error) {
             console.error(`Error fetching category data!\n${error.message}`);
@@ -88,17 +96,19 @@ const ProjectList = ({ projects }) => {
     });
 
     return (
-        <div>
+        <section className={styles.listContainer}>
             <ProjectNav categories={categories} />
-            {categories?.map(category => {
-                let matchingProjects = pros?.filter(pro => pro.categories?.includes(category.name));
-                if (matchingProjects?.length > 0) {
-                    return (
-                        <ProjectCategory name={category.name} projects={matchingProjects} key={category.name} />
-                    );
-                }
-            })}
-        </div>
+            <div className={styles.rightCol}>
+                {categories?.map((category, index) => {
+                    let matchingProjects = pros?.filter(pro => pro.categories?.includes(category.name));
+                    if (matchingProjects?.length > 0) {
+                        return (
+                            <ProjectCategory name={category.name} projects={matchingProjects} key={index} />
+                        );
+                    }
+                })}
+            </div>
+        </section>
     )
 }
 
