@@ -2,10 +2,26 @@ import ImageAsideText from './ImageAsideText'
 import styles from '@/styles/ProjectList.module.css'
 import { useEffect, useState } from 'react'
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
+import Link from 'next/link'
+
+export const ProjectNav = ({ categories }) => {
+    const [selected, setSelected] = useState(0);
+
+    return (
+        <nav className={styles.projectNav}>
+            {categories?.map((category, index) => (
+                <div key={index} onClick={() => setSelected(index)}>
+                    <Link href={`#${category.name}`} style={selected === index ? { color: "var(--rcm-green)" } : { color: "var(--foreground-rgb)" }}>{category.name}</Link>
+                </div>
+            ))}
+        </nav>
+    );
+}
 
 export const ProjectCategory = ({ name, projects }) => {
     return (
         <div className={styles.card} key={name}>
+            <a id={name} />
             <h2><span>{name}</span></h2>
             {projects?.map((project, index) => (
                 <ImageAsideText
@@ -73,6 +89,7 @@ const ProjectList = ({ projects }) => {
 
     return (
         <div>
+            <ProjectNav categories={categories} />
             {categories?.map(category => {
                 let matchingProjects = pros?.filter(pro => pro.categories?.includes(category.name));
                 if (matchingProjects?.length > 0) {

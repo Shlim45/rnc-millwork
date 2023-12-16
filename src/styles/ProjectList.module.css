@@ -1,3 +1,11 @@
+.projectNav {
+    position: fixed;
+    left: 50px;
+    padding: 1rem;
+
+    border: 1px dashed white;
+}
+
 .grid {
     display: grid;
     grid-template-columns: repeat(2, 50%);
