@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
-import ProjectsPanel from './ProjectsPanel';
+import ProjectsPanel from './projects/ProjectsPanel';
 import MessageBox from './MessageBox'
 import styles from '@/styles/Admin.module.css'
 

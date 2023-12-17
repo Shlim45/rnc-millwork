@@ -4,7 +4,7 @@ import EmblaCarousel from '@/components/EmblaCarousel'
 import { useEffect, useState } from "react"
 import { isInDevMode } from "@/config"
 import { supabase } from "@/utils/supabaseClient"
-import styles from "@/styles/Project.module.css"
+import styles from "@/styles/projects/Project.module.css"
 
 const Project = ({ project }) => {
     const [imgs, setImgs] = useState();

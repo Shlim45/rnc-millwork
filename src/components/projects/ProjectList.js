@@ -1,5 +1,5 @@
-import ImageAsideText from './ImageAsideText'
-import styles from '@/styles/ProjectList.module.css'
+import ImageAsideText from '../ImageAsideText'
+import styles from '@/styles/projects/ProjectList.module.css'
 import React, { useEffect, useState } from 'react'
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import { joinClassNames } from '@/utils'

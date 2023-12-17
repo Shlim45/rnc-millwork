@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { CldImage } from 'next-cloudinary';
-import projectStyles from '@/styles/ProjectItem.module.css';
+import projectStyles from '@/styles/projects/ProjectItem.module.css';
 
 const ProjectItem = ({ project }) => {
     const { id, images, alts, cover, title, body, categories } = project;

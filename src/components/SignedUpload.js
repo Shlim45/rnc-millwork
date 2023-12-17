@@ -1,6 +1,6 @@
 import { CldUploadWidget } from 'next-cloudinary';
 import { useState } from 'react';
-import styles from '@/styles/ProjectEdit.module.css'
+import styles from '@/styles/projects/ProjectEdit.module.css'
 
 const SignedUpload = ({ id, title, imageCount, handler, innerText = "Add Image" }) => {
     const [resource, setResource] = useState();

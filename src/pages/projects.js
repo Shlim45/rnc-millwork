@@ -1,4 +1,4 @@
-import ProjectList from '@/components/ProjectList';
+import ProjectList from '@/components/projects/ProjectList';
 import { supabase } from '@/utils/supabaseClient';
 import { NextSeo } from 'next-seo';
 
