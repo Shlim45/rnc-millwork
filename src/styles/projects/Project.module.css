@@ -5,6 +5,10 @@
     text-align: center;
 }
 
+.sandbox>h2>span {
+    color: var(--rcm-green);
+}
+
 .sandbox>p {
     margin-top: 2rem;
     color: rgba(var(--foreground-rgb), 0.75);
@@ -22,6 +26,12 @@
 .sandbox>a:hover {
     color: var(--rcm-green);
     transition-duration: 200ms;
+}
+
+@media (prefers-color-scheme: light) {
+    .sandbox>h2>span {
+        color: var(--foreground-rgb);
+    }
 }
 
 /* Mobile */
