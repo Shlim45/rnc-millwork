@@ -48,25 +48,53 @@ const NextButton = ({ enabled, onClick }) => (
 
 
 const EmblaCarousel = ({ slides, options, title = false }) => {
-    const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay()])
+    const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay({ delay: 5000 })])
     const [tweenValues, setTweenValues] = useState([])
     const [prevBtnEnabled, setPrevBtnEnabled] = useState(false)
     const [nextBtnEnabled, setNextBtnEnabled] = useState(false)
     const [selectedIndex, setSelectedIndex] = useState(0)
     const [scrollSnaps, setScrollSnaps] = useState([])
+    const [autoInterval, setAutoInterval] = useState(null)
+
+    const pauseAutoplay = useCallback((msDuration = 25000) => {
+        if (!emblaApi) return;
+
+        emblaApi.plugins().autoplay.stop();
+
+        const autoInt = setInterval(() => emblaApi.plugins().autoplay.play(), msDuration);
+
+        if (autoInterval) clearInterval(autoInterval);
+
+        setAutoInterval(autoInt);
+    }, [emblaApi, autoInterval]);
 
 
     const scrollPrev = useCallback(
-        () => emblaApi && emblaApi.scrollPrev(),
-        [emblaApi],
+        () => {
+            if (!emblaApi) return;
+            emblaApi.scrollPrev();
+
+            pauseAutoplay();
+        },
+        [emblaApi, pauseAutoplay],
     )
     const scrollNext = useCallback(
-        () => emblaApi && emblaApi.scrollNext(),
-        [emblaApi],
+        () => {
+            if (!emblaApi) return;
+            emblaApi.scrollNext();
+
+            pauseAutoplay();
+        },
+        [emblaApi, pauseAutoplay],
     )
     const scrollTo = useCallback(
-        (index) => emblaApi && emblaApi.scrollTo(index),
-        [emblaApi],
+        (index) => {
+            if (!emblaApi) return;
+            emblaApi.scrollTo(index);
+
+            pauseAutoplay();
+        },
+        [emblaApi, pauseAutoplay],
     )
 
     const onSelect = useCallback(() => {
