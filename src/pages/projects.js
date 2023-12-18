@@ -43,6 +43,7 @@ const ProjectCategory = ({ name, projects, isMobile = false }) => {
                         imageLeft={isMobile || (index % 2 === 0)}
                     />
                 ))}
+                <Link className={styles.topLink} href='#top'>Top of Page</Link>
             </div>
         </>
 
@@ -56,6 +57,8 @@ const ProjectList = ({ projects, categories, selected = 0, handleSelect, isMobil
         <section className={styles.listContainer}>
             <ProjectNav categories={categories} selected={selected} handleSelect={handleSelect} />
             <div className={styles.rightCol}>
+
+                <a id='top' />
                 {categories?.map((category, index) => {
                     let matchingProjects = projects?.filter(pro => pro.categories?.includes(category.name));
                     if (matchingProjects?.length > 0) {
