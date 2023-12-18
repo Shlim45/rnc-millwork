@@ -26,7 +26,7 @@ const ProjectNav = ({ categories, selected, handleSelect }) => {
     );
 }
 
-const ProjectCategory = ({ name, projects, isMobile = false }) => {
+const ProjectCategory = ({ name, projects, isMobile = false, handleSelect, isFiltered = false }) => {
     return (
         <>
             <a id={name} />
@@ -43,7 +43,8 @@ const ProjectCategory = ({ name, projects, isMobile = false }) => {
                         imageLeft={isMobile || (index % 2 === 0)}
                     />
                 ))}
-                <Link className={styles.topLink} href='#top'>Top of Page</Link>
+                {isFiltered && <button className={styles.topLink} onClick={() => handleSelect(-1)}>Clear Filter</button>}
+                <Link className={styles.topLink} href='#'>Top of Page</Link>
             </div>
         </>
 
@@ -52,19 +53,31 @@ const ProjectCategory = ({ name, projects, isMobile = false }) => {
 
 }
 
-const ProjectList = ({ projects, categories, selected = 0, handleSelect, isMobile }) => {
+const ProjectList = ({ projects, categories, selected = 0, handleSelect, isMobile, filterBySelected = true }) => {
+    const catList = filterBySelected
+        ? categories?.filter((_, index) => index === selected)
+        : categories;
     return (
         <section className={styles.listContainer}>
             <ProjectNav categories={categories} selected={selected} handleSelect={handleSelect} />
             <div className={styles.rightCol}>
 
-                <a id='top' />
-                {categories?.map((category, index) => {
+                {catList?.map((category, index) => {
                     let matchingProjects = projects?.filter(pro => pro.categories?.includes(category.name));
                     if (matchingProjects?.length > 0) {
                         return (
-                            <ProjectCategory name={category.name} projects={matchingProjects} key={index} isMobile={isMobile} />
+                            <ProjectCategory
+                                name={category.name}
+                                projects={matchingProjects}
+                                key={index}
+                                isMobile={isMobile}
+                                handleSelect={handleSelect}
+                                isFiltered={filterBySelected} />
                         );
+                    }
+                    else {
+                        // NOTE(jon): This clears the filter rather than showing an empty list.
+                        handleSelect(-1);
                     }
                 })}
             </div>
@@ -74,9 +87,13 @@ const ProjectList = ({ projects, categories, selected = 0, handleSelect, isMobil
 
 
 export default function Projects({ projects, categories }) {
-    const [selected, setSelected] = useState(0);
+    const [selected, setSelected] = useState(-1);
 
-    const handleSelect = index => setSelected(index);
+    // const handleSelect = index => setSelected(index);
+    const handleSelect = index => setSelected(prev => {
+        if (index === prev) return -1;
+        return index;
+    })
 
     const isMobile = (typeof window !== "undefined") ? window.innerWidth <= 700 : false;
 
@@ -94,7 +111,13 @@ export default function Projects({ projects, categories }) {
                 ]}
 
             />
-            <ProjectList projects={projects} categories={categories} handleSelect={handleSelect} selected={selected} isMobile={isMobile} />
+            <ProjectList
+                projects={projects}
+                categories={categories}
+                handleSelect={handleSelect}
+                selected={selected}
+                isMobile={isMobile}
+                filterBySelected={selected >= 0} />
         </>
     )
 }

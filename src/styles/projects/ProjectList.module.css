@@ -1,18 +1,16 @@
-.listContainer {
-    /* border: 1px dashed lightgoldenrodyellow; */
-}
-
 .projectNav {
     position: fixed;
     min-width: 300px;
     display: flex;
     flex-direction: column;
+    top: 150px;
     /* border: 1px dashed white; */
 }
 
 .projectNav h3 {
     align-self: center;
     margin-bottom: 1rem;
+    color: var(--rcm-green);
 }
 
 .navLink {
@@ -84,6 +82,11 @@
 .topLink {
     align-self: center;
     font-size: 1rem;
+    border: none;
+    background: none;
+    font: inherit;
+    letter-spacing: inherit;
+    cursor: pointer;
 }
 
 .topLink {
@@ -105,6 +108,10 @@
                 rgba(0, 0, 0, 0));
     }
 
+    .projectNav h3 {
+        color: var(--foreground-rgb);
+    }
+
     .topLink {
         color: var(--foreground-rgb);
     }
@@ -121,8 +128,9 @@
         position: relative;
         margin: auto;
         align-items: center;
-        padding-bottom: 2rem;
+        padding: 1rem;
         font-size: 1rem;
+        top: 0;
     }
 
     .navLink {
@@ -164,6 +172,7 @@
         align-items: center;
         padding-bottom: 2rem;
         font-size: 1.2rem;
+        top: 0;
     }
 
     .rightCol {
@@ -173,6 +182,7 @@
 
     .navLink {
         padding: 0.25rem;
+        font-size: 1.1rem;
     }
 
     .grid {

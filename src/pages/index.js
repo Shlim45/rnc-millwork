@@ -1,4 +1,5 @@
 import styles from '@/styles/Home.module.css'
+import Header from '@/components/Header'
 import SandBox from '@/components/SandBox';
 import EmblaCarousel from '@/components/EmblaCarousel'
 import Hero from '@/components/Hero';
@@ -49,6 +50,8 @@ export default function Home({ projects }) {
                 ]}
 
             />
+            <Header />
+
 
             <Hero images={[bg.src]}>
                 <SandBox heading="About Us" linkUrl="/about">
