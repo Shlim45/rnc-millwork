@@ -7,7 +7,6 @@
     min-width: 300px;
     display: flex;
     flex-direction: column;
-
     /* border: 1px dashed white; */
 }
 
@@ -23,7 +22,7 @@
     cursor: pointer;
     color: inherit;
     transition: color 200ms ease-in-out;
-    padding: 0.5rem;
+    padding: 0.25rem;
 }
 
 .navLink:hover {
@@ -35,9 +34,8 @@
 }
 
 .rightCol {
-    /* width = projectNav width */
     max-width: var(--max-width);
-    margin: auto auto auto 300px;
+    margin: auto auto auto 350px;
 }
 
 .grid {
