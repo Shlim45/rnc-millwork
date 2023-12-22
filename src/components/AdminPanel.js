@@ -48,50 +48,34 @@ export default function AdminPanel({ session }) {
         }
     }
 
-    async function fetchProjects() {
+    const fetchProjects = async () => {
         try {
             setLoading(true);
             setProjects(null);
-
-            let { data, error, status } = await supabase.from('projects').select();
-
-            if (error && status !== 406) {
-                throw error;
-            }
-
-            setProjects(data);
-
-        } catch (error) {
-            setMessage({
-                message: `Error loading projects!\n${error.message}`,
-                success: false,
-            });
-        }
-        finally {
-            setLoading(false);
-            setMessage({
-                message: `Projects loaded.`,
-                success: true,
-            });
-        }
-    }
-
-    const fetchCategoryData = async () => {
-        try {
-            setLoading(true);
             setCategories(null);
+            let { data: projectData, error: pError, status: pStatus } = await supabase.from('projects').select();
+            let { data: categoryData, error: cError, status: cStatus } = await supabase.from('categories').select().order('id');
+            let { data: projectCategoryData, error: pcError, status: pcStatus } = await supabase.from('project_categories').select();
 
-            let { data, error, status } = await supabase.from('categories').select().order('id');
+            if (pError && pStatus != 406) throw pError;
+            if (cError && cStatus != 406) throw cError;
+            if (pcError && pcStatus != 406) throw pcError;
 
-            if (error && status != 406) {
-                throw error;
-            }
+            const projects = projectData.map(project => {
+                const cats = projectCategoryData.filter(cat => cat.project_id == project.id);
+                return {
+                    ...project,
+                    "categories": cats.map(pCat => pCat.category_name)
+                }
+            }).sort((a, b) => a.id - b.id);
 
-            setCategories(data);
+            setProjects(projects);
+            setCategories(categoryData);
         }
         catch (error) {
             setMessage({
-                message: `Error loading category data!\n${error.message}`,
+                message: `Failed to fetch data.
+                        ${error.message}`,
                 success: false,
             });
         }
@@ -101,8 +85,7 @@ export default function AdminPanel({ session }) {
     }
 
     useEffect(() => {
-        if (!projects) fetchProjects();
-        if (!categories) fetchCategoryData();
+        if (!projects || !categories) fetchProjects();
     });
 
 
