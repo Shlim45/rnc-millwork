@@ -1,8 +1,8 @@
-import styles from '@/styles/projects/ProjectEdit.module.css'
+import styles from '@/styles/admin/ProjectEdit.module.css'
 import { CldImage } from 'next-cloudinary';
 import { useState } from 'react';
 import FormWrapper from '../FormWrapper';
-import SignedUpload from '../SignedUpload';
+import SignedUpload from './SignedUpload';
 import MessageBox from '../MessageBox';
 import { supabase } from "@/utils/supabaseClient";
 

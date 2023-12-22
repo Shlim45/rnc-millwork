@@ -1,7 +1,7 @@
-import FormWrapper from "./FormWrapper";
+import FormWrapper from "../FormWrapper";
 import { supabase } from "@/utils/supabaseClient";
-import SandBox from "./SandBox";
-import MessageBox from "./MessageBox";
+import SandBox from "@/components/SandBox";
+import MessageBox from "@/components/MessageBox";
 import { useState } from "react";
 
 const LoginForm = () => {

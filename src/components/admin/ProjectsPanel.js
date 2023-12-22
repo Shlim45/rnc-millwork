@@ -1,7 +1,7 @@
-import styles from '@/styles/Admin.module.css'
+import styles from '@/styles/admin/Admin.module.css'
 import { CldImage } from 'next-cloudinary';
 import { useState } from 'react';
-import ProjectEdit from './ProjectEdit';
+import ProjectEdit from '@/components/admin/ProjectEdit';
 
 export const ProjectInfo = ({ project, handleSelect }) => {
     const { id, title, images, alts, cover, categories } = project;
