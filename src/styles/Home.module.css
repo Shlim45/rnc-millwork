@@ -8,13 +8,39 @@
 .list {
   margin-left: 3rem;
   list-style: none;
+  line-height: 2rem;
+}
+
+.list>li {
+  float: left;
+  clear: both;
 }
 
 .list>li::before {
   content: "\25B7";
   color: var(--rcm-green);
-  padding-right: 1rem;
+  margin-right: 1rem;
   font-size: 1rem;
+  display: inline-block;
+}
+
+.list>li:hover::before {
+  animation: rotate 0.3s linear;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.list>li>a:hover {
+  color: var(--rcm-green);
+  transition: color 150ms ease-in-out;
 }
 
 /* Mobile */

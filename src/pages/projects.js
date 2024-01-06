@@ -17,7 +17,7 @@ const ProjectNav = ({ categories, selected, handleSelect }) => {
                     key={index}
                     onClick={() => handleSelect(index)}
                     className={index === selected ? (joinClassNames(styles.navLink, styles.navLink__selected)) : styles.navLink}
-                    href={`#${category.name}`}
+                    href={`#${category.name.replace(' ', '_')}`}
                 >
                     {category.name}
                 </Link>
@@ -29,7 +29,7 @@ const ProjectNav = ({ categories, selected, handleSelect }) => {
 const ProjectCategory = ({ name, projects, isMobile = false, handleSelect, isFiltered = false }) => {
     return (
         <>
-            <a id={name} />
+            <a id={name.replace(' ', '_')} />
             <div className={styles.card} key={name}>
                 <h2><span>{name}</span></h2>
                 {projects?.map((project, index) => (

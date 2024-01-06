@@ -11,11 +11,13 @@ import bg from '../../public/RCM_shop.jpg';
 const OPTIONS = { inViewThreshold: 0, dragFree: true, loop: true };
 
 export const getStaticProps = async () => {
-    let { data } = await supabase.from('projects').select('id, title, images, alts, cover').eq('showcase', true).eq('hidden', false);
+    let { data: projectData } = await supabase.from('projects').select('id, title, images, alts, cover').eq('showcase', true).eq('hidden', false);
+    let { data: categoryData } = await supabase.from('categories').select().order('id');
 
     return {
         props: {
-            projects: data
+            projects: projectData,
+            categories: categoryData,
         },
         // Next.js will attempt to re-generate the page:
         // - When a request comes in
@@ -25,7 +27,7 @@ export const getStaticProps = async () => {
 
 }
 
-export default function Home({ projects }) {
+export default function Home({ projects, categories }) {
 
     const _slides = projects.map(({ id, title, images, alts, cover }) => ({
         id,
@@ -58,14 +60,11 @@ export default function Home({ projects }) {
                     <p>RC Custom Millworks is a woodworking company located in Castle Shannon just off Library Road. Our team of skilled craftsmen has years of experience and is dedicated to providing the highest quality products and services.</p>
                     <p>We specialize in hand-crafting custom products, including:</p>
                     <ul className={styles.list}>
-                        <li>Custom kitchen cabinets</li>
-                        <li>Tables</li>
-                        <li>Banisters</li>
-                        <li>Mantelpieces</li>
-                        <li>Desks</li>
-                        <li>Countertops</li>
-                        <li>Entertainment centers</li>
-                        <li>Bars</li>
+
+                        {
+                            categories?.map(cat => <li key={cat.id}><Link href={`/projects#${cat.name.replace(' ', '_')}`}>{cat.name}</Link></li>)
+                        }
+
                     </ul>
                     <p>and much more!  Our products are proudly 100% Made in America and we use locally sourced and hand-selected lumber to deliver beautiful hand-crafted wooden furniture to our customers for a competitive price.</p>
                     <p>We work closely with our clients to ensure that their vision is brought to life and that they are completely satisfied with the final product.</p>
