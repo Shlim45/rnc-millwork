@@ -24,23 +24,33 @@
   display: inline-block;
 }
 
-.list>li:hover::before {
-  animation: rotate 0.3s linear;
-}
+/* Enable hover only on non-touch devices */
+@media (hover: hover) and (pointer: fine) {
 
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg);
+  .list>li:hover::before {
+    animation: rotate 0.3s linear;
   }
 
-  100% {
-    transform: rotate(360deg);
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .list>li>a:hover {
+    color: var(--rcm-green);
+    transition: color 150ms ease-in-out;
   }
 }
 
-.list>li>a:hover {
-  color: var(--rcm-green);
-  transition: color 150ms ease-in-out;
+@media (prefers-reduced-motion) {
+  .list>li:hover::before {
+    animation: none;
+  }
 }
 
 /* Mobile */
