@@ -1,9 +1,12 @@
 import styles from '@/styles/Footer.module.css';
 
 const Footer = () => {
+    const foundedYear = 2023;
+    const currentYear = new Date().getFullYear();
+
     return (
         <footer className={styles.copy}>
-            <small>&copy; Copyright 2023, RC Custom Millworks, LLC</small>
+            <small>&copy; Copyright {foundedYear}-{currentYear}, RC Custom Millworks, LLC</small>
         </footer>
     )
 }
